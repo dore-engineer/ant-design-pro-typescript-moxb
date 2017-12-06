@@ -70,20 +70,21 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-runtime": "^6.9.0",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
     "mobx-react-devtools": "^4.2.15",
     "mockjs": "^1.0.1-beta3",
     "roadhog": "^1.3.1",
     "roadhog-api-doc": "^0.3.3",
-
     "source-map-loader": "^0.2.1",
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.4",
+    "ts-import-plugin": "^1.4.3",
     "ts-jest": "^20.0.7",
     "ts-loader": "^2.3.7",
     "tslint": "^5.8.0",
     "tslint-loader": "^3.5.3",
     "tslint-react": "^3.2.0"
-
   },
   "jest": {
     "mapCoverage": true,

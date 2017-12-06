@@ -190,7 +190,7 @@ export default class TableList extends React.PureComponent<any, any> {
             </FormItem>
           </Col>
           <Col md={8} sm={24}>
-            <span className={styles.submitButtons}>
+            <span className={'submitButtons'}>
               <Button type="primary" htmlType="submit">查询</Button>
               <Button style={{marginLeft: 8}} onClick={this.handleFormReset}>重置</Button>
               <a style={{marginLeft: 8}} onClick={this.toggleForm}>
@@ -293,11 +293,11 @@ export default class TableList extends React.PureComponent<any, any> {
     return (
       <PageHeaderLayout title="查询表格">
         <Card bordered={false}>
-          <div className={styles.tableList}>
-            <div className={styles.tableListForm}>
+          <div className={'tableList'}>
+            <div className={'tableListForm'}>
               {this.renderForm()}
             </div>
-            <div className={styles.tableListOperator}>
+            <div className={'tableListOperator'}>
               <Button icon="plus" type="primary" onClick={() => this.handleModalVisible(true)}>
                 新建
               </Button>

@@ -80,19 +80,19 @@ class AdvancedForm extends React.PureComponent<AdvancedFormProps, any> {
           return null;
         }
         return (
-          <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
-            <Icon type="cross-circle-o" className={styles.errorIcon}/>
-            <div className={styles.errorMessage}>{errors[key][0]}</div>
-            <div className={styles.errorField}>{fieldLabels[key]}</div>
+          <li key={key} className={'errorListItem'} onClick={() => scrollToField(key)}>
+            <Icon type="cross-circle-o" className={'errorIcon'}/>
+            <div className={'errorMessage'}>{errors[key][0]}</div>
+            <div className={'errorField'}>{fieldLabels[key]}</div>
           </li>
         );
       });
       return (
-        <span className={styles.errorIcon}>
+        <span className={'errorIcon'}>
           <Popover
             title="表单校验信息"
             content={errorList}
-            overlayClassName={styles.errorPopover}
+            overlayClassName={'errorPopover'}
             trigger="click"
             getPopupContainer={trigger => trigger.parentNode as HTMLElement}
           >
@@ -106,9 +106,9 @@ class AdvancedForm extends React.PureComponent<AdvancedFormProps, any> {
       <PageHeaderLayout
         title="高级表单"
         content="高级表单常见于一次性输入和提交大批量数据的场景。"
-        wrapperClassName={styles.advancedForm}
+        wrapperClassName={'advancedForm'}
       >
-        <Card title="仓库管理" className={styles.card} bordered={false}>
+        <Card title="仓库管理" className={'card'} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
               <Col lg={6} md={12} sm={24}>
@@ -184,7 +184,7 @@ class AdvancedForm extends React.PureComponent<AdvancedFormProps, any> {
             </Row>
           </Form>
         </Card>
-        <Card title="任务管理" className={styles.card} bordered={false}>
+        <Card title="任务管理" className={'card'} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
               <Col lg={6} md={12} sm={24}>
@@ -259,7 +259,7 @@ class AdvancedForm extends React.PureComponent<AdvancedFormProps, any> {
             </Row>
           </Form>
         </Card>
-        <Card title="成员管理" className={styles.card} bordered={false}>
+        <Card title="成员管理" className={'card'} bordered={false}>
           {getFieldDecorator('members', {
             initialValue: tableData,
           })(<TableForm/>)}

@@ -5,7 +5,7 @@ import DocumentTitle from 'react-document-title';
 import { Icon } from 'antd';
 import GlobalFooter from 'ant-design-pro/lib/GlobalFooter';
 
-const styles = require('./UserLayout.less');
+import './UserLayout.less';
 
 const links = [{
   title: '帮助',
@@ -47,19 +47,19 @@ class UserLayout extends React.PureComponent<any, any> {
 
     return (
       <DocumentTitle title={this.getPageTitle()}>
-        <div className={styles.container}>
-          <div className={styles.top}>
-            <div className={styles.header}>
+        <div className={'container'}>
+          <div className={'top'}>
+            <div className={'header'}>
               <Link to="/">
                 <img
                   alt=""
-                  className={styles.logo}
+                  className={'logo'}
                   src="https://gw.alipayobjects.com/zos/rmsportal/NGCCBOENpgTXpBWUIPnI.svg"
                 />
-                <span className={styles.title}>Ant Design</span>
+                <span className={'title'}>Ant Design</span>
               </Link>
             </div>
-            <div className={styles.desc}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
+            <div className={'desc'}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
           </div>
           {
             getRouteData('UserLayout').map(item =>
@@ -73,7 +73,7 @@ class UserLayout extends React.PureComponent<any, any> {
               )
             )
           }
-          <GlobalFooter className={styles.footer} links={links} copyright={copyright}/>
+          <GlobalFooter className={'footer'} links={links} copyright={copyright}/>
         </div>
       </DocumentTitle>
     );

@@ -9,8 +9,6 @@ import { Provider } from 'mobx-react';
 import {rootStores} from './models';
 import browserHistory from 'history/createBrowserHistory';
 
-const styles = require('./index.less');
-
 class App extends React.Component<any, any> {
 
   getRouteData(navData, path): any {

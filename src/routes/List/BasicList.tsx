@@ -27,7 +27,7 @@ export default class BasicList extends React.PureComponent<any, any> {
     const {list: {list, loading}} = this.props;
 
     const Info = ({title, value, bordered}) => (
-      <div className={styles.headerInfo}>
+      <div className={'headerInfo'}>
         <span>{title}</span>
         <p>{value}</p>
         {bordered && <em/>}
@@ -35,14 +35,14 @@ export default class BasicList extends React.PureComponent<any, any> {
     );
 
     const extraContent = (
-      <div className={styles.extraContent}>
+      <div className={'extraContent'}>
         <RadioGroup defaultValue="all">
           <RadioButton value="all">全部</RadioButton>
           <RadioButton value="progress">进行中</RadioButton>
           <RadioButton value="waiting">等待中</RadioButton>
         </RadioGroup>
         <Search
-          className={styles.extraContentSearch}
+          className={'extraContentSearch'}
           placeholder="请输入"
           onSearch={() => ({})}
         />
@@ -57,7 +57,7 @@ export default class BasicList extends React.PureComponent<any, any> {
     };
 
     const ListContent = ({data: {owner, createdAt, percent, status}}) => (
-      <div className={styles.listContent}>
+      <div className={'listContent'}>
         <div>
           <span>Owner</span>
           <p>{owner}</p>
@@ -93,7 +93,7 @@ export default class BasicList extends React.PureComponent<any, any> {
 
     return (
       <PageHeaderLayout>
-        <div className={styles.standardList}>
+        <div className={'standardList'}>
           <Card bordered={false}>
             <Row>
               <Col sm={8} xs={24}>
@@ -109,7 +109,7 @@ export default class BasicList extends React.PureComponent<any, any> {
           </Card>
 
           <Card
-            className={styles.listCard}
+            className={'listCard'}
             bordered={false}
             title="标准列表"
             style={{marginTop: 24}}

@@ -78,9 +78,9 @@ export default class Login extends React.Component<any, any> {
     const {getFieldDecorator} = form;
     const {count, type} = this.state;
     return (
-      <div className={styles.main}>
+      <div className={'main'}>
         <Form onSubmit={this.handleSubmit}>
-          <Tabs animated={false} className={styles.tabs} activeKey={type} onChange={this.onSwitch}>
+          <Tabs animated={false} className={'tabs'} activeKey={type} onChange={this.onSwitch}>
             <TabPane tab="账户密码登录" key="account">
               {
                 login.status === 'error' &&
@@ -96,7 +96,7 @@ export default class Login extends React.Component<any, any> {
                 })(
                   <Input
                     size="large"
-                    prefix={<Icon type="user" className={styles.prefixIcon}/>}
+                    prefix={<Icon type="user" className={'prefixIcon'}/>}
                     placeholder="admin"
                   />
                 )}
@@ -109,7 +109,7 @@ export default class Login extends React.Component<any, any> {
                 })(
                   <Input
                     size="large"
-                    prefix={<Icon type="lock" className={styles.prefixIcon}/>}
+                    prefix={<Icon type="lock" className={'prefixIcon'}/>}
                     type="password"
                     placeholder="888888"
                   />
@@ -133,7 +133,7 @@ export default class Login extends React.Component<any, any> {
                 })(
                   <Input
                     size="large"
-                    prefix={<Icon type="mobile" className={styles.prefixIcon}/>}
+                    prefix={<Icon type="mobile" className={'prefixIcon'}/>}
                     placeholder="手机号"
                   />
                 )}
@@ -148,7 +148,7 @@ export default class Login extends React.Component<any, any> {
                     })(
                       <Input
                         size="large"
-                        prefix={<Icon type="mail" className={styles.prefixIcon}/>}
+                        prefix={<Icon type="mail" className={'prefixIcon'}/>}
                         placeholder="验证码"
                       />
                     )}
@@ -156,7 +156,7 @@ export default class Login extends React.Component<any, any> {
                   <Col span={8}>
                     {/*<Button*/}
                     {/*disabled={count}*/}
-                    {/*className={styles.getCaptcha}*/}
+                    {/*className={'getCaptcha'}*/}
                     {/*size="large"*/}
                     {/*onClick={this.onGetCaptcha}*/}
                     {/*>*/}
@@ -167,18 +167,18 @@ export default class Login extends React.Component<any, any> {
               </FormItem>
             </TabPane>
           </Tabs>
-          <FormItem className={styles.additional}>
+          <FormItem className={'additional'}>
             {getFieldDecorator('remember', {
               valuePropName: 'checked',
               initialValue: true,
             })(
-              <Checkbox className={styles.autoLogin}>自动登录</Checkbox>
+              <Checkbox className={'autoLogin'}>自动登录</Checkbox>
             )}
-            <a className={styles.forgot} href="">忘记密码</a>
+            <a className={'forgot'} href="">忘记密码</a>
             <Button
               size="large"
               loading={login.submitting}
-              className={styles.submit}
+              className={'submit'}
               type="primary"
               htmlType="submit"
             >
@@ -186,13 +186,13 @@ export default class Login extends React.Component<any, any> {
             </Button>
           </FormItem>
         </Form>
-        <div className={styles.other}>
+        <div className={'other'}>
           其他登录方式
           {/* 需要加到 Icon 中 */}
-          <span className={styles.iconAlipay}/>
-          <span className={styles.iconTaobao}/>
-          <span className={styles.iconWeibo}/>
-          <Link className={styles.register} to="/user/register">注册账户</Link>
+          <span className={'iconAlipay'}/>
+          <span className={'iconTaobao'}/>
+          <span className={'iconWeibo'}/>
+          <Link className={'register'} to="/user/register">注册账户</Link>
         </div>
       </div>
     );

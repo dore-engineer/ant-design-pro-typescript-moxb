@@ -5,10 +5,10 @@ import Result from 'ant-design-pro/lib/Result';
 
 const styles = require('./RegisterResult.less');
 
-const title = <div className={styles.title}>你的账户：AntDesign@example.com 注册成功</div>;
+const title = <div className={'title'}>你的账户：AntDesign@example.com 注册成功</div>;
 
 const actions = (
-  <div className={styles.actions}>
+  <div className={'actions'}>
     <a href=""><Button size="large" type="primary">查看邮箱</Button></a>
     <Link to="/"><Button size="large">返回首页</Button></Link>
   </div>
@@ -16,7 +16,7 @@ const actions = (
 
 export default () => (
   <Result
-    className={styles.registerResult}
+    className={'registerResult'}
     type="success"
     title={title}
     description="激活邮件已发送到你的邮箱中，邮件有效期为24小时。请及时登录邮箱，点击邮件中的链接激活帐户。"

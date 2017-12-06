@@ -109,9 +109,9 @@ export default class SearchList extends React.Component<any, any> {
     );
 
     const ListContent = ({data: {content, updatedAt, avatar, owner, href}}) => (
-      <div className={styles.listContent}>
-        <div className={styles.description}>{content}</div>
-        <div className={styles.extra}>
+      <div className={'listContent'}>
+        <div className={'description'}>{content}</div>
+        <div className={'extra'}>
           <Avatar src={avatar} size="small"/><a href={href}>{owner}</a> 发布在 <a href={href}>{href}</a>
           <em>{moment(updatedAt).format('YYYY-MM-DD hh:mm')}</em>
         </div>
@@ -198,7 +198,7 @@ export default class SearchList extends React.Component<any, any> {
                           }
                         </Select>
                       )}
-                      <a className={styles.selfTrigger} onClick={this.setOwner}>只看自己的</a>
+                      <a className={'selfTrigger'} onClick={this.setOwner}>只看自己的</a>
                     </FormItem>
                   </Col>
                 </Row>
@@ -271,11 +271,11 @@ export default class SearchList extends React.Component<any, any> {
                     <IconText type="like-o" text={item.like}/>,
                     <IconText type="message" text={item.message}/>,
                   ]}
-                  extra={<div className={styles.listItemExtra}/>}
+                  extra={<div className={'listItemExtra'}/>}
                 >
                   <List.Item.Meta
                     title={(
-                      <a className={styles.listItemMetaTitle} href={item.href}>{item.title}</a>
+                      <a className={'listItemMetaTitle'} href={item.href}>{item.title}</a>
                     )}
                     description={
                       <span>

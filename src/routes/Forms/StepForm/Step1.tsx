@@ -21,7 +21,7 @@ export default ({formItemLayout, form, dispatch, data}) => {
   };
   return (
     <div>
-      <Form layout="horizontal" className={styles.stepForm} hideRequiredMark>
+      <Form layout="horizontal" className={'stepForm'} hideRequiredMark>
         <Form.Item
           {...formItemLayout}
           label="付款账户"
@@ -93,7 +93,7 @@ export default ({formItemLayout, form, dispatch, data}) => {
         </Form.Item>
       </Form>
       <Divider/>
-      <div className={styles.desc} style={{margin: '40px 0 24px'}}>
+      <div className={'desc'} style={{margin: '40px 0 24px'}}>
         <h3>说明</h3>
         <h4>转账到支付宝账户</h4>
         <p>如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。</p>

@@ -77,7 +77,7 @@ export default class CoverCardList extends React.PureComponent<any, any> {
         renderItem={item => (
           <List.Item extra>
             <Card
-              className={styles.card}
+              className={'card'}
               hoverable
               cover={<img alt={item.title} src={item.cover} height={154}/>}
             >
@@ -85,9 +85,9 @@ export default class CoverCardList extends React.PureComponent<any, any> {
                 title={<a href="#">{item.title}</a>}
                 description={item.subDescription}
               />
-              <div className={styles.cardItemContent}>
+              <div className={'cardItemContent'}>
                 <span>{moment(item.updatedAt).fromNow()}</span>
-                <div className={styles.avatarList}>
+                <div className={'avatarList'}>
                   <AvatarList size="mini">
                     {
                       item.members.map((member, i) => (
@@ -149,7 +149,7 @@ export default class CoverCardList extends React.PureComponent<any, any> {
         tabList={tabList}
         onTabChange={this.handleTabChange}
       >
-        <div className={styles.coverCardList}>
+        <div className={'coverCardList'}>
           <Card bordered={false}>
             <Form layout="inline">
               <StandardFormRow title="所属类目" block style={{paddingBottom: 11}}>
@@ -215,7 +215,7 @@ export default class CoverCardList extends React.PureComponent<any, any> {
               </StandardFormRow>
             </Form>
           </Card>
-          <div className={styles.cardList}>
+          <div className={'cardList'}>
             {cardList}
           </div>
         </div>

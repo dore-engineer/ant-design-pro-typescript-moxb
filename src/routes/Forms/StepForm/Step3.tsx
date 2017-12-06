@@ -10,22 +10,22 @@ export default ({dispatch, data}) => {
     dispatch(routerRedux.push('/form/step-form'));
   };
   const information = (
-    <div className={styles.information}>
+    <div className={'information'}>
       <Row>
-        <Col span={8} className={styles.label}>付款账户：</Col>
+        <Col span={8} className={'label'}>付款账户：</Col>
         <Col span={16}>{data.payAccount}</Col>
       </Row>
       <Row>
-        <Col span={8} className={styles.label}>收款账户：</Col>
+        <Col span={8} className={'label'}>收款账户：</Col>
         <Col span={16}>{data.receiverAccount}</Col>
       </Row>
       <Row>
-        <Col span={8} className={styles.label}>收款人姓名：</Col>
+        <Col span={8} className={'label'}>收款人姓名：</Col>
         <Col span={16}>{data.receiverName}</Col>
       </Row>
       <Row>
-        <Col span={8} className={styles.label}>转账金额：</Col>
-        <Col span={16}><span className={styles.money}>{data.amount}</span> 元</Col>
+        <Col span={8} className={'label'}>转账金额：</Col>
+        <Col span={16}><span className={'money'}>{data.amount}</span> 元</Col>
       </Row>
     </div>
   );
@@ -46,7 +46,7 @@ export default ({dispatch, data}) => {
       description="预计两小时内到账"
       extra={information}
       actions={actions}
-      className={styles.result}
+      className={'result'}
     />
   );
 };

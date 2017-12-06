@@ -114,13 +114,13 @@ export default class Workplace extends React.PureComponent<any, any> {
             avatar={<Avatar src={item.user.avatar}/>}
             title={
               <span>
-                <a className={styles.username}>{item.user.name}</a>
+                <a className={'username'}>{item.user.name}</a>
                 &nbsp;
-                <span className={styles.event}>{events}</span>
+                <span className={'event'}>{events}</span>
               </span>
             }
             description={
-              <span className={styles.datetime} title={item.updatedAt}>
+              <span className={'datetime'} title={item.updatedAt}>
                 {moment(item.updatedAt).fromNow()}
               </span>
             }
@@ -138,19 +138,19 @@ export default class Workplace extends React.PureComponent<any, any> {
     } = this.props;
 
     const pageHeaderContent = (
-      <div className={styles.pageHeaderContent}>
-        <div className={styles.avatar}>
+      <div className={'pageHeaderContent'}>
+        <div className={'avatar'}>
           <Avatar size="large" src="https://gw.alipayobjects.com/zos/rmsportal/lctvVCLfRpYCkYxAsiVQ.png"/>
         </div>
-        <div className={styles.content}>
-          <div className={styles.contentTitle}>早安，曲丽丽，祝你开心每一天！</div>
+        <div className={'content'}>
+          <div className={'contentTitle'}>早安，曲丽丽，祝你开心每一天！</div>
           <div>交互专家 | 蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED</div>
         </div>
       </div>
     );
 
     const pageHeaderExtra = (
-      <div className={styles.pageHeaderExtra}>
+      <div className={'pageHeaderExtra'}>
         <div>
           <p>项目数</p>
           <p>56</p>
@@ -174,7 +174,7 @@ export default class Workplace extends React.PureComponent<any, any> {
         <Row gutter={24}>
           <Col xl={16} lg={24} md={24} sm={24} xs={24}>
             <Card
-              className={styles.projectList}
+              className={'projectList'}
               style={{marginBottom: 24}}
               title="进行中的项目"
               bordered={false}
@@ -184,21 +184,21 @@ export default class Workplace extends React.PureComponent<any, any> {
             >
               {
                 notice.map(item => (
-                  <Card.Grid className={styles.projectGrid} key={item.id}>
+                  <Card.Grid className={'projectGrid'} key={item.id}>
                     <Card bodyStyle={{padding: 0}} bordered={false}>
                       <Card.Meta
                         title={(
-                          <div className={styles.cardTitle}>
+                          <div className={'cardTitle'}>
                             <Avatar size="small" src={item.logo}/>
                             <Link to={item.href}>{item.title}</Link>
                           </div>
                         )}
                         description={item.description}
                       />
-                      <div className={styles.projectItemContent}>
+                      <div className={'projectItemContent'}>
                         <Link to={item.memberLink}>{item.member || ''}</Link>
                         {item.updatedAt && (
-                          <span className={styles.datetime} title={item.updatedAt}>
+                          <span className={'datetime'} title={item.updatedAt}>
                             {moment(item.updatedAt).fromNow()}
                           </span>
                         )}
@@ -211,12 +211,12 @@ export default class Workplace extends React.PureComponent<any, any> {
             <Card
               bodyStyle={{padding: 0}}
               bordered={false}
-              className={styles.activeCard}
+              className={'activeCard'}
               title="动态"
               loading={activitiesLoading}
             >
               <List dataSource={''} loading={activitiesLoading} size="large"
-                    renderItem={() => <div className={styles.activitiesList}>
+                    renderItem={() => <div className={'activitiesList'}>
                       {this.renderActivities()}
                     </div>}>
 
@@ -243,7 +243,7 @@ export default class Workplace extends React.PureComponent<any, any> {
               title="XX 指数"
               loading={radarData.length === 0}
             >
-              <div className={styles.chart}>
+              <div className={'chart'}>
                 <Radar hasLegend height={343} data={radarData}/>
               </div>
             </Card>
@@ -252,14 +252,14 @@ export default class Workplace extends React.PureComponent<any, any> {
               bordered={false}
               title="团队"
             >
-              <div className={styles.members}>
+              <div className={'members'}>
                 <Row gutter={48}>
                   {
                     members.map(item => (
                       <Col span={12} key={`members-item-${item.id}`}>
                         <Link to={item.link}>
                           <Avatar src={item.logo} size="small"/>
-                          <span className={styles.member}>{item.title}</span>
+                          <span className={'member'}>{item.title}</span>
                         </Link>
                       </Col>
                     ))

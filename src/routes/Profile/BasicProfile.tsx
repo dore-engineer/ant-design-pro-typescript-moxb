@@ -143,7 +143,7 @@ export default class BasicProfile extends React.Component<any, any> {
             <Description term="备注">无</Description>
           </DescriptionList>
           <div style={{marginBottom: 32}}/>
-          <div className={styles.title}>退货商品</div>
+          <div className={'title'}>退货商品</div>
           <Table
             style={{marginBottom: 24}}
             pagination={false}
@@ -152,7 +152,7 @@ export default class BasicProfile extends React.Component<any, any> {
             columns={goodsColumns}
             rowKey="id"
           />
-          <div className={styles.title}>退货进度</div>
+          <div className={'title'}>退货进度</div>
           <Table
             style={{marginBottom: 16}}
             pagination={false}

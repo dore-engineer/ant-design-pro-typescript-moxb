@@ -16,9 +16,8 @@ import NotFound from '../routes/Exception/404';
 import { inject, observer } from 'mobx-react';
 import { User } from '../models/user';
 import { Global } from '../models/global';
-// import styles from './BasicLayout.less';
-// import logo from '../assets/logo.svg';
-const styles = require('./BasicLayout.less');
+import './BasicLayout.less';
+
 const logo = require('../assets/logo.svg');
 
 const {Header, Sider, Content} = Layout;
@@ -279,7 +278,7 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
     const {getRouteData} = this.props;
 
     const menu = (
-      <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
+      <Menu className={'menu'} selectedKeys={[]} onClick={this.onMenuClick}>
         <Menu.Item disabled><Icon type="user"/>个人中心</Menu.Item>
         <Menu.Item disabled><Icon type="setting"/>设置</Menu.Item>
         <Menu.Divider/>
@@ -304,9 +303,9 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
           breakpoint="md"
           onCollapse={this.onCollapse}
           width={256}
-          className={styles.sider}
+          className={'sider'}
         >
-          <div className={styles.logo}>
+          <div className={'logo'}>
             <Link to="/">
               <img src={logo} alt="logo"/>
               <h1>Ant Design Pro</h1>
@@ -324,15 +323,15 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
           </Menu>
         </Sider>
         <Layout>
-          <Header className={styles.header}>
+          <Header className={'header'}>
             <Icon
-              className={styles.trigger}
+              className={'trigger'}
               type={global.collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
             />
-            <div className={styles.right}>
+            <div className={'right'}>
               <HeaderSearch
-                className={`${styles.action} ${styles.search}`}
+                className={`${'action'} ${'search'}`}
                 placeholder="站内搜索"
                 dataSource={['搜索提示一', '搜索提示二', '搜索提示三']}
                 onSearch={(value) => {
@@ -343,7 +342,7 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
                 }}
               />
               <NoticeIcon
-                className={styles.action}
+                className={'action'}
                 count={this.props.user.currentUser.notifyCount}
                 onItemClick={(item, tabProps) => {
                   console.log(item, tabProps); // eslint-disable-line
@@ -374,8 +373,8 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
               </NoticeIcon>
               {this.props.user.currentUser.name ? (
                 <Dropdown overlay={menu}>
-                  <span className={`${styles.action} ${styles.account}`}>
-                    <Avatar size="small" className={styles.avatar} src={this.props.user.currentUser.avatar}/>
+                  <span className={`${'action'} ${'account'}`}>
+                    <Avatar size="small" className={'avatar'} src={this.props.user.currentUser.avatar}/>
                     {this.props.user.currentUser.name}
                   </span>
                 </Dropdown>

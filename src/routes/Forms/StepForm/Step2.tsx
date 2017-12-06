@@ -25,7 +25,7 @@ export default ({formItemLayout, form, data, dispatch, submitting}) => {
     });
   };
   return (
-    <Form layout="horizontal" className={styles.stepForm}>
+    <Form layout="horizontal" className={'stepForm'}>
       <Alert
         closable
         showIcon
@@ -34,32 +34,32 @@ export default ({formItemLayout, form, data, dispatch, submitting}) => {
       />
       <Form.Item
         {...formItemLayout}
-        className={styles.stepFormText}
+        className={'stepFormText'}
         label="付款账户"
       >
         {data.payAccount}
       </Form.Item>
       <Form.Item
         {...formItemLayout}
-        className={styles.stepFormText}
+        className={'stepFormText'}
         label="收款账户"
       >
         {data.receiverAccount}
       </Form.Item>
       <Form.Item
         {...formItemLayout}
-        className={styles.stepFormText}
+        className={'stepFormText'}
         label="收款人姓名"
       >
         {data.receiverName}
       </Form.Item>
       <Form.Item
         {...formItemLayout}
-        className={styles.stepFormText}
+        className={'stepFormText'}
         label="转账金额"
       >
-        <span className={styles.money}>{data.amount}</span>
-        <span className={styles.uppercase}>（{digitUppercase(data.amount)}）</span>
+        <span className={'money'}>{data.amount}</span>
+        <span className={'uppercase'}>（{digitUppercase(data.amount)}）</span>
       </Form.Item>
       <div style={{margin: '24px 0'}}/>
       <Divider/>

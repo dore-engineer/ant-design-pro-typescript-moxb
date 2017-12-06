@@ -117,7 +117,7 @@ export default class Analysis extends React.Component<any, any> {
     );
 
     const iconGroup = (
-      <span className={styles.iconGroup}>
+      <span className={'iconGroup'}>
         <Dropdown overlay={menu} placement="bottomRight">
           <Icon type="ellipsis"/>
         </Dropdown>
@@ -125,8 +125,8 @@ export default class Analysis extends React.Component<any, any> {
     );
 
     const salesExtra = (
-      <div className={styles.salesExtraWrap}>
-        <div className={styles.salesExtra}>
+      <div className={'salesExtraWrap'}>
+        <div className={'salesExtra'}>
           <a className={this.isActive('today')} onClick={() => this.selectDate('today')}>
             今日
           </a>
@@ -230,10 +230,10 @@ export default class Analysis extends React.Component<any, any> {
               contentHeight={46}
             >
               <Trend flag="up" style={{marginRight: 16}}>
-                周同比<span className={styles.trendText}>12%</span>
+                周同比<span className={'trendText'}>12%</span>
               </Trend>
               <Trend flag="down">
-                日环比<span className={styles.trendText}>11%</span>
+                日环比<span className={'trendText'}>11%</span>
               </Trend>
             </ChartCard>
           </Col>
@@ -277,10 +277,10 @@ export default class Analysis extends React.Component<any, any> {
               footer={
                 <div style={{whiteSpace: 'nowrap', overflow: 'hidden'}}>
                   <Trend flag="up" style={{marginRight: 16}}>
-                    周同比<span className={styles.trendText}>12%</span>
+                    周同比<span className={'trendText'}>12%</span>
                   </Trend>
                   <Trend flag="down">
-                    日环比<span className={styles.trendText}>11%</span>
+                    日环比<span className={'trendText'}>11%</span>
                   </Trend>
                 </div>
               }
@@ -296,12 +296,12 @@ export default class Analysis extends React.Component<any, any> {
           bordered={false}
           bodyStyle={{padding: 0}}
         >
-          <div className={styles.salesCard}>
+          <div className={'salesCard'}>
             <Tabs tabBarExtraContent={salesExtra} size="large" tabBarStyle={{marginBottom: 24}}>
               <TabPane tab="销售额" key="sales">
                 <Row>
                   <Col xl={16} lg={12} md={12} sm={24} xs={24}>
-                    <div className={styles.salesBar}>
+                    <div className={'salesBar'}>
                       <Bar
                         height={295}
                         title="销售额趋势"
@@ -310,9 +310,9 @@ export default class Analysis extends React.Component<any, any> {
                     </div>
                   </Col>
                   <Col xl={8} lg={12} md={12} sm={24} xs={24}>
-                    <div className={styles.salesRank}>
-                      <h4 className={styles.rankingTitle}>门店销售额排名</h4>
-                      <ul className={styles.rankingList}>
+                    <div className={'salesRank'}>
+                      <h4 className={'rankingTitle'}>门店销售额排名</h4>
+                      <ul className={'rankingList'}>
                         {
                           rankingListData.map((item, i) => (
                             <li key={item.title}>
@@ -330,7 +330,7 @@ export default class Analysis extends React.Component<any, any> {
               <TabPane tab="访问量" key="views">
                 <Row gutter={72}>
                   <Col xl={16} lg={12} md={12} sm={24} xs={24}>
-                    <div className={styles.salesBar}>
+                    <div className={'salesBar'}>
                       <Bar
                         height={292}
                         title="访问量趋势"
@@ -339,9 +339,9 @@ export default class Analysis extends React.Component<any, any> {
                     </div>
                   </Col>
                   <Col xl={8} lg={12} md={12} sm={24} xs={24}>
-                    <div className={styles.salesRank}>
-                      <h4 className={styles.rankingTitle}>门店访问量排名</h4>
-                      <ul className={styles.rankingList}>
+                    <div className={'salesRank'}>
+                      <h4 className={'rankingTitle'}>门店访问量排名</h4>
+                      <ul className={'rankingList'}>
                         {
                           rankingListData.map((item, i) => (
                             <li key={item.title}>
@@ -420,14 +420,14 @@ export default class Analysis extends React.Component<any, any> {
           <Col xl={12} lg={24} md={24} sm={24} xs={24}>
             <Card
               loading={loading}
-              className={styles.salesCard}
+              className={'salesCard'}
               bordered={false}
               title="销售额类别占比"
               bodyStyle={{padding: 24}}
               extra={(
-                <div className={styles.salesCardExtra}>
+                <div className={'salesCardExtra'}>
                   {iconGroup}
-                  <div className={styles.salesTypeRadio}>
+                  <div className={'salesTypeRadio'}>
                     <Radio.Group value={salesType} onChange={this.handleChangeSalesType}>
                       <Radio.Button value="all">全部渠道</Radio.Button>
                       <Radio.Button value="online">线上</Radio.Button>
@@ -454,7 +454,7 @@ export default class Analysis extends React.Component<any, any> {
 
         <Card
           loading={loading}
-          className={styles.offlineCard}
+          className={'offlineCard'}
           bordered={false}
           bodyStyle={{padding: '0 0 32px 0'}}
           style={{marginTop: 32}}

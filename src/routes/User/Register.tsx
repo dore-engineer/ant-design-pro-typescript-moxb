@@ -9,9 +9,9 @@ const {Option} = Select;
 const InputGroup = Input.Group;
 
 const passwordStatusMap = {
-  ok: <div className={styles.success}>强度：强</div>,
-  pass: <div className={styles.warning}>强度：中</div>,
-  pool: <div className={styles.error}>强度：太短</div>,
+  ok: <div className={'success'}>强度：强</div>,
+  pass: <div className={'warning'}>强度：中</div>,
+  pool: <div className={'error'}>强度：太短</div>,
 };
 
 const passwordProgressMap = {
@@ -133,7 +133,7 @@ export default class Register extends React.Component<any, any> {
       >
         <Progress
           status={passwordProgressMap[passwordStatus] as any}
-          className={styles.progress}
+          className={'progress'}
           strokeWidth={6}
           percent={value.length * 10 > 100 ? 100 : value.length * 10}
           showInfo={false}
@@ -146,7 +146,7 @@ export default class Register extends React.Component<any, any> {
     const {getFieldDecorator} = form;
     const {count} = this.state;
     return (
-      <div className={styles.main}>
+      <div className={'main'}>
         <h3>注册</h3>
         <Form onSubmit={this.handleSubmit}>
           <FormItem>
@@ -201,7 +201,7 @@ export default class Register extends React.Component<any, any> {
             )}
           </FormItem>
           <FormItem>
-            <InputGroup size="large" className={styles.mobileGroup} compact>
+            <InputGroup size="large" className={'mobileGroup'} compact>
               <FormItem style={{width: '20%'}}>
                 {getFieldDecorator('prefix', {
                   initialValue: '86',
@@ -243,7 +243,7 @@ export default class Register extends React.Component<any, any> {
                 <Button
                   size="large"
                   disabled={count > 0}
-                  className={styles.getCaptcha}
+                  className={'getCaptcha'}
                   onClick={this.onGetCaptcha}
                 >
                   {count ? `${count} s` : '获取验证码'}
@@ -255,13 +255,13 @@ export default class Register extends React.Component<any, any> {
             <Button
               size="large"
               loading={register.submitting}
-              className={styles.submit}
+              className={'submit'}
               type="primary"
               htmlType="submit"
             >
               注册
             </Button>
-            <Link className={styles.login} to="/user/login">使用已有账户登录</Link>
+            <Link className={'login'} to="/user/login">使用已有账户登录</Link>
           </FormItem>
         </Form>
       </div>

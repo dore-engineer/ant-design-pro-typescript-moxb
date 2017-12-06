@@ -59,7 +59,7 @@ export default class Monitor extends React.PureComponent<any, any> {
                   />
                 </Col>
               </Row>
-              <div className={styles.mapChart}>
+              <div className={'mapChart'}>
                 <Tooltip title="等待后期实现">
                   <img src="https://gw.alipayobjects.com/zos/rmsportal/HBWnDEUXCnGnGrRfrpKa.png" alt="map"/>
                 </Tooltip>
@@ -104,7 +104,7 @@ export default class Monitor extends React.PureComponent<any, any> {
               title="各品类占比"
               style={{marginBottom: 24}}
               bordered={false}
-              className={styles.pieCard}
+              className={'pieCard'}
             >
               <Row gutter={4} style={{padding: '16px 0'}}>
                 <Col span={8}>

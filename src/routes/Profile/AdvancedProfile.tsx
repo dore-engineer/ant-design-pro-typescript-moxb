@@ -39,18 +39,18 @@ const action = (
 const extra = (
   <Row>
     <Col xs={24} sm={12}>
-      <div className={styles.textSecondary}>状态</div>
-      <div className={styles.heading}>待审批</div>
+      <div className={'textSecondary'}>状态</div>
+      <div className={'heading'}>待审批</div>
     </Col>
     <Col xs={24} sm={12}>
-      <div className={styles.textSecondary}>订单金额</div>
-      <div className={styles.heading}>¥ 568.08</div>
+      <div className={'textSecondary'}>订单金额</div>
+      <div className={'heading'}>¥ 568.08</div>
     </Col>
   </Row>
 );
 
 const description = (
-  <DescriptionList className={styles.headerList} size="small" col="2">
+  <DescriptionList className={'headerList'} size="small" col="2">
     <Description term="创建人">曲丽丽</Description>
     <Description term="订购产品">XX 服务</Description>
     <Description term="创建时间">2017-07-07</Description>
@@ -79,7 +79,7 @@ const desc1 = (
 );
 
 const desc2 = (
-  <div className={styles.stepDescription}>
+  <div className={'stepDescription'}>
     <div>
       周毛毛
       <Icon type="dingding-o" style={{color: '#00A0E9', marginLeft: 8}}/>
@@ -91,10 +91,10 @@ const desc2 = (
 const popoverContent = (
   <div style={{width: 160}}>
     吴加号
-    <span className={styles.textSecondary} style={{float: 'right'}}>
+    <span className={'textSecondary'} style={{float: 'right'}}>
       <Badge status="default" text={`<span style={{ color: 'rgba(0, 0, 0, 0.45)' }}>未响应</span>`}/>
     </span>
-    <div className={styles.textSecondary} style={{marginTop: 4}}>耗时：2小时25分钟</div>
+    <div className={'textSecondary'} style={{marginTop: 4}}>耗时：2小时25分钟</div>
   </div>
 );
 
@@ -289,12 +289,12 @@ export default class AdvancedProfile extends React.Component<any, any> {
           </Card>
         </Card>
         <Card title="用户近半年来电记录" style={{marginBottom: 24}} bordered={false}>
-          <div className={styles.noData}>
+          <div className={'noData'}>
             <Icon type="frown-o"/>暂无数据
           </div>
         </Card>
         <Card
-          className={styles.tabsCard}
+          className={'tabsCard'}
           bordered={false}
           tabList={operationTabList}
           onTabChange={this.onOperationTabChange}

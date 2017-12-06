@@ -113,7 +113,7 @@ export default class BasicForms extends React.PureComponent<any, any> {
               label={
                 <span>
                   客户
-                  <em className={styles.optional}>
+                  <em className={'optional'}>
                     （选填）
                     <Tooltip title="目标的服务对象">
                       <Icon type="info-circle-o" style={{marginRight: 4}}/>
@@ -128,7 +128,7 @@ export default class BasicForms extends React.PureComponent<any, any> {
             </FormItem>
             <FormItem
               {...formItemLayout}
-              label={<span>邀评人<em className={styles.optional}>（选填）</em></span>}
+              label={<span>邀评人<em className={'optional'}>（选填）</em></span>}
             >
               {getFieldDecorator('invites')(
                 <Input placeholder="请直接 @姓名／工号，最多可邀请 5 人"/>
@@ -136,7 +136,7 @@ export default class BasicForms extends React.PureComponent<any, any> {
             </FormItem>
             <FormItem
               {...formItemLayout}
-              label={<span>权重<em className={styles.optional}>（选填）</em></span>}
+              label={<span>权重<em className={'optional'}>（选填）</em></span>}
             >
               {getFieldDecorator('weight')(
                 <InputNumber placeholder="请输入" min={0} max={100}/>
