@@ -55,7 +55,7 @@ export function fakeList(count) {
       owner: user[i % 10],
       title: titles[i % 8],
       avatar: avatars[i % 8],
-      cover: parseInt(i / 4, 10) % 2 === 0 ? covers[i % 4] : covers[3 - (i % 4)],
+      cover: parseInt((i / 4).toString(), 10) % 2 === 0 ? covers[i % 4] : covers[3 - (i % 4)],
       status: ['active', 'exception', 'normal'][i % 3],
       percent: Math.ceil(Math.random() * 50) + 50,
       logo: avatars[i % 8],
@@ -90,7 +90,7 @@ export function fakeList(count) {
   return list;
 }
 
-export function getFakeList(req, res, u) {
+export function getFakeList(req, res, u): any {
   let url = u;
   if (!url || Object.prototype.toString.call(url) !== '[object String]') {
     url = req.url; // eslint-disable-line
@@ -272,7 +272,6 @@ export const getActivities = [
     template: '在 @{group} 新建项目 @{project}',
   },
 ];
-
 
 export default {
   getNotice,

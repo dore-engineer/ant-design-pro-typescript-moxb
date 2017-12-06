@@ -9,22 +9,23 @@ import CountDown from 'ant-design-pro/lib/CountDown';
 import ActiveChart from 'ant-design-pro/lib/ActiveChart';
 
 import './Monitor.less';
+import { inject, observer } from 'mobx-react';
+import { Keys } from '../../stores/index';
+import { MonitorStore } from '../../stores/monitor';
 
 const targetTime = new Date().getTime() + 3900000;
 
-@connect(state => ({
-  monitor: state.monitor,
-}))
-export default class Monitor extends React.PureComponent<any, any> {
+@inject(Keys.monitorStore)
+@observer
+export default class Monitor extends React.PureComponent<{ monitorStore: MonitorStore }, any> {
   componentDidMount() {
-    this.props.dispatch({
-      type: 'monitor/fetchTags',
-    });
+    // this.props.dispatch({
+    //   type: 'monitor/fetchTags',
+    // });
   }
 
   render() {
-    const {monitor} = this.props;
-    const {tags} = monitor;
+    const {tags} = this.props.monitorStore.tags;
 
     return (
       <div>

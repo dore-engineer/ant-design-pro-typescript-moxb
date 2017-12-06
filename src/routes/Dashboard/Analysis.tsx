@@ -10,6 +10,9 @@ import NumberInfo from 'ant-design-pro/lib/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 
 import './Analysis.less';
+import { ChartStore } from '../../stores/chart';
+import { inject, observer } from 'mobx-react';
+import { Keys } from '../../stores/index';
 
 const {TabPane} = Tabs;
 const {RangePicker} = DatePicker;
@@ -22,76 +25,54 @@ for (let i = 0; i < 7; i += 1) {
   });
 }
 
-@connect(state => ({
-  chart: state.chart,
-}))
-export default class Analysis extends React.Component<any, any> {
-  state = {
-    loading: true,
-    salesType: 'all',
-    currentTabKey: '',
-    rangePickerValue: [],
-  };
+@inject(Keys.chartStore)
+@observer
+export default class Analysis extends React.Component<{ chartStore: ChartStore }> {
 
   componentDidMount() {
-    this.props.dispatch({
-      type: 'chart/fetch',
-    }).then(() => this.setState({loading: false}));
+    this.props.chartStore.fetch();
   }
 
   componentWillUnmount() {
-    const {dispatch} = this.props;
-    dispatch({
-      type: 'chart/clear',
-    });
+    this.props.chartStore.clear();
   }
 
   handleChangeSalesType = (e) => {
-    this.setState({
-      salesType: e.target.value,
-    });
+    this.props.chartStore.salesType = e.target.value;
   }
 
   handleTabChange = (key) => {
-    this.setState({
-      currentTabKey: key,
-    });
+    this.props.chartStore.currentTabKey = key;
   }
 
   handleRangePickerChange = (rangePickerValue) => {
-    this.setState({
-      rangePickerValue,
-    });
 
-    this.props.dispatch({
-      type: 'chart/fetchSalesData',
-    });
+    this.props.chartStore.updateRangePicker(rangePickerValue);
+
   }
 
   selectDate = (type) => {
-    this.setState({
-      rangePickerValue: getTimeDistance(type),
-    });
-
-    this.props.dispatch({
-      type: 'chart/fetchSalesData',
-    });
+    this.props.chartStore.updateRangePicker(getTimeDistance(type));
   }
 
-  isActive(type): any {
-    const {rangePickerValue} = this.state;
+  isActive(type): string {
+    const {rangePickerValue} = this.props.chartStore;
     const value = getTimeDistance(type);
     if (!rangePickerValue[0] || !rangePickerValue[1]) {
-      return;
+      return '';
     }
     if (rangePickerValue[0].isSame(value[0], 'day') && rangePickerValue[1].isSame(value[1], 'day')) {
       return 'currentDate';
     }
+    return '';
+
   }
 
   render() {
-    const {rangePickerValue, salesType, currentTabKey, loading} = this.state;
-    const {chart} = this.props;
+    const {rangePickerValue, salesType, currentTabKey, loading} = this.props.chartStore;
+    const {chart} = this.props.chartStore;
+    console.log('chartStore', this.props.chartStore);
+
     const {
       visitData,
       visitData2,
@@ -140,11 +121,11 @@ export default class Analysis extends React.Component<any, any> {
             全年
           </a>
         </div>
-        {/*<RangePicker*/}
-        {/*value={rangePickerValue}*/}
-        {/*onChange={this.handleRangePickerChange}*/}
-        {/*style={{ width: 256 }}*/}
-        {/*/>*/}
+        <RangePicker
+          value={rangePickerValue.slice() as any}
+          onChange={this.handleRangePickerChange}
+          style={{width: 256}}
+        />
       </div>
     );
 
@@ -406,6 +387,7 @@ export default class Analysis extends React.Component<any, any> {
                 </Col>
               </Row>
               <Table
+                rowKey={(record: any) => record.index}
                 size="small"
                 columns={columns}
                 dataSource={searchData}

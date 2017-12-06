@@ -25,7 +25,7 @@ const passwordProgressMap = {
 }))
 // @Form.create()
 export default class Register extends React.Component<any, any> {
-  interval: NodeJS.Timer;
+  interval: any;
   state = {
     count: 0,
     confirmDirty: false,

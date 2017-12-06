@@ -5,8 +5,7 @@ import enUS from 'antd/lib/locale-provider/en_US';
 import cloneDeep from 'lodash/cloneDeep';
 import { getNavData } from './common/nav';
 import { getPlainNode } from './utils/utils';
-import { Provider } from 'mobx-react';
-import {rootStores} from './models';
+
 import browserHistory from 'history/createBrowserHistory';
 
 class App extends React.Component<any, any> {
@@ -48,16 +47,14 @@ class App extends React.Component<any, any> {
     };
 
     return (
-      <Provider {...rootStores}>
-        <LocaleProvider locale={enUS}>
-          <Router history={history}>
-            <Switch>
-              <Route path="/user" render={props => <UserLayout {...props} {...passProps} />}/>
-              <Route path="/" render={props => <BasicLayout {...props} {...passProps} />}/>
-            </Switch>
-          </Router>
-        </LocaleProvider>
-      </Provider>
+      <LocaleProvider locale={enUS}>
+        <Router history={history}>
+          <Switch>
+            <Route path="/user" render={props => <UserLayout {...props} {...passProps} />}/>
+            <Route path="/" render={props => <BasicLayout {...props} {...passProps} />}/>
+          </Switch>
+        </Router>
+      </LocaleProvider>
     );
   }
 }

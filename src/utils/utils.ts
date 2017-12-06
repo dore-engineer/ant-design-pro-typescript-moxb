@@ -4,6 +4,14 @@ export function fixedZero(val) {
   return val * 1 < 10 ? `0${val}` : val;
 }
 
+export function sleep(totalMilliSeconds: number): any {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      resolve(true);
+    }, totalMilliSeconds);
+  });
+}
+
 export function getTimeDistance(type): any {
   const now = new Date();
   const oneDay = 1000 * 60 * 60 * 24;

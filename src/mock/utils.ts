@@ -7,7 +7,7 @@ export const imgMap = {
 };
 
 // refers: https://www.sitepoint.com/get-url-parameters-with-javascript/
-export function getUrlParams(url) {
+export function getUrlParams(url) : any {
   const d = decodeURIComponent;
   let queryString = url ? url.split('?')[1] : window.location.search.slice(1);
   const obj = {};
@@ -24,7 +24,8 @@ export function getUrlParams(url) {
       const paramValue = typeof (a[1]) === 'undefined' ? true : a[1];
       if (obj[paramName]) {
         if (typeof obj[paramName] === 'string') {
-          obj[paramName] = d([obj[paramName]]);
+          let encodedURIComponent = [obj[paramName]] as any;
+          obj[paramName] = d(encodedURIComponent  );
         }
         if (typeof paramNum === 'undefined') {
           obj[paramName].push(d(paramValue));

@@ -14,8 +14,9 @@ import NoticeIcon from 'ant-design-pro/lib/NoticeIcon';
 import GlobalFooter from 'ant-design-pro/lib/GlobalFooter';
 import NotFound from '../routes/Exception/404';
 import { inject, observer } from 'mobx-react';
-import { User } from '../models/user';
-import { Global } from '../models/global';
+import { UserStore } from '../stores/user';
+import { CommonStore } from '../stores/common';
+import { Keys } from '../stores';
 import './BasicLayout.less';
 
 const logo = require('../assets/logo.svg');
@@ -45,8 +46,8 @@ const query = {
 };
 
 export interface BasicLayoutProps {
-  user: User;
-  global: Global;
+  userStore: UserStore;
+  commonStore: CommonStore;
   location: any;
   navData: any;
   getRouteData: any;
@@ -57,8 +58,8 @@ export interface BasicLayoutProps {
 
 }
 
+@inject(Keys.userStore, Keys.commonStore)
 @observer
-@inject('user', 'global')
 class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
   static childContextTypes = {
     location: PropTypes.object,
@@ -89,6 +90,7 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
   }
 
   componentDidMount() {
+    this.props.userStore.fetchCurrent();
     // this.props.dispatch({
     //   type: 'user/fetchCurrent',
     // });
@@ -99,6 +101,8 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
   }
 
   onCollapse = (collapsed) => {
+    console.log('onCollapse', collapsed);
+    this.props.commonStore.changeLayoutCollapsed(collapsed);
     // this.props.dispatch({
     //   type: 'global/changeLayoutCollapsed',
     //   payload: collapsed,
@@ -207,7 +211,7 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
   }
 
   getNoticeData() {
-    const {notices = []} = this.props.global.notices;
+    const {notices = []} = this.props.commonStore.notices;
     if (notices.length === 0) {
       return {};
     }
@@ -249,6 +253,8 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
     //   type: 'global/changeLayoutCollapsed',
     //   payload: !collapsed,
     // });
+    console.log('On toggle', this.props.commonStore.collapsed);
+    this.props.commonStore.changeLayoutCollapsed(!this.props.commonStore.collapsed);
     this.triggerResizeEvent();
   }
 
@@ -288,11 +294,11 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
     const noticeData = this.getNoticeData();
 
     // Don't show popup menu when it is been collapsed
-    let global = this.props.global;
+    let global = this.props.commonStore;
     const menuProps = global.collapsed ? {} : {
       openKeys: this.state.openKeys,
     };
-    console.log(this.props.user);
+    console.log(this.props.commonStore);
 
     const layout = (
       <Layout>
@@ -343,7 +349,7 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
               />
               <NoticeIcon
                 className={'action'}
-                count={this.props.user.currentUser.notifyCount}
+                count={this.props.userStore.currentUser.notifyCount}
                 onItemClick={(item, tabProps) => {
                   console.log(item, tabProps); // eslint-disable-line
                 }}
@@ -371,11 +377,11 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
                   emptyImage="https://gw.alipayobjects.com/zos/rmsportal/HsIsxMZiWKrNUavQUXqx.svg"
                 />
               </NoticeIcon>
-              {this.props.user.currentUser.name ? (
+              {this.props.userStore.currentUser.name ? (
                 <Dropdown overlay={menu}>
                   <span className={`${'action'} ${'account'}`}>
-                    <Avatar size="small" className={'avatar'} src={this.props.user.currentUser.avatar}/>
-                    {this.props.user.currentUser.name}
+                    <Avatar size="small" className={'avatar'} src={this.props.userStore.currentUser.avatar}/>
+                    {this.props.userStore.currentUser.name}
                   </span>
                 </Dropdown>
               ) : <Spin size="small" style={{marginLeft: 8}}/>}

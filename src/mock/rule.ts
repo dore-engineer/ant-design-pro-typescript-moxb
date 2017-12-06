@@ -7,7 +7,9 @@ for (let i = 0; i < 46; i += 1) {
     key: i,
     disabled: ((i % 6) === 0),
     href: 'https://ant.design',
-    avatar: ['https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png', 'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png'][i % 2],
+    avatar: [
+      'https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png',
+      'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png'][i % 2],
     no: `TradeCode ${i}`,
     title: `一个任务名称 ${i}`,
     owner: '曲丽丽',
@@ -20,7 +22,7 @@ for (let i = 0; i < 46; i += 1) {
   });
 }
 
-export function getRule(req, res, u) {
+export function getRule(req, res, u): any {
   let url = u;
   if (!url || Object.prototype.toString.call(url) !== '[object String]') {
     url = req.url; // eslint-disable-line
@@ -76,14 +78,14 @@ export function getRule(req, res, u) {
   }
 }
 
-export function postRule(req, res, u, b) {
+export function postRule(req, res, u, b): any {
   let url = u;
   if (!url || Object.prototype.toString.call(url) !== '[object String]') {
     url = req.url; // eslint-disable-line
   }
 
   const body = (b && b.body) || req.body;
-  const { method, no, description } = body;
+  const {method, no, description} = body;
 
   switch (method) {
     /* eslint no-case-declarations:0 */
@@ -95,7 +97,8 @@ export function postRule(req, res, u, b) {
       tableListDataSource.unshift({
         key: i,
         href: 'https://ant.design',
-        avatar: ['https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png', 'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png'][i % 2],
+        avatar: ['https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png',
+          'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png'][i % 2],
         no: `TradeCode ${i}`,
         title: `一个任务名称 ${i}`,
         owner: '曲丽丽',

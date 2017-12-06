@@ -8,13 +8,13 @@ import GlobalFooter from 'ant-design-pro/lib/GlobalFooter';
 import './UserLayout.less';
 
 const links = [{
-  title: '帮助',
+  title: 'Bạn bè',
   href: '',
 }, {
-  title: '隐私',
+  title: 'Thông báo',
   href: '',
 }, {
-  title: '条款',
+  title: 'Tin nhắn',
   href: '',
 }];
 
