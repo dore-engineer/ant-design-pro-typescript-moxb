@@ -9,7 +9,7 @@ export default {
   },
 
   effects: {
-    *fetchList(_, { call, put }) {
+    * fetchList(_, {call, put}) {
       yield put({
         type: 'changeLoading',
         payload: true,

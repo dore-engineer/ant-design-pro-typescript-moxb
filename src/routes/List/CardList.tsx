@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from 'react';
 import { connect } from 'dva';
 import { Card, Button, Icon, List } from 'antd';
 
@@ -9,7 +9,7 @@ const styles = require('./CardList.less')
 @connect(state => ({
   list: state.list,
 }))
-export default class CardList extends React.PureComponent<any,any> {
+export default class CardList extends React.PureComponent<any, any> {
   componentDidMount() {
     this.props.dispatch({
       type: 'list/fetch',
@@ -20,7 +20,7 @@ export default class CardList extends React.PureComponent<any,any> {
   }
 
   render() {
-    const { list: { list, loading } } = this.props;
+    const {list: {list, loading}} = this.props;
 
     const content = (
       <div className={styles.pageHeaderContent}>
@@ -30,13 +30,13 @@ export default class CardList extends React.PureComponent<any,any> {
         </p>
         <div className={styles.contentLink}>
           <a>
-            <img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/MjEImQtenlyueSmVEfUD.svg" /> 快速开始
+            <img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/MjEImQtenlyueSmVEfUD.svg"/> 快速开始
           </a>
           <a>
-            <img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/NbuDUAuBlIApFuDvWiND.svg" /> 产品简介
+            <img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/NbuDUAuBlIApFuDvWiND.svg"/> 产品简介
           </a>
           <a>
-            <img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg" /> 产品文档
+            <img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg"/> 产品文档
           </a>
         </div>
       </div>
@@ -44,7 +44,7 @@ export default class CardList extends React.PureComponent<any,any> {
 
     const extraContent = (
       <div className={styles.extraImg}>
-        <img alt="这是一个标题" src="https://gw.alipayobjects.com/zos/rmsportal/RzwpdLnhmvDJToTdfDPe.png" />
+        <img alt="这是一个标题" src="https://gw.alipayobjects.com/zos/rmsportal/RzwpdLnhmvDJToTdfDPe.png"/>
       </div>
     );
 
@@ -58,24 +58,24 @@ export default class CardList extends React.PureComponent<any,any> {
           <List
             rowKey="id"
             loading={loading}
-            grid={{ gutter: 24, lg: 3, md: 2, sm: 1, xs: 1 }}
+            grid={{gutter: 24, lg: 3, md: 2, sm: 1, xs: 1}}
             dataSource={['', ...list]}
             renderItem={item => (item ? (
-              <List.Item extra key={item.id}>
-                <Card hoverable className={styles.card} actions={[<a>操作一</a>, <a>操作二</a>]}>
-                  <Card.Meta
-                    avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} />}
-                    title={<a href="#">{item.title}</a>}
-                    description={(
-                      <Ellipsis className={styles.item} lines={3}>{item.description}</Ellipsis>
-                    )}
-                  />
-                </Card>
-              </List.Item>
+                <List.Item extra key={item.id}>
+                  <Card hoverable className={styles.card} actions={[<a>操作一</a>, <a>操作二</a>]}>
+                    <Card.Meta
+                      avatar={<img alt="" className={styles.cardAvatar} src={item.avatar}/>}
+                      title={<a href="#">{item.title}</a>}
+                      description={(
+                        <Ellipsis className={styles.item} lines={3}>{item.description}</Ellipsis>
+                      )}
+                    />
+                  </Card>
+                </List.Item>
               ) : (
                 <List.Item extra>
                   <Button type="dashed" className={styles.newButton}>
-                    <Icon type="plus" /> 新增产品
+                    <Icon type="plus"/> 新增产品
                   </Button>
                 </List.Item>
               )

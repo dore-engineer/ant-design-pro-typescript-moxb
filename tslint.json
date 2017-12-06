@@ -4,7 +4,7 @@
         "align": [
             true,
             "parameters",
-            "arguments",
+//            "arguments",
             "statements"
         ],
         "ban": false,
@@ -20,20 +20,21 @@
         "interface-name": [true, "never-prefix"],
         "jsdoc-format": true,
         "jsx-no-lambda": false,
+        "jsx-boolean-value": false,
         "jsx-no-multiline-js": false,
         "label-position": true,
-        "max-line-length": [ true, 120 ],
+        "max-line-length": [ true, 160 ],
         "member-ordering": [
             true,
             "public-before-private",
             "static-before-instance",
             "variables-before-functions"
         ],
-        "no-any": true,
-        "no-arg": true,
+        "no-any": false,
+        "no-arg": false,
         "no-bitwise": true,
         "no-console": [
-            true,
+            false,
             "log",
             "error",
             "debug",
@@ -49,13 +50,13 @@
         "no-empty": true,
         "no-eval": true,
         "no-shadowed-variable": true,
-        "no-string-literal": true,
+        "no-string-literal": false,
         "no-switch-case-fall-through": true,
         "no-trailing-whitespace": false,
         "no-unused-expression": true,
         "no-use-before-declare": true,
         "one-line": [
-            true,
+            false,
             "check-catch",
             "check-else",
             "check-open-brace",
@@ -70,12 +71,12 @@
 
         "triple-equals": [ true, "allow-null-check" ],
         "typedef": [
-            true,
+          false,
             "parameter",
             "property-declaration"
         ],
         "typedef-whitespace": [
-            true,
+            false,
             {
                 "call-signature": "nospace",
                 "index-signature": "nospace",
@@ -86,7 +87,7 @@
         ],
         "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],
         "whitespace": [
-            true,
+            false,
             "check-branch",
             "check-decl",
             "check-module",

@@ -20,24 +20,25 @@ const columns = [{
   render: (text, record) => (
     <span>
       <a href="">Action 一 {record.name}</a>
-      <Divider type="vertical" />
+      <Divider type="vertical"/>
       <a href="">Delete</a>
-      <Divider type="vertical" />
+      <Divider type="vertical"/>
       <a href="" className="ant-dropdown-link">
-        More actions <Icon type="down" />
+        More actions <Icon type="down"/>
       </a>
     </span>
   ),
 }];
 
-class Dashboard extends React.PureComponent<any,any> {
+class Dashboard extends React.PureComponent<any, any> {
   componentDidMount() {
     this.props.dispatch({
       type: 'user/fetch',
     });
   }
+
   render() {
-    const { user: { list, loading } } = this.props;
+    const {user: {list, loading}} = this.props;
     return (
       <div>
         <Row gutter={24}>
@@ -63,7 +64,7 @@ class Dashboard extends React.PureComponent<any,any> {
             </Card>
           </Col>
         </Row>
-        <Row gutter={24} style={{ marginTop: 24 }}>
+        <Row gutter={24} style={{marginTop: 24}}>
           <Col span={12}>
             <Card bordered={false}>
               <p>卡片内容</p>
@@ -79,14 +80,14 @@ class Dashboard extends React.PureComponent<any,any> {
             </Card>
           </Col>
         </Row>
-        <Row gutter={24} style={{ marginTop: 24 }}>
+        <Row gutter={24} style={{marginTop: 24}}>
           <Col span={24}>
             <Card
               title="业务表格"
               bordered={false}
-              extra={<Icon type="setting" />}
+              extra={<Icon type="setting"/>}
             >
-              <Table dataSource={list} loading={loading} columns={columns} />
+              <Table dataSource={list} loading={loading} columns={columns}/>
             </Card>
           </Col>
         </Row>

@@ -9,7 +9,7 @@ export default {
   },
 
   effects: {
-    *accountSubmit({ payload }, { call, put }) {
+    * accountSubmit({payload}, {call, put}) {
       yield put({
         type: 'changeSubmitting',
         payload: true,
@@ -24,7 +24,7 @@ export default {
         payload: false,
       });
     },
-    *mobileSubmit(_, { call, put }) {
+    * mobileSubmit(_, {call, put}) {
       yield put({
         type: 'changeSubmitting',
         payload: true,
@@ -39,7 +39,7 @@ export default {
         payload: false,
       });
     },
-    *logout(_, { put }) {
+    * logout(_, {put}) {
       yield put({
         type: 'changeLoginStatus',
         payload: {
@@ -51,14 +51,14 @@ export default {
   },
 
   reducers: {
-    changeLoginStatus(state, { payload }) {
+    changeLoginStatus(state, {payload}) {
       return {
         ...state,
         status: payload.status,
         type: payload.type,
       };
     },
-    changeSubmitting(state, { payload }) {
+    changeSubmitting(state, {payload}) {
       return {
         ...state,
         submitting: payload,

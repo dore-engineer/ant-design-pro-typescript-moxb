@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { Table, Button, Input, message, Popconfirm, Divider } from 'antd';
+
 const styles = require('./style.less');
 
-export default class TableForm extends React.PureComponent<any,any> {
-    private clickedCancel: boolean;
+export default class TableForm extends React.PureComponent<any, any> {
+  private clickedCancel: boolean;
+
   constructor(props) {
     super(props);
 
@@ -11,6 +13,7 @@ export default class TableForm extends React.PureComponent<any,any> {
       data: props.value,
     };
   }
+
   componentWillReceiveProps(nextProps) {
     if ('value' in nextProps) {
       this.setState({
@@ -18,9 +21,11 @@ export default class TableForm extends React.PureComponent<any,any> {
       });
     }
   }
+
   getRowByKey(key) {
     return this.state.data.filter(item => item.key === key)[0];
   }
+
   index = 0;
   cacheOriginData = {};
   handleSubmit = (e) => {
@@ -34,23 +39,26 @@ export default class TableForm extends React.PureComponent<any,any> {
       }
     });
   }
+
   toggleEditable(e, key) {
     e.preventDefault();
     const target = this.getRowByKey(key);
     if (target) {
       // 进入编辑状态时保存原始数据
       if (!target.editable) {
-        this.cacheOriginData[key] = { ...target };
+        this.cacheOriginData[key] = {...target};
       }
       target.editable = !target.editable;
-      this.setState({ data: [...this.state.data] });
+      this.setState({data: [...this.state.data]});
     }
   }
+
   remove(key) {
     const newData = this.state.data.filter(item => item.key !== key);
-    this.setState({ data: newData });
+    this.setState({data: newData});
     this.props.onChange(newData);
   }
+
   newMember = () => {
     const newData = [...this.state.data];
     newData.push({
@@ -62,27 +70,30 @@ export default class TableForm extends React.PureComponent<any,any> {
       isNew: true,
     });
     this.index += 1;
-    this.setState({ data: newData });
+    this.setState({data: newData});
   }
+
   handleKeyPress(e, key) {
     if (e.key === 'Enter') {
       this.saveRow(e, key);
     }
   }
+
   handleFieldChange(e, fieldName, key) {
     const newData = [...this.state.data];
     const target = this.getRowByKey(key);
     if (target) {
       target[fieldName] = e.target.value;
-      this.setState({ data: newData });
+      this.setState({data: newData});
     }
   }
+
   saveRow(e, key) {
     e.persist();
     // save field when blur input
     setTimeout(() => {
       if (document.activeElement.tagName === 'INPUT' &&
-          document.activeElement !== e.target) {
+        document.activeElement !== e.target) {
         return;
       }
       if (this.clickedCancel) {
@@ -100,6 +111,7 @@ export default class TableForm extends React.PureComponent<any,any> {
       this.props.onChange(this.state.data);
     }, 10);
   }
+
   cancel(e, key) {
     this.clickedCancel = true;
     e.preventDefault();
@@ -109,8 +121,9 @@ export default class TableForm extends React.PureComponent<any,any> {
       target.editable = false;
       delete this.cacheOriginData[key];
     }
-    this.setState({ data: [...this.state.data] });
+    this.setState({data: [...this.state.data]});
   }
+
   render() {
     const columns = [{
       title: '成员姓名',
@@ -179,7 +192,7 @@ export default class TableForm extends React.PureComponent<any,any> {
             return (
               <span>
                 <a>保存</a>
-                <Divider type="vertical" />
+                <Divider type="vertical"/>
                 <Popconfirm title="是否要删除此行？" onConfirm={() => this.remove(record.key)}>
                   <a>删除</a>
                 </Popconfirm>
@@ -189,7 +202,7 @@ export default class TableForm extends React.PureComponent<any,any> {
           return (
             <span>
               <a>保存</a>
-              <Divider type="vertical" />
+              <Divider type="vertical"/>
               <a onClick={e => this.cancel(e, record.key)}>取消</a>
             </span>
           );
@@ -197,7 +210,7 @@ export default class TableForm extends React.PureComponent<any,any> {
         return (
           <span>
             <a onClick={e => this.toggleEditable(e, record.key)}>编辑</a>
-            <Divider type="vertical" />
+            <Divider type="vertical"/>
             <Popconfirm title="是否要删除此行？" onConfirm={() => this.remove(record.key)}>
               <a>删除</a>
             </Popconfirm>
@@ -217,7 +230,7 @@ export default class TableForm extends React.PureComponent<any,any> {
           }}
         />
         <Button
-          style={{ width: '100%', marginTop: 16, marginBottom: 8 }}
+          style={{width: '100%', marginTop: 16, marginBottom: 8}}
           type="dashed"
           onClick={this.newMember}
           icon="plus"

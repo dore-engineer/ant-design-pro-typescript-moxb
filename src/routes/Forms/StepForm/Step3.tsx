@@ -1,10 +1,11 @@
-import * as React from 'react'
+import * as React from 'react';
 import { Button, Row, Col } from 'antd';
 import { routerRedux } from 'dva/router';
 import Result from 'ant-design-pro/lib/Result';
+
 const styles = require('./style.less')
 
-export default ({ dispatch, data }) => {
+export default ({dispatch, data}) => {
   const onFinish = () => {
     dispatch(routerRedux.push('/form/step-form'));
   };

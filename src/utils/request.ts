@@ -11,7 +11,7 @@ function checkStatus(response) {
   });
   // const error = new Error(response.statusText);
   // error.response = response;
-    return response
+  return response
   // throw error;
 }
 
@@ -26,7 +26,7 @@ export default function request(url, options) {
   const defaultOptions = {
     credentials: 'include',
   };
-  const newOptions = { ...defaultOptions, ...options };
+  const newOptions = {...defaultOptions, ...options};
   if (newOptions.method === 'POST' || newOptions.method === 'PUT') {
     newOptions.headers = {
       Accept: 'application/json',

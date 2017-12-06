@@ -6,15 +6,14 @@ export default {
   namespace: 'form',
 
   state: {
-    step: {
-    },
+    step: {},
     regularFormSubmitting: false,
     stepFormSubmitting: false,
     advancedFormSubmitting: false,
   },
 
   effects: {
-    *submitRegularForm({ payload }, { call, put }) {
+    * submitRegularForm({payload}, {call, put}) {
       yield put({
         type: 'changeRegularFormSubmitting',
         payload: true,
@@ -26,7 +25,7 @@ export default {
       });
       message.success('提交成功');
     },
-    *submitStepForm({ payload }, { call, put }) {
+    * submitStepForm({payload}, {call, put}) {
       yield put({
         type: 'changeStepFormSubmitting',
         payload: true,
@@ -42,7 +41,7 @@ export default {
       });
       yield put(routerRedux.push('/form/step-form/result'));
     },
-    *submitAdvancedForm({ payload }, { call, put }) {
+    * submitAdvancedForm({payload}, {call, put}) {
       yield put({
         type: 'changeAdvancedFormSubmitting',
         payload: true,
@@ -57,7 +56,7 @@ export default {
   },
 
   reducers: {
-    saveStepFormData(state, { payload }) {
+    saveStepFormData(state, {payload}) {
       return {
         ...state,
         step: {
@@ -66,19 +65,19 @@ export default {
         },
       };
     },
-    changeRegularFormSubmitting(state, { payload }) {
+    changeRegularFormSubmitting(state, {payload}) {
       return {
         ...state,
         regularFormSubmitting: payload,
       };
     },
-    changeStepFormSubmitting(state, { payload }) {
+    changeStepFormSubmitting(state, {payload}) {
       return {
         ...state,
         stepFormSubmitting: payload,
       };
     },
-    changeAdvancedFormSubmitting(state, { payload }) {
+    changeAdvancedFormSubmitting(state, {payload}) {
       return {
         ...state,
         advancedFormSubmitting: payload,

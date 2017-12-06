@@ -13,10 +13,10 @@ export default {
   },
 
   effects: {
-    *fetchBasic(_, { call, put }) {
+    * fetchBasic(_, {call, put}) {
       yield put({
         type: 'changeLoading',
-        payload: { basicLoading: true },
+        payload: {basicLoading: true},
       });
       const response = yield call(queryBasicProfile);
       yield put({
@@ -25,13 +25,13 @@ export default {
       });
       yield put({
         type: 'changeLoading',
-        payload: { basicLoading: false },
+        payload: {basicLoading: false},
       });
     },
-    *fetchAdvanced(_, { call, put }) {
+    * fetchAdvanced(_, {call, put}) {
       yield put({
         type: 'changeLoading',
-        payload: { advancedLoading: true },
+        payload: {advancedLoading: true},
       });
       const response = yield call(queryAdvancedProfile);
       yield put({
@@ -40,19 +40,19 @@ export default {
       });
       yield put({
         type: 'changeLoading',
-        payload: { advancedLoading: false },
+        payload: {advancedLoading: false},
       });
     },
   },
 
   reducers: {
-    show(state, { payload }) {
+    show(state, {payload}) {
       return {
         ...state,
         ...payload,
       };
     },
-    changeLoading(state, { payload }) {
+    changeLoading(state, {payload}) {
       return {
         ...state,
         ...payload,

@@ -4,18 +4,19 @@ import {
   Form, Input, DatePicker, Select, Button, Card, InputNumber, Radio, Icon, Tooltip,
 } from 'antd';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
+
 const styles = require('./style.less');
 
 const FormItem = Form.Item;
-const { Option } = Select;
-const { RangePicker } = DatePicker;
-const { TextArea } = Input;
+const {Option} = Select;
+const {RangePicker} = DatePicker;
+const {TextArea} = Input;
 
 @connect(state => ({
   submitting: state.form.regularFormSubmitting,
 }))
 // @Form.create()
-export default class BasicForms extends React.PureComponent<any,any> {
+export default class BasicForms extends React.PureComponent<any, any> {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
@@ -27,26 +28,27 @@ export default class BasicForms extends React.PureComponent<any,any> {
       }
     });
   }
+
   render() {
-    const { submitting } = this.props;
-    const { getFieldDecorator, getFieldValue } = this.props.form;
+    const {submitting} = this.props;
+    const {getFieldDecorator, getFieldValue} = this.props.form;
 
     const formItemLayout = {
       labelCol: {
-        xs: { span: 24 },
-        sm: { span: 7 },
+        xs: {span: 24},
+        sm: {span: 7},
       },
       wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 12 },
-        md: { span: 10 },
+        xs: {span: 24},
+        sm: {span: 12},
+        md: {span: 10},
       },
     };
 
     const submitFormLayout = {
       wrapperCol: {
-        xs: { span: 24, offset: 0 },
-        sm: { span: 10, offset: 7 },
+        xs: {span: 24, offset: 0},
+        sm: {span: 10, offset: 7},
       },
     };
 
@@ -56,7 +58,7 @@ export default class BasicForms extends React.PureComponent<any,any> {
           <Form
             onSubmit={this.handleSubmit}
             hideRequiredMark
-            style={{ marginTop: 8 }}
+            style={{marginTop: 8}}
           >
             <FormItem
               {...formItemLayout}
@@ -67,7 +69,7 @@ export default class BasicForms extends React.PureComponent<any,any> {
                   required: true, message: '请输入标题',
                 }],
               })(
-                <Input placeholder="给目标起个名字" />
+                <Input placeholder="给目标起个名字"/>
               )}
             </FormItem>
             <FormItem
@@ -79,7 +81,7 @@ export default class BasicForms extends React.PureComponent<any,any> {
                   required: true, message: '请选择起止日期',
                 }],
               })(
-                <RangePicker style={{ width: '100%' }} placeholder={['开始日期', '结束日期']} />
+                <RangePicker style={{width: '100%'}} placeholder={['开始日期', '结束日期']}/>
               )}
             </FormItem>
             <FormItem
@@ -91,7 +93,7 @@ export default class BasicForms extends React.PureComponent<any,any> {
                   required: true, message: '请输入目标描述',
                 }],
               })(
-                <TextArea style={{ minHeight: 32 }} placeholder="请输入你的阶段性工作目标" rows={4} />
+                <TextArea style={{minHeight: 32}} placeholder="请输入你的阶段性工作目标" rows={4}/>
               )}
             </FormItem>
             <FormItem
@@ -103,7 +105,7 @@ export default class BasicForms extends React.PureComponent<any,any> {
                   required: true, message: '请输入衡量标准',
                 }],
               })(
-                <TextArea style={{ minHeight: 32 }} placeholder="请输入衡量标准" rows={4} />
+                <TextArea style={{minHeight: 32}} placeholder="请输入衡量标准" rows={4}/>
               )}
             </FormItem>
             <FormItem
@@ -114,14 +116,14 @@ export default class BasicForms extends React.PureComponent<any,any> {
                   <em className={styles.optional}>
                     （选填）
                     <Tooltip title="目标的服务对象">
-                      <Icon type="info-circle-o" style={{ marginRight: 4 }} />
+                      <Icon type="info-circle-o" style={{marginRight: 4}}/>
                     </Tooltip>
                   </em>
                 </span>
               }
             >
               {getFieldDecorator('client')(
-                <Input placeholder="请描述你服务的客户，内部客户直接 @姓名／工号" />
+                <Input placeholder="请描述你服务的客户，内部客户直接 @姓名／工号"/>
               )}
             </FormItem>
             <FormItem
@@ -129,7 +131,7 @@ export default class BasicForms extends React.PureComponent<any,any> {
               label={<span>邀评人<em className={styles.optional}>（选填）</em></span>}
             >
               {getFieldDecorator('invites')(
-                <Input placeholder="请直接 @姓名／工号，最多可邀请 5 人" />
+                <Input placeholder="请直接 @姓名／工号，最多可邀请 5 人"/>
               )}
             </FormItem>
             <FormItem
@@ -137,7 +139,7 @@ export default class BasicForms extends React.PureComponent<any,any> {
               label={<span>权重<em className={styles.optional}>（选填）</em></span>}
             >
               {getFieldDecorator('weight')(
-                <InputNumber placeholder="请输入" min={0} max={100} />
+                <InputNumber placeholder="请输入" min={0} max={100}/>
               )}
               <span>%</span>
             </FormItem>
@@ -156,8 +158,7 @@ export default class BasicForms extends React.PureComponent<any,any> {
                     <Radio value="3">不公开</Radio>
                   </Radio.Group>
                 )}
-                {getFieldDecorator('publicUsers', {
-                })(
+                {getFieldDecorator('publicUsers', {})(
                   <Select
                     mode="multiple"
                     placeholder="公开给"
@@ -173,11 +174,11 @@ export default class BasicForms extends React.PureComponent<any,any> {
                 )}
               </div>
             </FormItem>
-            <FormItem {...submitFormLayout} style={{ marginTop: 32 }}>
+            <FormItem {...submitFormLayout} style={{marginTop: 32}}>
               <Button type="primary" htmlType="submit" loading={submitting}>
                 提交
               </Button>
-              <Button style={{ marginLeft: 8 }}>保存</Button>
+              <Button style={{marginLeft: 8}}>保存</Button>
             </FormItem>
           </Form>
         </Card>

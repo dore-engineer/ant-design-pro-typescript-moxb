@@ -4,7 +4,7 @@ export function fixedZero(val) {
   return val * 1 < 10 ? `0${val}` : val;
 }
 
-export function getTimeDistance(type) : any{
+export function getTimeDistance(type): any {
   const now = new Date();
   const oneDay = 1000 * 60 * 60 * 24;
 

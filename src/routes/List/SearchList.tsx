@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from 'react';
 import * as moment from 'moment';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
@@ -7,9 +7,10 @@ import { Form, Card, Select, List, Tag, Icon, Avatar, Row, Col, Button, Input } 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import StandardFormRow from 'ant-design-pro/lib/StandardFormRow';
 import TagSelect from 'ant-design-pro/lib/TagSelect';
-const styles =  require('./SearchList.less');
 
-const { Option } = Select;
+const styles = require('./SearchList.less');
+
+const {Option} = Select;
 const FormItem = Form.Item;
 
 const pageSize = 5;
@@ -18,14 +19,15 @@ const pageSize = 5;
 @connect(state => ({
   list: state.list,
 }))
-export default class SearchList extends React.Component<any,any> {
-    private handleFormSubmit: any;
+export default class SearchList extends React.Component<any, any> {
+  private handleFormSubmit: any;
+
   componentDidMount() {
     this.fetchMore();
   }
 
   setOwner = () => {
-    const { form } = this.props;
+    const {form} = this.props;
     form.setFieldsValue({
       owner: ['wzj'],
     });
@@ -41,7 +43,7 @@ export default class SearchList extends React.Component<any,any> {
   }
 
   handleTabChange = (key) => {
-    const { dispatch } = this.props;
+    const {dispatch} = this.props;
     switch (key) {
       case 'docs':
         dispatch(routerRedux.push('/list/search'));
@@ -58,8 +60,8 @@ export default class SearchList extends React.Component<any,any> {
   }
 
   render() {
-    const { form, list: { list, loading } } = this.props;
-    const { getFieldDecorator } = form;
+    const {form, list: {list, loading}} = this.props;
+    const {getFieldDecorator} = form;
 
     const owners = [
       {
@@ -99,47 +101,47 @@ export default class SearchList extends React.Component<any,any> {
       },
     ];
 
-    const IconText = ({ type, text }) => (
+    const IconText = ({type, text}) => (
       <span>
-        <Icon type={type} style={{ marginRight: 8 }} />
+        <Icon type={type} style={{marginRight: 8}}/>
         {text}
       </span>
     );
 
-    const ListContent = ({ data: { content, updatedAt, avatar, owner, href } }) => (
+    const ListContent = ({data: {content, updatedAt, avatar, owner, href}}) => (
       <div className={styles.listContent}>
         <div className={styles.description}>{content}</div>
         <div className={styles.extra}>
-          <Avatar src={avatar} size="small" /><a href={href}>{owner}</a> 发布在 <a href={href}>{href}</a>
+          <Avatar src={avatar} size="small"/><a href={href}>{owner}</a> 发布在 <a href={href}>{href}</a>
           <em>{moment(updatedAt).format('YYYY-MM-DD hh:mm')}</em>
         </div>
       </div>
     );
 
     const pageHeaderContent = (
-      <div style={{ textAlign: 'center' }}>
+      <div style={{textAlign: 'center'}}>
         <Input.Search
           placeholder="请输入"
           enterButton="搜索"
           size="large"
           onSearch={this.handleFormSubmit}
-          style={{ width: 522 }}
+          style={{width: 522}}
         />
       </div>
     );
 
     const formItemLayout = {
       wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 24 },
-        md: { span: 12 },
+        xs: {span: 24},
+        sm: {span: 24},
+        md: {span: 12},
       },
     };
 
     const loadMore = list.length > 0 ? (
-      <div style={{ textAlign: 'center', marginTop: 16 }}>
-        <Button onClick={this.fetchMore} style={{ paddingLeft: 48, paddingRight: 48 }}>
-          {loading ? <span><Icon type="loading" /> 加载中...</span> : '加载更多'}
+      <div style={{textAlign: 'center', marginTop: 16}}>
+        <Button onClick={this.fetchMore} style={{paddingLeft: 48, paddingRight: 48}}>
+          {loading ? <span><Icon type="loading"/> 加载中...</span> : '加载更多'}
         </Button>
       </div>
     ) : null;
@@ -154,7 +156,7 @@ export default class SearchList extends React.Component<any,any> {
         <div>
           <Card bordered={false}>
             <Form layout="inline">
-              <StandardFormRow title="所属类目" block style={{ paddingBottom: 11 }}>
+              <StandardFormRow title="所属类目" block style={{paddingBottom: 11}}>
                 <FormItem>
                   {getFieldDecorator('category')(
                     <TagSelect onChange={this.handleFormSubmit} expandable>
@@ -186,7 +188,7 @@ export default class SearchList extends React.Component<any,any> {
                       })(
                         <Select
                           mode="multiple"
-                          style={{ maxWidth: 286, width: '100%' }}
+                          style={{maxWidth: 286, width: '100%'}}
                           placeholder="选择 owner"
                         >
                           {
@@ -216,7 +218,7 @@ export default class SearchList extends React.Component<any,any> {
                         <Select
                           onChange={this.handleFormSubmit}
                           placeholder="不限"
-                          style={{ maxWidth: 200, width: '100%' }}
+                          style={{maxWidth: 200, width: '100%'}}
                         >
                           <Option value="lisa">李三</Option>
                         </Select>
@@ -236,7 +238,7 @@ export default class SearchList extends React.Component<any,any> {
                             <Select
                               onChange={this.handleFormSubmit}
                               placeholder="不限"
-                              style={{ maxWidth: 200, width: '100%' }}
+                              style={{maxWidth: 200, width: '100%'}}
                             >
                               <Option value="good">优秀</Option>
                             </Select>
@@ -250,9 +252,9 @@ export default class SearchList extends React.Component<any,any> {
             </Form>
           </Card>
           <Card
-            style={{ marginTop: 24 }}
+            style={{marginTop: 24}}
             bordered={false}
-            bodyStyle={{ padding: '8px 32px 32px 32px' }}
+            bodyStyle={{padding: '8px 32px 32px 32px'}}
           >
             <List
               size="large"
@@ -265,11 +267,11 @@ export default class SearchList extends React.Component<any,any> {
                 <List.Item
                   key={item.id}
                   actions={[
-                    <IconText type="star-o" text={item.star} />,
-                    <IconText type="like-o" text={item.like} />,
-                    <IconText type="message" text={item.message} />,
+                    <IconText type="star-o" text={item.star}/>,
+                    <IconText type="like-o" text={item.like}/>,
+                    <IconText type="message" text={item.message}/>,
                   ]}
-                  extra={<div className={styles.listItemExtra} />}
+                  extra={<div className={styles.listItemExtra}/>}
                 >
                   <List.Item.Meta
                     title={(
@@ -283,7 +285,7 @@ export default class SearchList extends React.Component<any,any> {
                       </span>
                     }
                   />
-                  <ListContent data={item} />
+                  <ListContent data={item}/>
                 </List.Item>
               )}
             />

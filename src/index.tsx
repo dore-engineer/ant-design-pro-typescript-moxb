@@ -3,11 +3,10 @@ import * as ReactDOM from 'react-dom';
 import 'babel-polyfill';
 import 'moment/locale/vi';
 import './g2';
-import browserHistory from 'history/createBrowserHistory';
 import './index.less';
-import router from './router';
+import App from './router';
 
 ReactDOM.render(
-    router(browserHistory()),
-    document.getElementById('root')
+  <App/>,
+  document.getElementById('root')
 );

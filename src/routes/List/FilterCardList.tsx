@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from 'react';
 import numeral from 'numeral';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
@@ -9,7 +9,7 @@ import StandardFormRow from 'ant-design-pro/lib/StandardFormRow';
 import TagSelect from 'ant-design-pro/lib/TagSelect';
 
 const styles = require('./FilterCardList.less')
-const { Option } = Select;
+const {Option} = Select;
 const FormItem = Form.Item;
 
 const formatWan = (val) => {
@@ -29,7 +29,7 @@ const formatWan = (val) => {
 @connect(state => ({
   list: state.list,
 }))
-export default class FilterCardList extends React.PureComponent<any,any> {
+export default class FilterCardList extends React.PureComponent<any, any> {
   componentDidMount() {
     this.props.dispatch({
       type: 'list/fetch',
@@ -40,7 +40,7 @@ export default class FilterCardList extends React.PureComponent<any,any> {
   }
 
   handleFormSubmit = () => {
-    const { form, dispatch } = this.props;
+    const {form, dispatch} = this.props;
     // setTimeout 用于保证获取表单值是在所有表单字段更新完毕的时候
     setTimeout(() => {
       form.validateFields((err) => {
@@ -58,7 +58,7 @@ export default class FilterCardList extends React.PureComponent<any,any> {
   }
 
   handleTabChange = (key) => {
-    const { dispatch } = this.props;
+    const {dispatch} = this.props;
     switch (key) {
       case 'doc':
         dispatch(routerRedux.push('/list/search'));
@@ -75,8 +75,8 @@ export default class FilterCardList extends React.PureComponent<any,any> {
   }
 
   render() {
-    const { list: { list, loading }, form } = this.props;
-    const { getFieldDecorator } = form;
+    const {list: {list, loading}, form} = this.props;
+    const {getFieldDecorator} = form;
 
     const tabList = [
       {
@@ -94,7 +94,7 @@ export default class FilterCardList extends React.PureComponent<any,any> {
       },
     ];
 
-    const CardInfo = ({ activeUser, newUser }) => (
+    const CardInfo = ({activeUser, newUser}) => (
       <div className={styles.cardInfo}>
         <div>
           <p>活跃用户</p>
@@ -108,21 +108,21 @@ export default class FilterCardList extends React.PureComponent<any,any> {
     );
 
     const pageHeaderContent = (
-      <div style={{ textAlign: 'center' }}>
+      <div style={{textAlign: 'center'}}>
         <Input.Search
           placeholder="请输入"
           enterButton="搜索"
           size="large"
           onSearch={this.handleFormSubmit}
-          style={{ width: 522 }}
+          style={{width: 522}}
         />
       </div>
     );
 
     const formItemLayout = {
       wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 },
+        xs: {span: 24},
+        sm: {span: 16},
       },
     };
 
@@ -150,7 +150,7 @@ export default class FilterCardList extends React.PureComponent<any,any> {
         <div className={styles.filterCardList}>
           <Card bordered={false}>
             <Form layout="inline">
-              <StandardFormRow title="所属类目" block style={{ paddingBottom: 11 }}>
+              <StandardFormRow title="所属类目" block style={{paddingBottom: 11}}>
                 <FormItem>
                   {getFieldDecorator('category')(
                     <TagSelect onChange={this.handleFormSubmit} expandable>
@@ -185,7 +185,7 @@ export default class FilterCardList extends React.PureComponent<any,any> {
                         <Select
                           onChange={this.handleFormSubmit}
                           placeholder="不限"
-                          style={{ maxWidth: 200, width: '100%' }}
+                          style={{maxWidth: 200, width: '100%'}}
                         >
                           <Option value="lisa">王昭君</Option>
                         </Select>
@@ -201,7 +201,7 @@ export default class FilterCardList extends React.PureComponent<any,any> {
                         <Select
                           onChange={this.handleFormSubmit}
                           placeholder="不限"
-                          style={{ maxWidth: 200, width: '100%' }}
+                          style={{maxWidth: 200, width: '100%'}}
                         >
                           <Option value="good">优秀</Option>
                           <Option value="normal">普通</Option>
@@ -213,27 +213,27 @@ export default class FilterCardList extends React.PureComponent<any,any> {
               </StandardFormRow>
             </Form>
           </Card>
-            <div style={{ marginTop: 24 }}/>
+          <div style={{marginTop: 24}}/>
           <List
             rowKey="id"
 
-            grid={{ gutter: 24, xl: 4, lg: 3, md: 3, sm: 2, xs: 1 }}
+            grid={{gutter: 24, xl: 4, lg: 3, md: 3, sm: 2, xs: 1}}
             loading={loading}
             dataSource={list}
             renderItem={item => (
-              <List.Item extra key={item.id} >
+              <List.Item extra key={item.id}>
                 <Card
                   hoverable
-                  bodyStyle={{ paddingBottom: 20 }}
+                  bodyStyle={{paddingBottom: 20}}
                   actions={[
-                    <Tooltip title="下载"><Icon type="download" /></Tooltip>,
-                    <Tooltip title="编辑"><Icon type="edit" /></Tooltip>,
-                    <Tooltip title="分享"><Icon type="share-alt" /></Tooltip>,
-                    <Dropdown overlay={itemMenu}><Icon type="ellipsis" /></Dropdown>,
+                    <Tooltip title="下载"><Icon type="download"/></Tooltip>,
+                    <Tooltip title="编辑"><Icon type="edit"/></Tooltip>,
+                    <Tooltip title="分享"><Icon type="share-alt"/></Tooltip>,
+                    <Dropdown overlay={itemMenu}><Icon type="ellipsis"/></Dropdown>,
                   ]}
                 >
                   <Card.Meta
-                    avatar={<Avatar size="small" src={item.avatar} />}
+                    avatar={<Avatar size="small" src={item.avatar}/>}
                     title={item.title}
                   />
                   <div className={styles.cardItemContent}>

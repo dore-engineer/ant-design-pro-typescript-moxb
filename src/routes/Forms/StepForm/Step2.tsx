@@ -1,11 +1,12 @@
-import * as React from 'react'
+import * as React from 'react';
 import { Form, Input, Button, Alert, Divider } from 'antd';
 import { routerRedux } from 'dva/router';
 import { digitUppercase } from '../../../utils/utils';
+
 const styles = require('./style.less')
 
-export default ({ formItemLayout, form, data, dispatch, submitting }) => {
-  const { getFieldDecorator, validateFields } = form;
+export default ({formItemLayout, form, data, dispatch, submitting}) => {
+  const {getFieldDecorator, validateFields} = form;
   const onPrev = () => {
     dispatch(routerRedux.push('/form/step-form'));
   };
@@ -29,7 +30,7 @@ export default ({ formItemLayout, form, data, dispatch, submitting }) => {
         closable
         showIcon
         message="确认转账后，资金将直接打入对方账户，无法退回。"
-        style={{ marginBottom: 24 }}
+        style={{marginBottom: 24}}
       />
       <Form.Item
         {...formItemLayout}
@@ -60,8 +61,8 @@ export default ({ formItemLayout, form, data, dispatch, submitting }) => {
         <span className={styles.money}>{data.amount}</span>
         <span className={styles.uppercase}>（{digitUppercase(data.amount)}）</span>
       </Form.Item>
-        <div style={{ margin: '24px 0' }}/>
-      <Divider  />
+      <div style={{margin: '24px 0'}}/>
+      <Divider/>
       <Form.Item
         {...formItemLayout}
         label="支付密码"
@@ -73,21 +74,21 @@ export default ({ formItemLayout, form, data, dispatch, submitting }) => {
             required: true, message: '需要支付密码才能进行支付',
           }],
         })(
-          <Input type="password" autoComplete="off" style={{ width: '80%' }} />
+          <Input type="password" autoComplete="off" style={{width: '80%'}}/>
         )}
       </Form.Item>
       <Form.Item
-        style={{ marginBottom: 8 }}
+        style={{marginBottom: 8}}
         wrapperCol={{
-          xs: { span: 24, offset: 0 },
-          sm: { span: formItemLayout.wrapperCol.span, offset: formItemLayout.labelCol.span },
+          xs: {span: 24, offset: 0},
+          sm: {span: formItemLayout.wrapperCol.span, offset: formItemLayout.labelCol.span},
         }}
         label=""
       >
         <Button type="primary" onClick={onValidateForm} loading={submitting}>
           提交
         </Button>
-        <Button onClick={onPrev} style={{ marginLeft: 8 }}>
+        <Button onClick={onPrev} style={{marginLeft: 8}}>
           上一步
         </Button>
       </Form.Item>

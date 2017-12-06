@@ -8,7 +8,7 @@ export default {
   },
 
   effects: {
-    *fetchTags(_, { call, put }) {
+    * fetchTags(_, {call, put}) {
       const response = yield call(queryTags);
       yield put({
         type: 'saveTags',

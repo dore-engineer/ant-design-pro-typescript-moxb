@@ -2,22 +2,22 @@ import * as React from 'react';
 import { connect } from 'dva';
 import { routerRedux, Link } from 'dva/router';
 import { Form, Input, Tabs, Button, Icon, Checkbox, Row, Col, Alert } from 'antd';
+
 const styles = require('./Login.less');
 
-
 const FormItem = Form.Item;
-const { TabPane } = Tabs;
+const {TabPane} = Tabs;
 
 @connect(state => ({
   login: state.login,
 }))
 // @Form.create()
-export default class Login extends React.Component<any,any> {
+export default class Login extends React.Component<any, any> {
   state = {
     count: 0,
     type: 'account',
-  }
-    private interval: any;
+  };
+  private interval: any;
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.login.status === 'ok') {
@@ -37,10 +37,10 @@ export default class Login extends React.Component<any,any> {
 
   onGetCaptcha = () => {
     let count = 59;
-    this.setState({ count });
+    this.setState({count});
     this.interval = setInterval(() => {
       count -= 1;
-      this.setState({ count });
+      this.setState({count});
       if (count === 0) {
         clearInterval(this.interval);
       }
@@ -49,8 +49,8 @@ export default class Login extends React.Component<any,any> {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { type } = this.state;
-    this.props.form.validateFields({ force: true },
+    const {type} = this.state;
+    this.props.form.validateFields({force: true},
       (err, values) => {
         if (!err) {
           this.props.dispatch({
@@ -65,7 +65,7 @@ export default class Login extends React.Component<any,any> {
   renderMessage = (message) => {
     return (
       <Alert
-        style={{ marginBottom: 24 }}
+        style={{marginBottom: 24}}
         message={message}
         type="error"
         showIcon
@@ -74,9 +74,9 @@ export default class Login extends React.Component<any,any> {
   }
 
   render() {
-    const { form, login } = this.props;
-    const { getFieldDecorator } = form;
-    const { count, type } = this.state;
+    const {form, login} = this.props;
+    const {getFieldDecorator} = form;
+    const {count, type} = this.state;
     return (
       <div className={styles.main}>
         <Form onSubmit={this.handleSubmit}>
@@ -96,7 +96,7 @@ export default class Login extends React.Component<any,any> {
                 })(
                   <Input
                     size="large"
-                    prefix={<Icon type="user" className={styles.prefixIcon} />}
+                    prefix={<Icon type="user" className={styles.prefixIcon}/>}
                     placeholder="admin"
                   />
                 )}
@@ -109,7 +109,7 @@ export default class Login extends React.Component<any,any> {
                 })(
                   <Input
                     size="large"
-                    prefix={<Icon type="lock" className={styles.prefixIcon} />}
+                    prefix={<Icon type="lock" className={styles.prefixIcon}/>}
                     type="password"
                     placeholder="888888"
                   />
@@ -133,7 +133,7 @@ export default class Login extends React.Component<any,any> {
                 })(
                   <Input
                     size="large"
-                    prefix={<Icon type="mobile" className={styles.prefixIcon} />}
+                    prefix={<Icon type="mobile" className={styles.prefixIcon}/>}
                     placeholder="手机号"
                   />
                 )}
@@ -148,19 +148,19 @@ export default class Login extends React.Component<any,any> {
                     })(
                       <Input
                         size="large"
-                        prefix={<Icon type="mail" className={styles.prefixIcon} />}
+                        prefix={<Icon type="mail" className={styles.prefixIcon}/>}
                         placeholder="验证码"
                       />
                     )}
                   </Col>
                   <Col span={8}>
                     {/*<Button*/}
-                      {/*disabled={count}*/}
-                      {/*className={styles.getCaptcha}*/}
-                      {/*size="large"*/}
-                      {/*onClick={this.onGetCaptcha}*/}
+                    {/*disabled={count}*/}
+                    {/*className={styles.getCaptcha}*/}
+                    {/*size="large"*/}
+                    {/*onClick={this.onGetCaptcha}*/}
                     {/*>*/}
-                      {/*{count ? `${count} s` : '获取验证码'}*/}
+                    {/*{count ? `${count} s` : '获取验证码'}*/}
                     {/*</Button>*/}
                   </Col>
                 </Row>
@@ -175,7 +175,13 @@ export default class Login extends React.Component<any,any> {
               <Checkbox className={styles.autoLogin}>自动登录</Checkbox>
             )}
             <a className={styles.forgot} href="">忘记密码</a>
-            <Button size="large" loading={login.submitting} className={styles.submit} type="primary" htmlType="submit">
+            <Button
+              size="large"
+              loading={login.submitting}
+              className={styles.submit}
+              type="primary"
+              htmlType="submit"
+            >
               登录
             </Button>
           </FormItem>
@@ -183,9 +189,9 @@ export default class Login extends React.Component<any,any> {
         <div className={styles.other}>
           其他登录方式
           {/* 需要加到 Icon 中 */}
-          <span className={styles.iconAlipay} />
-          <span className={styles.iconTaobao} />
-          <span className={styles.iconWeibo} />
+          <span className={styles.iconAlipay}/>
+          <span className={styles.iconTaobao}/>
+          <span className={styles.iconWeibo}/>
           <Link className={styles.register} to="/user/register">注册账户</Link>
         </div>
       </div>

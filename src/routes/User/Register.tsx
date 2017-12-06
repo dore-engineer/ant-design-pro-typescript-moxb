@@ -1,10 +1,11 @@
-import * as React from 'react'
+import * as React from 'react';
 import { connect } from 'dva';
 import { routerRedux, Link } from 'dva/router';
 import { Form, Input, Button, Select, Row, Col, Popover, Progress } from 'antd';
-const styles = require('./Register.less')
+
+const styles = require('./Register.less');
 const FormItem = Form.Item;
-const { Option } = Select;
+const {Option} = Select;
 const InputGroup = Input.Group;
 
 const passwordStatusMap = {
@@ -23,14 +24,14 @@ const passwordProgressMap = {
   register: state.register,
 }))
 // @Form.create()
-export default class Register extends React.Component<any,any> {
-    interval: NodeJS.Timer;
-    state = {
+export default class Register extends React.Component<any, any> {
+  interval: NodeJS.Timer;
+  state = {
     count: 0,
     confirmDirty: false,
     visible: false,
     help: '',
-  }
+  };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.register.status === 'ok') {
@@ -44,10 +45,10 @@ export default class Register extends React.Component<any,any> {
 
   onGetCaptcha = () => {
     let count = 59;
-    this.setState({ count });
+    this.setState({count});
     this.interval = setInterval(() => {
       count -= 1;
-      this.setState({ count });
+      this.setState({count});
       if (count === 0) {
         clearInterval(this.interval);
       }
@@ -55,7 +56,7 @@ export default class Register extends React.Component<any,any> {
   }
 
   getPasswordStatus = () => {
-    const { form } = this.props;
+    const {form} = this.props;
     const value = form.getFieldValue('password');
     if (value && value.length > 9) {
       return 'ok';
@@ -68,7 +69,7 @@ export default class Register extends React.Component<any,any> {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.form.validateFields({ force: true },
+    this.props.form.validateFields({force: true},
       (err, values) => {
         if (!err) {
           this.props.dispatch({
@@ -81,12 +82,12 @@ export default class Register extends React.Component<any,any> {
   }
 
   handleConfirmBlur = (e) => {
-    const { value } = e.target;
-    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
+    const {value} = e.target;
+    this.setState({confirmDirty: this.state.confirmDirty || !!value});
   }
 
   checkConfirm = (rule, value, callback) => {
-    const { form } = this.props;
+    const {form} = this.props;
     if (value && value !== form.getFieldValue('password')) {
       callback('两次输入的密码不匹配!');
     } else {
@@ -113,9 +114,9 @@ export default class Register extends React.Component<any,any> {
       if (value.length < 6) {
         callback('error');
       } else {
-        const { form } = this.props;
+        const {form} = this.props;
         if (value && this.state.confirmDirty) {
-          form.validateFields(['confirm'], { force: true });
+          form.validateFields(['confirm'], {force: true});
         }
         callback();
       }
@@ -123,11 +124,13 @@ export default class Register extends React.Component<any,any> {
   }
 
   renderPasswordProgress = () => {
-    const { form } = this.props;
+    const {form} = this.props;
     const value = form.getFieldValue('password');
     const passwordStatus = this.getPasswordStatus();
-    return value && value.length ?
-      <div className={styles[`progress-${passwordStatus}`]}>
+    return value && value.length ? (
+      <div
+        className={styles[`progress-${passwordStatus}`]}
+      >
         <Progress
           status={passwordProgressMap[passwordStatus] as any}
           className={styles.progress}
@@ -135,13 +138,13 @@ export default class Register extends React.Component<any,any> {
           percent={value.length * 10 > 100 ? 100 : value.length * 10}
           showInfo={false}
         />
-      </div> : null;
+      </div>) : null;
   }
 
   render() {
-    const { form, register } = this.props;
-    const { getFieldDecorator } = form;
-    const { count } = this.state;
+    const {form, register} = this.props;
+    const {getFieldDecorator} = form;
+    const {count} = this.state;
     return (
       <div className={styles.main}>
         <h3>注册</h3>
@@ -154,19 +157,18 @@ export default class Register extends React.Component<any,any> {
                 type: 'email', message: '邮箱地址格式错误！',
               }],
             })(
-              <Input size="large" placeholder="邮箱" />
+              <Input size="large" placeholder="邮箱"/>
             )}
           </FormItem>
           <FormItem help={this.state.help}>
             <Popover
               content={
-                <div style={{ padding: '4px 0' }}>
+                <div style={{padding: '4px 0'}}>
                   {passwordStatusMap[this.getPasswordStatus()]}
                   {this.renderPasswordProgress()}
-                  <div style={{ marginTop: 10 }}>请至少输入 6 个字符。请不要使用容易被猜到的密码。</div>
-                </div>
-              }
-              overlayStyle={{ width: 240 }}
+                  <div style={{marginTop: 10}}>请至少输入 6 个字符。请不要使用容易被猜到的密码。</div>
+                </div>}
+              overlayStyle={{width: 240}}
               placement="right"
               visible={this.state.visible}
             >
@@ -200,7 +202,7 @@ export default class Register extends React.Component<any,any> {
           </FormItem>
           <FormItem>
             <InputGroup size="large" className={styles.mobileGroup} compact>
-              <FormItem style={{ width: '20%' }}>
+              <FormItem style={{width: '20%'}}>
                 {getFieldDecorator('prefix', {
                   initialValue: '86',
                 })(
@@ -210,7 +212,7 @@ export default class Register extends React.Component<any,any> {
                   </Select>
                 )}
               </FormItem>
-              <FormItem style={{ width: '80%' }}>
+              <FormItem style={{width: '80%'}}>
                 {getFieldDecorator('mobile', {
                   rules: [{
                     required: true, message: '请输入手机号！',
@@ -218,7 +220,7 @@ export default class Register extends React.Component<any,any> {
                     pattern: /^1\d{10}$/, message: '手机号格式错误！',
                   }],
                 })(
-                  <Input placeholder="11位手机号" />
+                  <Input placeholder="11位手机号"/>
                 )}
               </FormItem>
             </InputGroup>
@@ -250,7 +252,13 @@ export default class Register extends React.Component<any,any> {
             </Row>
           </FormItem>
           <FormItem>
-            <Button size="large" loading={register.submitting} className={styles.submit} type="primary" htmlType="submit">
+            <Button
+              size="large"
+              loading={register.submitting}
+              className={styles.submit}
+              type="primary"
+              htmlType="submit"
+            >
               注册
             </Button>
             <Link className={styles.login} to="/user/login">使用已有账户登录</Link>

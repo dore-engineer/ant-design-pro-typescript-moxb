@@ -8,7 +8,7 @@ export default {
   },
 
   effects: {
-    *submit(_, { call, put }) {
+    * submit(_, {call, put}) {
       yield put({
         type: 'changeSubmitting',
         payload: true,
@@ -26,13 +26,13 @@ export default {
   },
 
   reducers: {
-    registerHandle(state, { payload }) {
+    registerHandle(state, {payload}) {
       return {
         ...state,
         status: payload.status,
       };
     },
-    changeSubmitting(state, { payload }) {
+    changeSubmitting(state, {payload}) {
       return {
         ...state,
         submitting: payload,

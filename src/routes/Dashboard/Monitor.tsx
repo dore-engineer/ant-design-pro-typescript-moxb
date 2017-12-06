@@ -15,7 +15,7 @@ const targetTime = new Date().getTime() + 3900000;
 @connect(state => ({
   monitor: state.monitor,
 }))
-export default class Monitor extends React.PureComponent<any,any> {
+export default class Monitor extends React.PureComponent<any, any> {
   componentDidMount() {
     this.props.dispatch({
       type: 'monitor/fetchTags',
@@ -23,13 +23,13 @@ export default class Monitor extends React.PureComponent<any,any> {
   }
 
   render() {
-    const { monitor } = this.props;
-    const { tags } = monitor;
+    const {monitor} = this.props;
+    const {tags} = monitor;
 
     return (
       <div>
         <Row gutter={24}>
-          <Col xl={18} lg={24} md={24} sm={24} xs={24} style={{ marginBottom: 24 }}>
+          <Col xl={18} lg={24} md={24} sm={24} xs={24} style={{marginBottom: 24}}>
             <Card title="活动实时交易情况" bordered={false}>
               <Row>
                 <Col md={6} sm={12} xs={24}>
@@ -48,7 +48,7 @@ export default class Monitor extends React.PureComponent<any,any> {
                 <Col md={6} sm={12} xs={24}>
                   <NumberInfo
                     subTitle="活动剩余时间"
-                    total={<CountDown target={targetTime} />}
+                    total={<CountDown target={targetTime}/>}
                   />
                 </Col>
                 <Col md={6} sm={12} xs={24}>
@@ -61,19 +61,19 @@ export default class Monitor extends React.PureComponent<any,any> {
               </Row>
               <div className={styles.mapChart}>
                 <Tooltip title="等待后期实现">
-                  <img src="https://gw.alipayobjects.com/zos/rmsportal/HBWnDEUXCnGnGrRfrpKa.png" alt="map" />
+                  <img src="https://gw.alipayobjects.com/zos/rmsportal/HBWnDEUXCnGnGrRfrpKa.png" alt="map"/>
                 </Tooltip>
               </div>
             </Card>
           </Col>
           <Col xl={6} lg={24} md={24} sm={24} xs={24}>
-            <Card title="活动情况预测" style={{ marginBottom: 24 }} bordered={false}>
-              <ActiveChart />
+            <Card title="活动情况预测" style={{marginBottom: 24}} bordered={false}>
+              <ActiveChart/>
             </Card>
             <Card
               title="券核效率"
-              style={{ marginBottom: 24 }}
-              bodyStyle={{ textAlign: 'center' }}
+              style={{marginBottom: 24}}
+              bodyStyle={{textAlign: 'center'}}
               bordered={false}
             >
               <Gauge
@@ -102,11 +102,11 @@ export default class Monitor extends React.PureComponent<any,any> {
           <Col xl={12} lg={24} sm={24} xs={24}>
             <Card
               title="各品类占比"
-              style={{ marginBottom: 24 }}
+              style={{marginBottom: 24}}
               bordered={false}
               className={styles.pieCard}
             >
-              <Row gutter={4} style={{ padding: '16px 0' }}>
+              <Row gutter={4} style={{padding: '16px 0'}}>
                 <Col span={8}>
                   <Pie
                     animate={false}
@@ -142,16 +142,16 @@ export default class Monitor extends React.PureComponent<any,any> {
               </Row>
             </Card>
           </Col>
-          <Col xl={6} lg={12} sm={24} xs={24} style={{ marginBottom: 24 }}>
-            <Card title="热门搜索" bordered={false} bodyStyle={{ overflow: 'hidden' }}>
+          <Col xl={6} lg={12} sm={24} xs={24} style={{marginBottom: 24}}>
+            <Card title="热门搜索" bordered={false} bodyStyle={{overflow: 'hidden'}}>
               <TagCloud
                 data={tags}
                 height={161}
               />
             </Card>
           </Col>
-          <Col xl={6} lg={12} sm={24} xs={24} style={{ marginBottom: 24 }}>
-            <Card title="资源剩余" bodyStyle={{ textAlign: 'center', fontSize: 0 }} bordered={false}>
+          <Col xl={6} lg={12} sm={24} xs={24} style={{marginBottom: 24}}>
+            <Card title="资源剩余" bodyStyle={{textAlign: 'center', fontSize: 0}} bordered={false}>
               <WaterWave
                 height={161}
                 title="补贴资金剩余"

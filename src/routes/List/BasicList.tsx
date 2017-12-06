@@ -1,19 +1,19 @@
-import * as React from 'react'
+import * as React from 'react';
 import * as moment from 'moment';
 import { connect } from 'dva';
 import { List, Card, Row, Col, Radio, Input, Progress, Button, Icon, Dropdown, Menu, Avatar } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
-const styles = require('./BasicList.less')
+const styles = require('./BasicList.less');
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
-const { Search } = Input;
+const {Search} = Input;
 
 @connect(state => ({
   list: state.list,
 }))
-export default class BasicList extends React.PureComponent<any,any> {
+export default class BasicList extends React.PureComponent<any, any> {
   componentDidMount() {
     this.props.dispatch({
       type: 'list/fetch',
@@ -24,13 +24,13 @@ export default class BasicList extends React.PureComponent<any,any> {
   }
 
   render() {
-    const { list: { list, loading } } = this.props;
+    const {list: {list, loading}} = this.props;
 
-    const Info = ({ title, value, bordered }) => (
+    const Info = ({title, value, bordered}) => (
       <div className={styles.headerInfo}>
         <span>{title}</span>
         <p>{value}</p>
-        {bordered && <em />}
+        {bordered && <em/>}
       </div>
     );
 
@@ -56,7 +56,7 @@ export default class BasicList extends React.PureComponent<any,any> {
       total: 50,
     };
 
-    const ListContent = ({ data: { owner, createdAt, percent, status } }) => (
+    const ListContent = ({data: {owner, createdAt, percent, status}}) => (
       <div className={styles.listContent}>
         <div>
           <span>Owner</span>
@@ -67,7 +67,7 @@ export default class BasicList extends React.PureComponent<any,any> {
           <p>{moment(createdAt).format('YYYY-MM-DD hh:mm')}</p>
         </div>
         <div>
-          <Progress percent={percent} status={status} strokeWidth={6} />
+          <Progress percent={percent} status={status} strokeWidth={6}/>
         </div>
       </div>
     );
@@ -86,7 +86,7 @@ export default class BasicList extends React.PureComponent<any,any> {
     const MoreBtn = () => (
       <Dropdown overlay={menu}>
         <a>
-          更多 <Icon type="down" />
+          更多 <Icon type="down"/>
         </a>
       </Dropdown>
     );
@@ -97,13 +97,13 @@ export default class BasicList extends React.PureComponent<any,any> {
           <Card bordered={false}>
             <Row>
               <Col sm={8} xs={24}>
-                <Info title="我的待办" value="8个任务" bordered />
+                <Info title="我的待办" value="8个任务" bordered/>
               </Col>
               <Col sm={8} xs={24}>
-                <Info title="本周任务平均处理时间" value="32分钟" bordered />
+                <Info title="本周任务平均处理时间" value="32分钟" bordered/>
               </Col>
               <Col sm={8} xs={24}>
-                <Info title="本周完成任务数" value="24个任务" bordered={1} />
+                <Info title="本周完成任务数" value="24个任务" bordered={1}/>
               </Col>
             </Row>
           </Card>
@@ -112,11 +112,11 @@ export default class BasicList extends React.PureComponent<any,any> {
             className={styles.listCard}
             bordered={false}
             title="标准列表"
-            style={{ marginTop: 24 }}
-            bodyStyle={{ padding: '0 32px 40px 32px' }}
+            style={{marginTop: 24}}
+            bodyStyle={{padding: '0 32px 40px 32px'}}
             extra={extraContent}
           >
-            <Button type="dashed" style={{ width: '100%', marginBottom: 8 }} icon="plus">
+            <Button type="dashed" style={{width: '100%', marginBottom: 8}} icon="plus">
               添加
             </Button>
             <List
@@ -127,15 +127,15 @@ export default class BasicList extends React.PureComponent<any,any> {
               dataSource={list}
               renderItem={item => (
                 <List.Item
-                  actions={[<a>编辑</a>, <MoreBtn />]}
+                  actions={[<a key={`text`}>编辑</a>, <MoreBtn key={'btn'}/>]}
                   extra
                 >
                   <List.Item.Meta
-                    avatar={<Avatar src={item.logo} shape="square" size="large" />}
+                    avatar={<Avatar src={item.logo} shape="square" size="large"/>}
                     title={<a href={item.href}>{item.title}</a>}
                     description={item.subDescription}
                   />
-                  <ListContent data={item} />
+                  <ListContent data={item}/>
                 </List.Item>
               )}
             />

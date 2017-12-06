@@ -17,14 +17,14 @@ export default {
   },
 
   effects: {
-    *fetch(_, { call, put }) {
+    * fetch(_, {call, put}) {
       const response = yield call(fakeChartData);
       yield put({
         type: 'save',
         payload: response,
       });
     },
-    *fetchSalesData(_, { call, put }) {
+    * fetchSalesData(_, {call, put}) {
       const response = yield call(fakeChartData);
       yield put({
         type: 'save',
@@ -36,13 +36,13 @@ export default {
   },
 
   reducers: {
-    save(state, { payload }) {
+    save(state, {payload}) {
       return {
         ...state,
         ...payload,
       };
     },
-    setter(state, { payload }) {
+    setter(state, {payload}) {
       return {
         ...state,
         ...payload,
