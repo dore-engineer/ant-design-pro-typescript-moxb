@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import DescriptionList from 'ant-design-pro/lib/DescriptionList';
 
-const styles = require('./AdvancedProfile.less');
+import './AdvancedProfile.less';
 
 const {Step} = Steps;
 const {Description} = DescriptionList;
@@ -69,7 +69,7 @@ const tabList = [{
 }];
 
 const desc1 = (
-  <div className={classNames(styles.textSecondary, styles.stepDescription)}>
+  <div className={classNames('textSecondary', 'stepDescription')}>
     <div>
       曲丽丽
       <Icon type="dingding-o" style={{marginLeft: 8}}/>

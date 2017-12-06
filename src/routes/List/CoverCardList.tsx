@@ -10,7 +10,8 @@ import TagSelect from 'ant-design-pro/lib/TagSelect';
 import AvatarList from 'ant-design-pro/lib/AvatarList';
 
 // import styles from './CoverCardList.less';
-const styles = require('./CoverCardList.less');
+import './CoverCardList.less';
+
 const {Option} = Select;
 const FormItem = Form.Item;
 

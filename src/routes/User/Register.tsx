@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { routerRedux, Link } from 'dva/router';
 import { Form, Input, Button, Select, Row, Col, Popover, Progress } from 'antd';
 
-const styles = require('./Register.less');
+import './Register.less';
 const FormItem = Form.Item;
 const {Option} = Select;
 const InputGroup = Input.Group;
@@ -129,7 +129,7 @@ export default class Register extends React.Component<any, any> {
     const passwordStatus = this.getPasswordStatus();
     return value && value.length ? (
       <div
-        className={styles[`progress-${passwordStatus}`]}
+        className={`progress-${passwordStatus}`}
       >
         <Progress
           status={passwordProgressMap[passwordStatus] as any}

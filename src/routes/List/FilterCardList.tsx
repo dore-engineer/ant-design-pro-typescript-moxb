@@ -8,7 +8,8 @@ import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import StandardFormRow from 'ant-design-pro/lib/StandardFormRow';
 import TagSelect from 'ant-design-pro/lib/TagSelect';
 
-const styles = require('./FilterCardList.less')
+import './FilterCardList.less';
+
 const {Option} = Select;
 const FormItem = Form.Item;
 
@@ -226,10 +227,10 @@ export default class FilterCardList extends React.PureComponent<any, any> {
                   hoverable
                   bodyStyle={{paddingBottom: 20}}
                   actions={[
-                    <Tooltip title="下载"><Icon type="download"/></Tooltip>,
-                    <Tooltip title="编辑"><Icon type="edit"/></Tooltip>,
-                    <Tooltip title="分享"><Icon type="share-alt"/></Tooltip>,
-                    <Dropdown overlay={itemMenu}><Icon type="ellipsis"/></Dropdown>,
+                    <Tooltip key="download" title="下载"><Icon type="download"/></Tooltip>,
+                    <Tooltip key="edit" title="编辑"><Icon type="edit"/></Tooltip>,
+                    <Tooltip key="share-alt" title="分享"><Icon type="share-alt"/></Tooltip>,
+                    <Dropdown key="ellipsis" overlay={itemMenu}><Icon type="ellipsis"/></Dropdown>,
                   ]}
                 >
                   <Card.Meta

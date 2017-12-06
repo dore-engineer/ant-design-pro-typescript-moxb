@@ -19,7 +19,7 @@ import {
 import StandardTable from 'ant-design-pro/lib/StandardTable';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
-const styles = require('./TableList.less')
+import './TableList.less';
 const FormItem = Form.Item;
 const {Option} = Select;
 const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',');
@@ -90,7 +90,7 @@ export default class TableList extends React.PureComponent<any, any> {
     const {dispatch} = this.props;
     const {selectedRows} = this.state;
 
-    if (!selectedRows) return;
+    if (!selectedRows) { return; }
 
     switch (e.key) {
       case 'remove':
@@ -123,7 +123,7 @@ export default class TableList extends React.PureComponent<any, any> {
     const {dispatch, form} = this.props;
 
     form.validateFields((err, fieldsValue) => {
-      if (err) return;
+      if (err) { return; }
 
       const values = {
         ...fieldsValue,

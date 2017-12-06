@@ -6,7 +6,7 @@ import FooterToolbar from 'ant-design-pro/lib/FooterToolbar';
 import TableForm from './TableForm';
 import { FormComponentProps } from 'antd/lib/form';
 
-const styles = require('./style.less');
+import './style.less';
 
 const {Option} = Select;
 const {RangePicker} = DatePicker;

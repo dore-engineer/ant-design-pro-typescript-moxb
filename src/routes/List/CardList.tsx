@@ -5,7 +5,7 @@ import { Card, Button, Icon, List } from 'antd';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import Ellipsis from 'ant-design-pro/lib/Ellipsis';
 
-const styles = require('./CardList.less')
+import './CardList.less';
 @connect(state => ({
   list: state.list,
 }))
@@ -62,7 +62,7 @@ export default class CardList extends React.PureComponent<any, any> {
             dataSource={['', ...list]}
             renderItem={item => (item ? (
                 <List.Item extra key={item.id}>
-                  <Card hoverable className={'card'} actions={[<a>操作一</a>, <a>操作二</a>]}>
+                  <Card hoverable className={'card'} actions={[<a key={'label'}>操作一</a>, <a key={'label'}>操作二</a>]}>
                     <Card.Meta
                       avatar={<img alt="" className={'cardAvatar'} src={item.avatar}/>}
                       title={<a href="#">{item.title}</a>}

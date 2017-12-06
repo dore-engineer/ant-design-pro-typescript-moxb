@@ -1,14 +1,14 @@
 import * as React from 'react';
 import * as moment from 'moment';
 import { connect } from 'dva';
-import { Link } from 'dva/router';
 import { Row, Col, Card, List, Avatar } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import EditableLinkGroup from 'ant-design-pro/lib/EditableLinkGroup';
 import { Radar } from 'ant-design-pro/lib/Charts';
 
-const styles = require('./Workplace.less');
+import './Workplace.less';
+import { Link } from 'react-router-dom';
 
 const links = [
   {
@@ -108,7 +108,7 @@ export default class Workplace extends React.PureComponent<any, any> {
         return key;
       });
       return (
-        <List.Item extra>
+        <List.Item key="workplace" extra>
           <List.Item.Meta
             key={item.id}
             avatar={<Avatar src={item.user.avatar}/>}
@@ -122,8 +122,7 @@ export default class Workplace extends React.PureComponent<any, any> {
             description={
               <span className={'datetime'} title={item.updatedAt}>
                 {moment(item.updatedAt).fromNow()}
-              </span>
-            }
+              </span>}
           />
         </List.Item>
       );
@@ -215,12 +214,14 @@ export default class Workplace extends React.PureComponent<any, any> {
               title="动态"
               loading={activitiesLoading}
             >
-              <List dataSource={''} loading={activitiesLoading} size="large"
-                    renderItem={() => <div className={'activitiesList'}>
-                      {this.renderActivities()}
-                    </div>}>
-
-              </List>
+              <List
+                dataSource={''}
+                loading={activitiesLoading}
+                size="large"
+                renderItem={() => <div className={'activitiesList'}>
+                  {this.renderActivities()}
+                </div>}
+              />
             </Card>
           </Col>
           <Col xl={8} lg={24} md={24} sm={24} xs={24}>
@@ -232,6 +233,7 @@ export default class Workplace extends React.PureComponent<any, any> {
             >
               <EditableLinkGroup
                 onAdd={() => {
+                  alert('Add');
                 }}
                 links={links}
                 linkElement={Link}

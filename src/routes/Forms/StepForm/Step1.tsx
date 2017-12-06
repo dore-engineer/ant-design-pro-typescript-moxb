@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Form, Input, Button, Select, Divider } from 'antd';
 import { routerRedux } from 'dva/router';
 
-const styles = require('./style.less')
+import './style.less';
 
 const {Option} = Select;
 

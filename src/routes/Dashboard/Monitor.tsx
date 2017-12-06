@@ -8,7 +8,7 @@ import NumberInfo from 'ant-design-pro/lib/NumberInfo';
 import CountDown from 'ant-design-pro/lib/CountDown';
 import ActiveChart from 'ant-design-pro/lib/ActiveChart';
 
-const styles = require('./Monitor.less');
+import './Monitor.less';
 
 const targetTime = new Date().getTime() + 3900000;
 

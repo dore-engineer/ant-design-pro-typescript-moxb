@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import { Link } from 'dva/router';
 import Result from 'ant-design-pro/lib/Result';
 
-const styles = require('./RegisterResult.less');
+import './RegisterResult.less';
 
 const title = <div className={'title'}>你的账户：AntDesign@example.com 注册成功</div>;
 

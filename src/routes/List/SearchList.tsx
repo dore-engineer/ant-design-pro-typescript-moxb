@@ -8,7 +8,7 @@ import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import StandardFormRow from 'ant-design-pro/lib/StandardFormRow';
 import TagSelect from 'ant-design-pro/lib/TagSelect';
 
-const styles = require('./SearchList.less');
+import './SearchList.less';
 
 const {Option} = Select;
 const FormItem = Form.Item;
@@ -267,9 +267,9 @@ export default class SearchList extends React.Component<any, any> {
                 <List.Item
                   key={item.id}
                   actions={[
-                    <IconText type="star-o" text={item.star}/>,
-                    <IconText type="like-o" text={item.like}/>,
-                    <IconText type="message" text={item.message}/>,
+                    <IconText key="1" type="star-o" text={item.star}/>,
+                    <IconText key="1" type="like-o" text={item.like}/>,
+                    <IconText key="1" type="message" text={item.message}/>,
                   ]}
                   extra={<div className={'listItemExtra'}/>}
                 >

@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { routerRedux, Link } from 'dva/router';
 import { Form, Input, Tabs, Button, Icon, Checkbox, Row, Col, Alert } from 'antd';
 
-const styles = require('./Login.less');
+import './Login.less';
 
 const FormItem = Form.Item;
 const {TabPane} = Tabs;

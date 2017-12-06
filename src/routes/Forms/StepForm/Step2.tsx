@@ -3,7 +3,7 @@ import { Form, Input, Button, Alert, Divider } from 'antd';
 import { routerRedux } from 'dva/router';
 import { digitUppercase } from '../../../utils/utils';
 
-const styles = require('./style.less')
+import './style.less';
 
 export default ({formItemLayout, form, data, dispatch, submitting}) => {
   const {getFieldDecorator, validateFields} = form;

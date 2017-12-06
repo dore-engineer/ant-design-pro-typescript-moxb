@@ -4,7 +4,7 @@ import { Card, Badge, Table, Divider } from 'antd';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import DescriptionList from 'ant-design-pro/lib/DescriptionList';
 
-const styles = require('./BasicProfile.less');
+import './BasicProfile.less';
 const {Description} = DescriptionList;
 
 const progressColumns = [{

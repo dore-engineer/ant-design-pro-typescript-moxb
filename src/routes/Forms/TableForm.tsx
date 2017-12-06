@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Table, Button, Input, message, Popconfirm, Divider } from 'antd';
 
-const styles = require('./style.less');
+import './style.less';
 
 export default class TableForm extends React.PureComponent<any, any> {
   private clickedCancel: boolean;
@@ -226,7 +226,7 @@ export default class TableForm extends React.PureComponent<any, any> {
           dataSource={this.state.data}
           pagination={false}
           rowClassName={(record: any) => {
-            return record.editable ? styles.editable : '';
+            return record.editable ? 'editable' : '';
           }}
         />
         <Button

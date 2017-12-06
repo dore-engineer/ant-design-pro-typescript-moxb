@@ -3,7 +3,7 @@ import { Button, Row, Col } from 'antd';
 import { routerRedux } from 'dva/router';
 import Result from 'ant-design-pro/lib/Result';
 
-const styles = require('./style.less')
+import './style.less';
 
 export default ({dispatch, data}) => {
   const onFinish = () => {

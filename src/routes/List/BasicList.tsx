@@ -5,7 +5,7 @@ import { List, Card, Row, Col, Radio, Input, Progress, Button, Icon, Dropdown, M
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
-const styles = require('./BasicList.less');
+import './BasicList.less';
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const {Search} = Input;

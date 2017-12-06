@@ -9,7 +9,7 @@ import Trend from 'ant-design-pro/lib/Trend';
 import NumberInfo from 'ant-design-pro/lib/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 
-const styles = require('./Analysis.less');
+import './Analysis.less';
 
 const {TabPane} = Tabs;
 const {RangePicker} = DatePicker;
@@ -31,7 +31,7 @@ export default class Analysis extends React.Component<any, any> {
     salesType: 'all',
     currentTabKey: '',
     rangePickerValue: [],
-  }
+  };
 
   componentDidMount() {
     this.props.dispatch({
@@ -78,14 +78,14 @@ export default class Analysis extends React.Component<any, any> {
     });
   }
 
-  isActive(type) {
+  isActive(type): any {
     const {rangePickerValue} = this.state;
     const value = getTimeDistance(type);
     if (!rangePickerValue[0] || !rangePickerValue[1]) {
       return;
     }
     if (rangePickerValue[0].isSame(value[0], 'day') && rangePickerValue[1].isSame(value[1], 'day')) {
-      return styles.currentDate;
+      return 'currentDate';
     }
   }
 
@@ -165,7 +165,7 @@ export default class Analysis extends React.Component<any, any> {
         dataIndex: 'count',
         key: 'count',
         sorter: (a, b) => a.count - b.count,
-        className: styles.alignRight,
+        className: 'alignRight',
       },
       {
         title: '周涨幅',
@@ -282,8 +282,7 @@ export default class Analysis extends React.Component<any, any> {
                   <Trend flag="down">
                     日环比<span className={'trendText'}>11%</span>
                   </Trend>
-                </div>
-              }
+                </div>}
               contentHeight={46}
             >
               <MiniProgress percent={78} strokeWidth={8} target={80} color="#13C2C2"/>
@@ -316,7 +315,7 @@ export default class Analysis extends React.Component<any, any> {
                         {
                           rankingListData.map((item, i) => (
                             <li key={item.title}>
-                              <span className={(i < 3) ? styles.active : ''}>{i + 1}</span>
+                              <span className={(i < 3) ? 'active' : ''}>{i + 1}</span>
                               <span>{item.title}</span>
                               <span>{numeral(item.total).format('0,0')}</span>
                             </li>
@@ -345,7 +344,7 @@ export default class Analysis extends React.Component<any, any> {
                         {
                           rankingListData.map((item, i) => (
                             <li key={item.title}>
-                              <span className={(i < 3) && styles.active}>{i + 1}</span>
+                              <span className={(i < 3) && 'active'}>{i + 1}</span>
                               <span>{item.title}</span>
                               <span>{numeral(item.total).format('0,0')}</span>
                             </li>

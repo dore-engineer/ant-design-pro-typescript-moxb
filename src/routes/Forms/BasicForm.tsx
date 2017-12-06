@@ -5,7 +5,7 @@ import {
 } from 'antd';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
-const styles = require('./style.less');
+import './style.less';
 
 const FormItem = Form.Item;
 const {Option} = Select;
