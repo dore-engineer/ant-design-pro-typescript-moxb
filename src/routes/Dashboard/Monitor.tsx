@@ -16,7 +16,7 @@ const targetTime = new Date().getTime() + 3900000;
 
 @inject(Keys.monitor)
 @observer
-export default class Monitor extends React.PureComponent<{ monitorStore: MonitorStore }, any> {
+export default class Monitor extends React.PureComponent<{ monitor?: MonitorStore}, any> {
   componentDidMount() {
     // this.props.dispatch({
     //   type: 'monitor/fetchTags',
