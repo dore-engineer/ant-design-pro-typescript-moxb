@@ -3,11 +3,11 @@ export const imgMap = {
   a: 'https://gw.alipayobjects.com/zos/rmsportal/ZrkcSjizAKNWwJTwcadT.png',
   b: 'https://gw.alipayobjects.com/zos/rmsportal/KYlwHMeomKQbhJDRUVvt.png',
   c: 'https://gw.alipayobjects.com/zos/rmsportal/gabvleTstEvzkbQRfjxu.png',
-  d: 'https://gw.alipayobjects.com/zos/rmsportal/jvpNzacxUYLlNsHTtrAD.png',
+  d: 'https://gw.alipayobjects.com/zos/rmsportal/jvpNzacxUYLlNsHTtrAD.png'
 };
 
 // refers: https://www.sitepoint.com/get-url-parameters-with-javascript/
-export function getUrlParams(url) : any {
+export function getUrlParams(url): any {
   const d = decodeURIComponent;
   let queryString = url ? url.split('?')[1] : window.location.search.slice(1);
   const obj = {};
@@ -25,7 +25,7 @@ export function getUrlParams(url) : any {
       if (obj[paramName]) {
         if (typeof obj[paramName] === 'string') {
           let encodedURIComponent = [obj[paramName]] as any;
-          obj[paramName] = d(encodedURIComponent  );
+          obj[paramName] = d(encodedURIComponent);
         }
         if (typeof paramNum === 'undefined') {
           obj[paramName].push(d(paramValue));
@@ -42,5 +42,5 @@ export function getUrlParams(url) : any {
 
 export default {
   getUrlParams,
-  imgMap,
+  imgMap
 };

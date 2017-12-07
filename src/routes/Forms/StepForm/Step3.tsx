@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Row, Col } from 'antd';
+import { Button, Col, Row } from 'antd';
 // import { routerRedux } from 'dva/router';
 import Result from 'ant-design-pro/lib/Result';
 

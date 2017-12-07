@@ -1,4 +1,3 @@
-import { fakeChartData } from '../services/api';
 import { action, observable } from 'mobx';
 import { getFakeChartData } from '../mock/chart';
 import { sleep } from '../utils/utils';
@@ -18,7 +17,7 @@ export class ChartStore {
     salesTypeData: [],
     salesTypeDataOnline: [],
     salesTypeDataOffline: [],
-    radarData: [],
+    radarData: []
   };
 
   @action
@@ -55,7 +54,7 @@ export class ChartStore {
       salesTypeData: [],
       salesTypeDataOnline: [],
       salesTypeDataOffline: [],
-      radarData: [],
+      radarData: []
     };
   }
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Form, Input, Button, Alert, Divider } from 'antd';
+import { Alert, Button, Divider, Form, Input } from 'antd';
 // import { routerRedux } from 'dva/router';
 import { digitUppercase } from '../../../utils/utils';
 
@@ -19,7 +19,7 @@ export default ({formItemLayout, form, data, dispatch, submitting}) => {
           payload: {
             ...data,
             ...values,
-          },
+          }
         });
       }
     });
@@ -71,8 +71,8 @@ export default ({formItemLayout, form, data, dispatch, submitting}) => {
         {getFieldDecorator('password', {
           initialValue: '123456',
           rules: [{
-            required: true, message: '需要支付密码才能进行支付',
-          }],
+            required: true, message: '需要支付密码才能进行支付'
+          }]
         })(
           <Input type="password" autoComplete="off" style={{width: '80%'}}/>
         )}
@@ -81,7 +81,7 @@ export default ({formItemLayout, form, data, dispatch, submitting}) => {
         style={{marginBottom: 8}}
         wrapperCol={{
           xs: {span: 24, offset: 0},
-          sm: {span: formItemLayout.wrapperCol.span, offset: formItemLayout.labelCol.span},
+          sm: {span: formItemLayout.wrapperCol.span, offset: formItemLayout.labelCol.span}
         }}
         label=""
       >

@@ -2,13 +2,12 @@ import * as React from 'react';
 import * as moment from 'moment';
 // import { connect } from 'dva';
 // import { routerRedux } from 'dva/router';
-import { Row, Col, Form, Card, Select, List, Input } from 'antd';
+import { Card, Col, Form, Input, List, Row, Select } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import StandardFormRow from 'ant-design-pro/lib/StandardFormRow';
 import TagSelect from 'ant-design-pro/lib/TagSelect';
 import AvatarList from 'ant-design-pro/lib/AvatarList';
-
 // import styles from './CoverCardList.less';
 import './CoverCardList.less';
 
@@ -21,15 +20,6 @@ const FormItem = Form.Item;
 //   list: state.list,
 // }))
 export default class CoverCardList extends React.PureComponent<any, any> {
-  componentDidMount() {
-    this.props.dispatch({
-      type: 'list/fetch',
-      payload: {
-        count: 8,
-      },
-    });
-  }
-
   handleFormSubmit = () => {
     const {form, dispatch} = this.props;
     // setTimeout 用于保证获取表单值是在所有表单字段更新完毕的时候
@@ -40,14 +30,13 @@ export default class CoverCardList extends React.PureComponent<any, any> {
           dispatch({
             type: 'list/fetch',
             payload: {
-              count: 8,
-            },
+              count: 8
+            }
           });
         }
       });
     }, 0);
   }
-
   handleTabChange = (key) => {
     const {dispatch} = this.props;
     switch (key) {
@@ -63,6 +52,15 @@ export default class CoverCardList extends React.PureComponent<any, any> {
       default:
         break;
     }
+  }
+
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'list/fetch',
+      payload: {
+        count: 8
+      }
+    });
   }
 
   render() {
@@ -111,17 +109,17 @@ export default class CoverCardList extends React.PureComponent<any, any> {
     const tabList = [
       {
         key: 'doc',
-        tab: '文章',
+        tab: '文章'
       },
       {
         key: 'app',
-        tab: '应用',
+        tab: '应用'
       },
       {
         key: 'project',
         tab: '项目',
-        default: true,
-      },
+        default: true
+      }
     ];
 
     const pageHeaderContent = (
@@ -139,8 +137,8 @@ export default class CoverCardList extends React.PureComponent<any, any> {
     const formItemLayout = {
       wrapperCol: {
         xs: {span: 24},
-        sm: {span: 16},
-      },
+        sm: {span: 16}
+      }
     };
 
     return (

@@ -1,4 +1,4 @@
-import { observable, action, reaction } from 'mobx';
+import { action, observable } from 'mobx';
 import agent from '../services';
 
 export class CommonStore {

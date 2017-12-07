@@ -1,35 +1,36 @@
 import * as React from 'react';
 // import { connect } from 'dva';
-import { Card, Badge, Table, Divider } from 'antd';
+import { Badge, Card, Divider, Table } from 'antd';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import DescriptionList from 'ant-design-pro/lib/DescriptionList';
 
 import './BasicProfile.less';
+
 const {Description} = DescriptionList;
 
 const progressColumns = [{
   title: '时间',
   dataIndex: 'time',
-  key: 'time',
+  key: 'time'
 }, {
   title: '当前进度',
   dataIndex: 'rate',
-  key: 'rate',
+  key: 'rate'
 }, {
   title: '状态',
   dataIndex: 'status',
   key: 'status',
   render: text => (
     text === 'success' ? <Badge status="success" text="成功"/> : <Badge status="processing" text="进行中"/>
-  ),
+  )
 }, {
   title: '操作员ID',
   dataIndex: 'operator',
-  key: 'operator',
+  key: 'operator'
 }, {
   title: '耗时',
   dataIndex: 'cost',
-  key: 'cost',
+  key: 'cost'
 }];
 
 // @connect(state => ({
@@ -39,7 +40,7 @@ export default class BasicProfile extends React.Component<any, any> {
   componentDidMount() {
     const {dispatch} = this.props;
     dispatch({
-      type: 'profile/fetchBasic',
+      type: 'profile/fetchBasic'
     });
   }
 
@@ -57,13 +58,13 @@ export default class BasicProfile extends React.Component<any, any> {
       goodsData = basicGoods.concat({
         id: '总计',
         num,
-        amount,
+        amount
       });
     }
     const renderContent = (value, row, index) => {
       const obj = {
         children: value,
-        props: {colSpan: null},
+        props: {colSpan: null}
       };
       if (index === basicGoods.length) {
         obj.props.colSpan = 0;
@@ -81,26 +82,26 @@ export default class BasicProfile extends React.Component<any, any> {
         return {
           children: <span style={{fontWeight: 600}}>总计</span>,
           props: {
-            colSpan: 4,
-          },
+            colSpan: 4
+          }
         };
-      },
+      }
     }, {
       title: '商品名称',
       dataIndex: 'name',
       key: 'name',
-      render: renderContent,
+      render: renderContent
     }, {
       title: '商品条码',
       dataIndex: 'barcode',
       key: 'barcode',
-      render: renderContent,
+      render: renderContent
     }, {
       title: '单价',
       dataIndex: 'price',
       key: 'price',
       align: 'right',
-      render: renderContent,
+      render: renderContent
     }, {
       title: '数量（件）',
       dataIndex: 'num',
@@ -111,7 +112,7 @@ export default class BasicProfile extends React.Component<any, any> {
           return text;
         }
         return <span style={{fontWeight: 600}}>{text}</span>;
-      },
+      }
     }, {
       title: '金额',
       dataIndex: 'amount',
@@ -122,7 +123,7 @@ export default class BasicProfile extends React.Component<any, any> {
           return text;
         }
         return <span style={{fontWeight: 600}}>{text}</span>;
-      },
+      }
     }];
     return (
       <PageHeaderLayout title="基础详情页">

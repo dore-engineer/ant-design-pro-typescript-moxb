@@ -1,31 +1,9 @@
 import * as React from 'react';
-import { Table, Button, Input, message, Popconfirm, Divider } from 'antd';
+import { Button, Divider, Input, message, Popconfirm, Table } from 'antd';
 
 import './style.less';
 
 export default class TableForm extends React.PureComponent<any, any> {
-  private clickedCancel: boolean;
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: props.value,
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if ('value' in nextProps) {
-      this.setState({
-        data: nextProps.value,
-      });
-    }
-  }
-
-  getRowByKey(key) {
-    return this.state.data.filter(item => item.key === key)[0];
-  }
-
   index = 0;
   cacheOriginData = {};
   handleSubmit = (e) => {
@@ -34,10 +12,44 @@ export default class TableForm extends React.PureComponent<any, any> {
       if (!err) {
         this.props.dispatch({
           type: 'form/submit',
-          payload: values,
+          payload: values
         });
       }
     });
+  }
+  newMember = () => {
+    const newData = [...this.state.data];
+    newData.push({
+      key: `NEW_TEMP_ID_${this.index}`,
+      workId: '',
+      name: '',
+      department: '',
+      editable: true,
+      isNew: true
+    });
+    this.index += 1;
+    this.setState({data: newData});
+  }
+  private clickedCancel: boolean;
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: props.value
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if ('value' in nextProps) {
+      this.setState({
+        data: nextProps.value
+      });
+    }
+  }
+
+  getRowByKey(key) {
+    return this.state.data.filter(item => item.key === key)[0];
   }
 
   toggleEditable(e, key) {
@@ -57,20 +69,6 @@ export default class TableForm extends React.PureComponent<any, any> {
     const newData = this.state.data.filter(item => item.key !== key);
     this.setState({data: newData});
     this.props.onChange(newData);
-  }
-
-  newMember = () => {
-    const newData = [...this.state.data];
-    newData.push({
-      key: `NEW_TEMP_ID_${this.index}`,
-      workId: '',
-      name: '',
-      department: '',
-      editable: true,
-      isNew: true,
-    });
-    this.index += 1;
-    this.setState({data: newData});
   }
 
   handleKeyPress(e, key) {
@@ -144,7 +142,7 @@ export default class TableForm extends React.PureComponent<any, any> {
           );
         }
         return text;
-      },
+      }
     }, {
       title: '工号',
       dataIndex: 'workId',
@@ -163,7 +161,7 @@ export default class TableForm extends React.PureComponent<any, any> {
           );
         }
         return text;
-      },
+      }
     }, {
       title: '所属部门',
       dataIndex: 'department',
@@ -182,7 +180,7 @@ export default class TableForm extends React.PureComponent<any, any> {
           );
         }
         return text;
-      },
+      }
     }, {
       title: '操作',
       key: 'action',
@@ -216,7 +214,7 @@ export default class TableForm extends React.PureComponent<any, any> {
             </Popconfirm>
           </span>
         );
-      },
+      }
     }];
 
     return (

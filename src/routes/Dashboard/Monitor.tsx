@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Row, Col, Card, Tooltip } from 'antd';
+import { Card, Col, Row, Tooltip } from 'antd';
 import numeral from 'numeral';
 
-import { Pie, WaterWave, Gauge, TagCloud } from 'ant-design-pro/lib/Charts';
+import { Gauge, Pie, TagCloud, WaterWave } from 'ant-design-pro/lib/Charts';
 import NumberInfo from 'ant-design-pro/lib/NumberInfo';
 import CountDown from 'ant-design-pro/lib/CountDown';
 import ActiveChart from 'ant-design-pro/lib/ActiveChart';
@@ -14,7 +14,7 @@ import { MonitorStore } from '../../stores/monitor';
 
 const targetTime = new Date().getTime() + 3900000;
 
-@inject(Keys.monitorStore)
+@inject(Keys.monitor)
 @observer
 export default class Monitor extends React.PureComponent<{ monitorStore: MonitorStore }, any> {
   componentDidMount() {
@@ -24,7 +24,7 @@ export default class Monitor extends React.PureComponent<{ monitorStore: Monitor
   }
 
   render() {
-    const {tags} = this.props.monitorStore.tags;
+    const {tags} = this.props.monitor.tags;
 
     return (
       <div>

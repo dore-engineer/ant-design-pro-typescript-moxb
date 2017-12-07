@@ -1,7 +1,6 @@
-import { observable, action, reaction } from 'mobx';
+import { action, observable, reaction } from 'mobx';
 import agent from '../services';
 import userStore from './user';
-import commonStore from './common';
 
 export class AuthStore {
   @observable inProgress = false;
@@ -12,7 +11,7 @@ export class AuthStore {
   @observable values = {
     username: '',
     email: '',
-    password: '',
+    password: ''
   };
 
   constructor() {

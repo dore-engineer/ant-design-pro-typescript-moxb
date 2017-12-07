@@ -1,10 +1,11 @@
 import * as React from 'react';
 import * as moment from 'moment';
-import { List, Card, Row, Col, Radio, Input, Progress, Button, Icon, Dropdown, Menu, Avatar } from 'antd';
+import { Avatar, Button, Card, Col, Dropdown, Icon, Input, List, Menu, Progress, Radio, Row } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
 import './BasicList.less';
+
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const {Search} = Input;
@@ -17,8 +18,8 @@ export default class BasicList extends React.PureComponent<any, any> {
     this.props.dispatch({
       type: 'list/fetch',
       payload: {
-        count: 5,
-      },
+        count: 5
+      }
     });
   }
 
@@ -52,7 +53,7 @@ export default class BasicList extends React.PureComponent<any, any> {
       showSizeChanger: true,
       showQuickJumper: true,
       pageSize: 5,
-      total: 50,
+      total: 50
     };
 
     const ListContent = ({data: {owner, createdAt, percent, status}}) => (

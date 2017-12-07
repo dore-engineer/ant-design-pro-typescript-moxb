@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, Button, Icon, List } from 'antd';
+import { Button, Card, Icon, List } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import Ellipsis from 'ant-design-pro/lib/Ellipsis';
@@ -13,8 +13,8 @@ export default class CardList extends React.PureComponent<any, any> {
     this.props.dispatch({
       type: 'list/fetch',
       payload: {
-        count: 8,
-      },
+        count: 8
+      }
     });
   }
 

@@ -1,6 +1,5 @@
 import { action, observable } from 'mobx';
 import agent from '../services';
-import { query as queryUsers, queryCurrent } from '../services/user';
 
 export class UserStore {
   @observable vlist: any = [];
@@ -9,7 +8,7 @@ export class UserStore {
     name: 'Serati Ma',
     avatar: 'https://gw.alipayobjects.com/zos/rmsportal/eHBsAsOrrJcnvFlnzNTT.png',
     userid: '00000001',
-    notifyCount: 12,
+    notifyCount: 12
   };
 
   @observable loadingUser;
@@ -51,7 +50,7 @@ export class UserStore {
       name: 'Serati Ma',
       avatar: 'https://gw.alipayobjects.com/zos/rmsportal/eHBsAsOrrJcnvFlnzNTT.png',
       userid: '00000001',
-      notifyCount: 12,
+      notifyCount: 12
     };
   }
 }

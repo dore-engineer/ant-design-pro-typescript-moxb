@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as moment from 'moment';
 // import { connect } from 'dva';
 // import { routerRedux } from 'dva/router';
-import { Form, Card, Select, List, Tag, Icon, Avatar, Row, Col, Button, Input } from 'antd';
+import { Avatar, Button, Card, Col, Form, Icon, Input, List, Row, Select, Tag } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import StandardFormRow from 'ant-design-pro/lib/StandardFormRow';
@@ -20,28 +20,20 @@ const pageSize = 5;
 //   list: state.list,
 // }))
 export default class SearchList extends React.Component<any, any> {
-  private handleFormSubmit: any;
-
-  componentDidMount() {
-    this.fetchMore();
-  }
-
   setOwner = () => {
     const {form} = this.props;
     form.setFieldsValue({
-      owner: ['wzj'],
+      owner: ['wzj']
     });
   }
-
   fetchMore = () => {
     this.props.dispatch({
       type: 'list/fetch',
       payload: {
-        count: pageSize,
-      },
+        count: pageSize
+      }
     });
   }
-
   handleTabChange = (key) => {
     const {dispatch} = this.props;
     switch (key) {
@@ -58,6 +50,11 @@ export default class SearchList extends React.Component<any, any> {
         break;
     }
   }
+  private handleFormSubmit: any;
+
+  componentDidMount() {
+    this.fetchMore();
+  }
 
   render() {
     const {form, list: {list, loading}} = this.props;
@@ -66,39 +63,39 @@ export default class SearchList extends React.Component<any, any> {
     const owners = [
       {
         id: 'wzj',
-        name: '我自己',
+        name: '我自己'
       },
       {
         id: 'wjh',
-        name: '吴家豪',
+        name: '吴家豪'
       },
       {
         id: 'zxx',
-        name: '周星星',
+        name: '周星星'
       },
       {
         id: 'zly',
-        name: '赵丽颖',
+        name: '赵丽颖'
       },
       {
         id: 'ym',
-        name: '姚明',
-      },
+        name: '姚明'
+      }
     ];
 
     const tabList = [
       {
         key: 'doc',
-        tab: '文章',
+        tab: '文章'
       },
       {
         key: 'app',
-        tab: '应用',
+        tab: '应用'
       },
       {
         key: 'project',
-        tab: '项目',
-      },
+        tab: '项目'
+      }
     ];
 
     const IconText = ({type, text}) => (
@@ -134,8 +131,8 @@ export default class SearchList extends React.Component<any, any> {
       wrapperCol: {
         xs: {span: 24},
         sm: {span: 24},
-        md: {span: 12},
-      },
+        md: {span: 12}
+      }
     };
 
     const loadMore = list.length > 0 ? (
@@ -184,7 +181,7 @@ export default class SearchList extends React.Component<any, any> {
                   <Col lg={16} md={24} sm={24} xs={24}>
                     <FormItem>
                       {getFieldDecorator('owner', {
-                        initialValue: ['wjh', 'zxx'],
+                        initialValue: ['wjh', 'zxx']
                       })(
                         <Select
                           mode="multiple"
@@ -269,7 +266,7 @@ export default class SearchList extends React.Component<any, any> {
                   actions={[
                     <IconText key="1" type="star-o" text={item.star}/>,
                     <IconText key="1" type="like-o" text={item.like}/>,
-                    <IconText key="1" type="message" text={item.message}/>,
+                    <IconText key="1" type="message" text={item.message}/>
                   ]}
                   extra={<div className={'listItemExtra'}/>}
                 >

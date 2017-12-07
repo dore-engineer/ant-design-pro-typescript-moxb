@@ -18,7 +18,7 @@ for (let i = 0; i < 46; i += 1) {
     status: Math.floor(Math.random() * 10) % 4,
     updatedAt: new Date(`2017-07-${Math.floor(i / 2) + 1}`),
     createdAt: new Date(`2017-07-${Math.floor(i / 2) + 1}`),
-    progress: Math.ceil(Math.random() * 100),
+    progress: Math.ceil(Math.random() * 100)
   });
 }
 
@@ -67,8 +67,8 @@ export function getRule(req, res, u): any {
     pagination: {
       total: dataSource.length,
       pageSize,
-      current: parseInt(params.currentPage, 10) || 1,
-    },
+      current: parseInt(params.currentPage, 10) || 1
+    }
   };
 
   if (res && res.json) {
@@ -107,7 +107,7 @@ export function postRule(req, res, u, b): any {
         status: Math.floor(Math.random() * 10) % 2,
         updatedAt: new Date(),
         createdAt: new Date(),
-        progress: Math.ceil(Math.random() * 100),
+        progress: Math.ceil(Math.random() * 100)
       });
       break;
     default:
@@ -117,8 +117,8 @@ export function postRule(req, res, u, b): any {
   const result = {
     list: tableListDataSource,
     pagination: {
-      total: tableListDataSource.length,
-    },
+      total: tableListDataSource.length
+    }
   };
 
   if (res && res.json) {
@@ -130,5 +130,5 @@ export function postRule(req, res, u, b): any {
 
 export default {
   getRule,
-  postRule,
+  postRule
 };

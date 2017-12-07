@@ -80,7 +80,7 @@ export function digitUppercase(n) {
   const digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
   const unit = [
     ['元', '万', '亿'],
-    ['', '拾', '佰', '仟'],
+    ['', '拾', '佰', '仟']
   ];
   let num = Math.abs(n);
   let s = '';

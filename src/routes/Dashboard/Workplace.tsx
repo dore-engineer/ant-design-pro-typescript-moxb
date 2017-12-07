@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as moment from 'moment';
-import { Row, Col, Card, List, Avatar } from 'antd';
+import { Avatar, Card, Col, List, Row } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import EditableLinkGroup from 'ant-design-pro/lib/EditableLinkGroup';
@@ -12,28 +12,28 @@ import { Link } from 'react-router-dom';
 const links = [
   {
     title: '操作一',
-    href: '',
+    href: ''
   },
   {
     title: '操作二',
-    href: '',
+    href: ''
   },
   {
     title: '操作三',
-    href: '',
+    href: ''
   },
   {
     title: '操作四',
-    href: '',
+    href: ''
   },
   {
     title: '操作五',
-    href: '',
+    href: ''
   },
   {
     title: '操作六',
-    href: '',
-  },
+    href: ''
+  }
 ];
 
 const members = [
@@ -41,32 +41,32 @@ const members = [
     id: 'members-1',
     title: '科学搬砖组',
     logo: 'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
-    link: '',
+    link: ''
   },
   {
     id: 'members-2',
     title: '程序员日常',
     logo: 'https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png',
-    link: '',
+    link: ''
   },
   {
     id: 'members-3',
     title: '设计天团',
     logo: 'https://gw.alipayobjects.com/zos/rmsportal/dURIMkkrRFpPgTuzkwnB.png',
-    link: '',
+    link: ''
   },
   {
     id: 'members-4',
     title: '中二少女团',
     logo: 'https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png',
-    link: '',
+    link: ''
   },
   {
     id: 'members-5',
     title: '骗你学计算机',
     logo: 'https://gw.alipayobjects.com/zos/rmsportal/siCrBXXhmvTQGWPNLBow.png',
-    link: '',
-  },
+    link: ''
+  }
 ];
 
 // @connect(state => ({
@@ -78,26 +78,26 @@ export default class Workplace extends React.PureComponent<any, any> {
   componentDidMount() {
     const {dispatch} = this.props;
     dispatch({
-      type: 'project/fetchNotice',
+      type: 'project/fetchNotice'
     });
     dispatch({
-      type: 'activities/fetchList',
+      type: 'activities/fetchList'
     });
     dispatch({
-      type: 'chart/fetch',
+      type: 'chart/fetch'
     });
   }
 
   componentWillUnmount() {
     const {dispatch} = this.props;
     dispatch({
-      type: 'chart/clear',
+      type: 'chart/clear'
     });
   }
 
   renderActivities() {
     const {
-      activities: {list},
+      activities: {list}
     } = this.props;
     return list.map((item) => {
       const events = item.template.split(/@\{([^{}]*)\}/gi).map((key) => {
@@ -132,7 +132,7 @@ export default class Workplace extends React.PureComponent<any, any> {
     const {
       project: {loading: projectLoading, notice},
       activities: {loading: activitiesLoading},
-      chart: {radarData},
+      chart: {radarData}
     } = this.props;
 
     const pageHeaderContent = (

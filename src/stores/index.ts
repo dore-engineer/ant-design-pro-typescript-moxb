@@ -3,29 +3,32 @@
 // const context = require.context('./', false, /\.js$/);
 // const keys = context.keys().filter(item => item !== './index.js');
 
-import userStore from './user';
-import commonStore from './common';
-import chartStore from './chart';
-import monitorStore from './monitor';
+import user from './user';
+import common from './common';
+import chart from './chart';
+import monitor from './monitor';
 import login from './login';
 import register from './register';
 import auth from './auth';
+import router from './router';
 
 export const rootStores = {
-  userStore,
-  commonStore,
-  chartStore,
-  monitorStore,
+  user,
+  common,
+  chart,
+  monitor,
   login,
   register,
   auth,
+  router
 };
 export const Keys = {
-  userStore: 'userStore',
-  commonStore: 'commonStore',
-  chartStore: 'chartStore',
-  monitorStore: 'monitorStore',
+  user: 'user',
+  common: 'common',
+  chart: 'chart',
+  monitor: 'monitor',
   login: 'login',
   register: 'register',
   auth: 'auth',
+  router: 'router'
 };

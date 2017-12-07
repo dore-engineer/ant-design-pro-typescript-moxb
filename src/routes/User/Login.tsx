@@ -1,15 +1,15 @@
 import * as React from 'react';
 // import { connect } from 'dva';
 // import { routerRedux, Link } from 'dva/router';
-import { Form, Input, Tabs, Button, Icon, Checkbox, Row, Col, Alert } from 'antd';
+import { Alert, Button, Checkbox, Col, Form, Icon, Input, Row, Tabs } from 'antd';
 
 import './Login.less';
-import { RouteComponentProps, withRouter } from "react-router";
-import { inject, observer } from "mobx-react";
-import { Keys } from "../../stores/index";
-import { LoginStore } from "../../stores/login";
-import { FormComponentProps, FormCreateOption } from "antd/lib/form";
-import { Link } from "react-router-dom";
+import { RouteComponentProps, withRouter } from 'react-router';
+import { inject, observer } from 'mobx-react';
+import { Keys } from '../../stores/index';
+import { LoginStore } from '../../stores/login';
+import { FormComponentProps } from 'antd/lib/form';
+import { Link } from 'react-router-dom';
 
 const FormItem = Form.Item;
 const {TabPane} = Tabs;
@@ -36,8 +36,44 @@ export default class Login extends React.Component<LoginProps, any> {
   // state = {
   //   count: 0,
   //   type: 'account',
-  // };
   private interval: any;
+  onSwitch = (key) => {
+    this.props.login.type = key;
+  }
+  onGetCaptcha = () => {
+    let count = 59;
+    this.props.login.count = count;
+    this.interval = setInterval(() => {
+      count -= 1;
+      this.props.login.count = count;
+      if (count === 0) {
+        clearInterval(this.interval);
+      }
+    }, 1000);
+  }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const {type} = this.props.login;
+    this.props.form.validateFields({force: true},
+      (err, values) => {
+        if (!err) {
+          this.props.login.accountSubmit(values);
+        }
+      }
+    );
+  }
+  renderMessage = (message) => {
+    return (
+      <Alert
+        style={{marginBottom: 24}}
+        message={message}
+        type="error"
+        showIcon
+      />
+    );
+  }
+
+  // };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.login.status === 'ok') {
@@ -50,50 +86,11 @@ export default class Login extends React.Component<LoginProps, any> {
     clearInterval(this.interval);
   }
 
-  onSwitch = (key) => {
-    this.props.login.type = key;
-  }
-
-  onGetCaptcha = () => {
-    let count = 59;
-    this.props.login.count = count;
-    this.interval = setInterval(() => {
-      count -= 1;
-      this.props.login.count = count;
-      if (count === 0) {
-        clearInterval(this.interval);
-      }
-    }, 1000);
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const {type} = this.props.login;
-    this.props.form.validateFields({force: true},
-      (err, values) => {
-        if (!err) {
-          this.props.login.accountSubmit(values);
-        }
-      }
-    );
-  }
-
-  renderMessage = (message) => {
-    return (
-      <Alert
-        style={{marginBottom: 24}}
-        message={message}
-        type="error"
-        showIcon
-      />
-    );
-  }
-
   render() {
     const {form, login} = this.props;
     const {getFieldDecorator} = form;
     const {count, type} = this.props.login;
-    console.log("render login", this.props);
+    console.log('render login', this.props);
     return (
       <div className={'main'}>
         <Form onSubmit={this.handleSubmit}>
@@ -108,8 +105,8 @@ export default class Login extends React.Component<LoginProps, any> {
               <FormItem>
                 {getFieldDecorator('userName', {
                   rules: [{
-                    required: type === 'account', message: '请输入账户名！',
-                  }],
+                    required: type === 'account', message: '请输入账户名！'
+                  }]
                 })(
                   <Input
                     size="large"
@@ -121,8 +118,8 @@ export default class Login extends React.Component<LoginProps, any> {
               <FormItem>
                 {getFieldDecorator('password', {
                   rules: [{
-                    required: type === 'account', message: '请输入密码！',
-                  }],
+                    required: type === 'account', message: '请输入密码！'
+                  }]
                 })(
                   <Input
                     size="large"
@@ -143,10 +140,10 @@ export default class Login extends React.Component<LoginProps, any> {
               <FormItem>
                 {getFieldDecorator('mobile', {
                   rules: [{
-                    required: type === 'mobile', message: '请输入手机号！',
+                    required: type === 'mobile', message: '请输入手机号！'
                   }, {
-                    pattern: /^1\d{10}$/, message: '手机号格式错误！',
-                  }],
+                    pattern: /^1\d{10}$/, message: '手机号格式错误！'
+                  }]
                 })(
                   <Input
                     size="large"
@@ -160,8 +157,8 @@ export default class Login extends React.Component<LoginProps, any> {
                   <Col span={16}>
                     {getFieldDecorator('captcha', {
                       rules: [{
-                        required: type === 'mobile', message: '请输入验证码！',
-                      }],
+                        required: type === 'mobile', message: '请输入验证码！'
+                      }]
                     })(
                       <Input
                         size="large"
@@ -187,7 +184,7 @@ export default class Login extends React.Component<LoginProps, any> {
           <FormItem className={'additional'}>
             {getFieldDecorator('remember', {
               valuePropName: 'checked',
-              initialValue: true,
+              initialValue: true
             })(
               <Checkbox className={'autoLogin'}>自动登录</Checkbox>
             )}

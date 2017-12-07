@@ -1,26 +1,26 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Input, Button, Select, Row, Col, Popover, Progress } from 'antd';
+import { Button, Col, Form, Input, Popover, Progress, Row, Select } from 'antd';
 
 import './Register.less';
-import { inject } from "mobx-react";
-import { Keys } from "../../stores/index";
-import { RegisterStore } from "../../stores/register";
-import { FormComponentProps } from "antd/lib/form";
-import { RouteComponentProps } from "react-router";
+import { inject } from 'mobx-react';
+import { Keys } from '../../stores/index';
+import { RegisterStore } from '../../stores/register';
+import { FormComponentProps } from 'antd/lib/form';
+import { RouteComponentProps } from 'react-router';
 
 const {Option} = Select;
 
 const passwordStatusMap = {
   ok: <div className={'success'}>Mật khẩu: Mạnh</div>,
   pass: <div className={'warning'}>Mật khẩu: Vừa</div>,
-  pool: <div className={'error'}>Mật khẩu: Quá ngắn</div>,
+  pool: <div className={'error'}>Mật khẩu: Quá ngắn</div>
 };
 
 const passwordProgressMap = {
   ok: 'success',
   pass: 'normal',
-  pool: 'exception',
+  pool: 'exception'
 };
 
 interface RegisterProps extends FormComponentProps, RouteComponentProps<any> {
@@ -35,19 +35,8 @@ export default class Register extends React.Component<RegisterProps, any> {
     count: 0,
     confirmDirty: false,
     visible: false,
-    help: '',
+    help: ''
   };
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.register.status === 'ok') {
-      this.props.history.push('/user/register-result');
-    }
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
   onGetCaptcha = () => {
     let count = 59;
     this.setState({count});
@@ -59,7 +48,6 @@ export default class Register extends React.Component<RegisterProps, any> {
       }
     }, 1000);
   }
-
   getPasswordStatus = () => {
     const {form} = this.props;
     const value = form.getFieldValue('password');
@@ -71,7 +59,6 @@ export default class Register extends React.Component<RegisterProps, any> {
     }
     return 'pool';
   }
-
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields({force: true},
@@ -82,12 +69,10 @@ export default class Register extends React.Component<RegisterProps, any> {
       }
     );
   }
-
   handleConfirmBlur = (e) => {
     const {value} = e.target;
     this.setState({confirmDirty: this.state.confirmDirty || !!value});
   }
-
   checkConfirm = (rule, value, callback) => {
     const {form} = this.props;
     if (value && value !== form.getFieldValue('password')) {
@@ -96,21 +81,20 @@ export default class Register extends React.Component<RegisterProps, any> {
       callback();
     }
   }
-
   checkPassword = (rule, value, callback) => {
     if (!value) {
       this.setState({
         help: '请输入密码！',
-        visible: !!value,
+        visible: !!value
       });
       callback('error');
     } else {
       this.setState({
-        help: '',
+        help: ''
       });
       if (!this.state.visible) {
         this.setState({
-          visible: !!value,
+          visible: !!value
         });
       }
       if (value.length < 6) {
@@ -126,7 +110,6 @@ export default class Register extends React.Component<RegisterProps, any> {
       }
     }
   }
-
   renderPasswordProgress = () => {
     const {form} = this.props;
     const value = form.getFieldValue('password');
@@ -145,6 +128,16 @@ export default class Register extends React.Component<RegisterProps, any> {
       </div>) : null;
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.register.status === 'ok') {
+      this.props.history.push('/user/register-result');
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   render() {
     const {form, register} = this.props;
     const {getFieldDecorator} = form;
@@ -156,10 +149,10 @@ export default class Register extends React.Component<RegisterProps, any> {
           <Form.Item>
             {getFieldDecorator('mail', {
               rules: [{
-                required: true, message: '请输入邮箱地址！',
+                required: true, message: '请输入邮箱地址！'
               }, {
-                type: 'email', message: '邮箱地址格式错误！',
-              }],
+                type: 'email', message: '邮箱地址格式错误！'
+              }]
             })(
               <Input size="large" placeholder="邮箱"/>
             )}
@@ -170,7 +163,9 @@ export default class Register extends React.Component<RegisterProps, any> {
                 <div style={{padding: '4px 0'}}>
                   {passwordStatusMap[this.getPasswordStatus()]}
                   {this.renderPasswordProgress()}
-                  <div style={{marginTop: 10}}>Please enter at least 6 characters. Please do not use easily guessed passwords.</div>
+                  <div style={{marginTop: 10}}>Please enter at least 6 characters. Please do not use easily guessed
+                    passwords.
+                  </div>
                 </div>}
               overlayStyle={{width: 240}}
               placement="right"
@@ -178,8 +173,8 @@ export default class Register extends React.Component<RegisterProps, any> {
             >
               {getFieldDecorator('password', {
                 rules: [{
-                  validator: this.checkPassword,
-                }],
+                  validator: this.checkPassword
+                }]
               })(
                 <Input
                   size="large"
@@ -192,10 +187,10 @@ export default class Register extends React.Component<RegisterProps, any> {
           <Form.Item>
             {getFieldDecorator('confirm', {
               rules: [{
-                required: true, message: '请确认密码！',
+                required: true, message: '请确认密码！'
               }, {
-                validator: this.checkConfirm,
-              }],
+                validator: this.checkConfirm
+              }]
             })(
               <Input
                 size="large"
@@ -208,7 +203,7 @@ export default class Register extends React.Component<RegisterProps, any> {
             <Input.Group size="large" className={'mobileGroup'} compact>
               <Form.Item style={{width: '20%'}}>
                 {getFieldDecorator('prefix', {
-                  initialValue: '86',
+                  initialValue: '86'
                 })(
                   <Select size="large">
                     <Option value="86">+86</Option>
@@ -219,10 +214,10 @@ export default class Register extends React.Component<RegisterProps, any> {
               <Form.Item style={{width: '80%'}}>
                 {getFieldDecorator('mobile', {
                   rules: [{
-                    required: true, message: '请输入手机号！',
+                    required: true, message: '请输入手机号！'
                   }, {
-                    pattern: /^1\d{10}$/, message: '手机号格式错误！',
-                  }],
+                    pattern: /^1\d{10}$/, message: '手机号格式错误！'
+                  }]
                 })(
                   <Input placeholder="11位手机号"/>
                 )}
@@ -234,8 +229,8 @@ export default class Register extends React.Component<RegisterProps, any> {
               <Col span={16}>
                 {getFieldDecorator('captcha', {
                   rules: [{
-                    required: true, message: '请输入验证码！',
-                  }],
+                    required: true, message: '请输入验证码！'
+                  }]
                 })(
                   <Input
                     size="large"

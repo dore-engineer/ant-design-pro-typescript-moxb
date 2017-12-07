@@ -1,9 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Layout, Menu, Icon, Avatar, Dropdown, Tag, message, Spin } from 'antd';
+import { Avatar, Dropdown, Icon, Layout, Menu, message, Spin, Tag } from 'antd';
 import DocumentTitle from 'react-document-title';
-import { connect } from 'dva';
-import { Link, Route, Redirect, Switch } from 'react-router-dom';
+import { Link, Redirect, Route, Switch } from 'react-router-dom';
 import * as moment from 'moment';
 import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
@@ -26,28 +25,28 @@ const {SubMenu} = Menu;
 
 const query = {
   'screen-xs': {
-    maxWidth: 575,
+    maxWidth: 575
   },
   'screen-sm': {
     minWidth: 576,
-    maxWidth: 767,
+    maxWidth: 767
   },
   'screen-md': {
     minWidth: 768,
-    maxWidth: 991,
+    maxWidth: 991
   },
   'screen-lg': {
     minWidth: 992,
-    maxWidth: 1199,
+    maxWidth: 1199
   },
   'screen-xl': {
-    minWidth: 1200,
-  },
+    minWidth: 1200
+  }
 };
 
 export interface BasicLayoutProps {
-  userStore: UserStore;
-  commonStore: CommonStore;
+  user: UserStore;
+  common: CommonStore;
   location: any;
   navData: any;
   getRouteData: any;
@@ -58,51 +57,17 @@ export interface BasicLayoutProps {
 
 }
 
-@inject(Keys.userStore, Keys.commonStore)
+@inject(Keys.user, Keys.common)
 @observer
 class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
   static childContextTypes = {
     location: PropTypes.object,
-    breadcrumbNameMap: PropTypes.object,
+    breadcrumbNameMap: PropTypes.object
   };
   menus: any;
-
-  constructor(props) {
-    super(props);
-    // 把一级 Layout 的 children 作为菜单项
-    this.menus = props.navData.reduce((arr, current) => arr.concat(current.children), []);
-    this.state = {
-      openKeys: this.getDefaultCollapsedSubMenus(props),
-    };
-  }
-
-  getChildContext() {
-    const {location, navData, getRouteData} = this.props;
-    const routeData = getRouteData('BasicLayout');
-    const firstMenuData = navData.reduce((arr, current) => arr.concat(current.children), []);
-    const menuData = this.getMenuData(firstMenuData, '');
-    const breadcrumbNameMap = {};
-
-    routeData.concat(menuData).forEach((item) => {
-      breadcrumbNameMap[item.path] = item.name;
-    });
-    return {location, breadcrumbNameMap};
-  }
-
-  componentDidMount() {
-    this.props.userStore.fetchCurrent();
-    // this.props.dispatch({
-    //   type: 'user/fetchCurrent',
-    // });
-  }
-
-  componentWillUnmount() {
-    this.triggerResizeEvent();
-  }
-
   onCollapse = (collapsed) => {
     console.log('onCollapse', collapsed);
-    this.props.commonStore.changeLayoutCollapsed(collapsed);
+    this.props.common.changeLayoutCollapsed(collapsed);
     // this.props.dispatch({
     //   type: 'global/changeLayoutCollapsed',
     //   payload: collapsed,
@@ -124,6 +89,72 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
       }
     });
     return arr;
+  }
+  handleOpenChange = (openKeys) => {
+    const lastOpenKey = openKeys[openKeys.length - 1];
+    const isMainMenu = this.menus.some(
+      item => lastOpenKey && (item.key === lastOpenKey || item.path === lastOpenKey)
+    );
+    this.setState({
+      openKeys: isMainMenu ? [lastOpenKey] : [...openKeys]
+    });
+  }
+  toggle = () => {
+    // const {collapsed} = this.props.global.collapsed;
+    // this.props.dispatch({
+    //   type: 'global/changeLayoutCollapsed',
+    //   payload: !collapsed,
+    // });
+    console.log('On toggle', this.props.common.collapsed);
+    this.props.common.changeLayoutCollapsed(!this.props.common.collapsed);
+    this.triggerResizeEvent();
+  }
+  handleNoticeClear = (type) => {
+    message.success(`清空了${type}`);
+    // this.props.dispatch({
+    //   type: 'global/clearNotices',
+    //   payload: type,
+    // });
+  }
+  handleNoticeVisibleChange = (visible) => {
+    // if (visible) {
+    //   this.props.dispatch({
+    //     type: 'global/fetchNotices',
+    //   });
+    // }
+  }
+
+  constructor(props) {
+    super(props);
+    // 把一级 Layout 的 children 作为菜单项
+    this.menus = props.navData.reduce((arr, current) => arr.concat(current.children), []);
+    this.state = {
+      openKeys: this.getDefaultCollapsedSubMenus(props)
+    };
+  }
+
+  getChildContext() {
+    const {location, navData, getRouteData} = this.props;
+    const routeData = getRouteData('BasicLayout');
+    const firstMenuData = navData.reduce((arr, current) => arr.concat(current.children), []);
+    const menuData = this.getMenuData(firstMenuData, '');
+    const breadcrumbNameMap = {};
+
+    routeData.concat(menuData).forEach((item) => {
+      breadcrumbNameMap[item.path] = item.name;
+    });
+    return {location, breadcrumbNameMap};
+  }
+
+  componentDidMount() {
+    this.props.user.fetchCurrent();
+    // this.props.dispatch({
+    //   type: 'user/fetchCurrent',
+    // });
+  }
+
+  componentWillUnmount() {
+    this.triggerResizeEvent();
   }
 
   getDefaultCollapsedSubMenus(props) {
@@ -211,7 +242,7 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
   }
 
   getNoticeData() {
-    const {notices = []} = this.props.commonStore.notices;
+    const {notices = []} = this.props.common.notices;
     if (notices.length === 0) {
       return {};
     }
@@ -229,7 +260,7 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
           todo: '',
           processing: 'blue',
           urgent: 'red',
-          doing: 'gold',
+          doing: 'gold'
         })[newNotice.status];
         newNotice.extra = <Tag color={color} style={{marginRight: 0}}>{newNotice.extra}</Tag>;
       }
@@ -238,46 +269,11 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
     return groupBy(newNotices, 'type');
   }
 
-  handleOpenChange = (openKeys) => {
-    const lastOpenKey = openKeys[openKeys.length - 1];
-    const isMainMenu = this.menus.some(
-      item => lastOpenKey && (item.key === lastOpenKey || item.path === lastOpenKey)
-    );
-    this.setState({
-      openKeys: isMainMenu ? [lastOpenKey] : [...openKeys],
-    });
-  }
-  toggle = () => {
-    // const {collapsed} = this.props.global.collapsed;
-    // this.props.dispatch({
-    //   type: 'global/changeLayoutCollapsed',
-    //   payload: !collapsed,
-    // });
-    console.log('On toggle', this.props.commonStore.collapsed);
-    this.props.commonStore.changeLayoutCollapsed(!this.props.commonStore.collapsed);
-    this.triggerResizeEvent();
-  }
-
   @Debounce(600)
   triggerResizeEvent(): any { // eslint-disable-line
     const event = document.createEvent('HTMLEvents');
     event.initEvent('resize', true, false);
     return window.dispatchEvent(event);
-  }
-
-  handleNoticeClear = (type) => {
-    message.success(`清空了${type}`);
-    // this.props.dispatch({
-    //   type: 'global/clearNotices',
-    //   payload: type,
-    // });
-  }
-  handleNoticeVisibleChange = (visible) => {
-    // if (visible) {
-    //   this.props.dispatch({
-    //     type: 'global/fetchNotices',
-    //   });
-    // }
   }
 
   render() {
@@ -294,11 +290,11 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
     const noticeData = this.getNoticeData();
 
     // Don't show popup menu when it is been collapsed
-    let global = this.props.commonStore;
+    let global = this.props.common;
     const menuProps = global.collapsed ? {} : {
-      openKeys: this.state.openKeys,
+      openKeys: this.state.openKeys
     };
-    console.log(this.props.commonStore);
+    console.log(this.props.common);
 
     const layout = (
       <Layout>
@@ -349,7 +345,7 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
               />
               <NoticeIcon
                 className={'action'}
-                count={this.props.userStore.currentUser.notifyCount}
+                count={this.props.user.currentUser.notifyCount}
                 onItemClick={(item, tabProps) => {
                   console.log(item, tabProps); // eslint-disable-line
                 }}
@@ -377,11 +373,11 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
                   emptyImage="https://gw.alipayobjects.com/zos/rmsportal/HsIsxMZiWKrNUavQUXqx.svg"
                 />
               </NoticeIcon>
-              {this.props.userStore.currentUser.name ? (
+              {this.props.user.currentUser.name ? (
                 <Dropdown overlay={menu}>
                   <span className={`${'action'} ${'account'}`}>
-                    <Avatar size="small" className={'avatar'} src={this.props.userStore.currentUser.avatar}/>
-                    {this.props.userStore.currentUser.name}
+                    <Avatar size="small" className={'avatar'} src={this.props.user.currentUser.avatar}/>
+                    {this.props.user.currentUser.name}
                   </span>
                 </Dropdown>
               ) : <Spin size="small" style={{marginLeft: 8}}/>}
@@ -410,15 +406,15 @@ class BasicLayout extends React.PureComponent<BasicLayoutProps, any> {
               links={[{
                 title: 'Pro 首页',
                 href: 'http://pro.ant.design',
-                blankTarget: true,
+                blankTarget: true
               }, {
                 title: 'GitHub',
                 href: 'https://github.com/ant-design/ant-design-pro',
-                blankTarget: true,
+                blankTarget: true
               }, {
                 title: 'Ant Design',
                 href: 'http://ant.design',
-                blankTarget: true,
+                blankTarget: true
               }]}
               copyright={
                 <div>

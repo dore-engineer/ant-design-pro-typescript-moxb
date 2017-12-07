@@ -1,25 +1,26 @@
 import * as React from 'react';
 // import { connect } from 'dva';
 import {
-  Row,
-  Col,
-  Card,
-  Form,
-  Input,
-  Select,
-  Icon,
   Button,
-  Dropdown,
-  Menu,
-  InputNumber,
+  Card,
+  Col,
   DatePicker,
+  Dropdown,
+  Form,
+  Icon,
+  Input,
+  InputNumber,
+  Menu,
+  message,
   Modal,
-  message
+  Row,
+  Select
 } from 'antd';
 import StandardTable from 'ant-design-pro/lib/StandardTable';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
 import './TableList.less';
+
 const FormItem = Form.Item;
 const {Option} = Select;
 const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',');
@@ -34,16 +35,8 @@ export default class TableList extends React.PureComponent<any, any> {
     modalVisible: false,
     expandForm: false,
     selectedRows: [],
-    formValues: {},
+    formValues: {}
   };
-
-  componentDidMount() {
-    const {dispatch} = this.props;
-    dispatch({
-      type: 'rule/fetch',
-    });
-  }
-
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
     const {dispatch} = this.props;
     const {formValues} = this.state;
@@ -59,7 +52,7 @@ export default class TableList extends React.PureComponent<any, any> {
       currentPage: pagination.current,
       pageSize: pagination.pageSize,
       ...formValues,
-      ...filters,
+      ...filters
     };
     if (sorter.field) {
       params.sorter = `${sorter.field}_${sorter.order}`;
@@ -67,103 +60,106 @@ export default class TableList extends React.PureComponent<any, any> {
 
     dispatch({
       type: 'rule/fetch',
-      payload: params,
+      payload: params
     });
   }
-
   handleFormReset = () => {
     const {form, dispatch} = this.props;
     form.resetFields();
     dispatch({
       type: 'rule/fetch',
-      payload: {},
+      payload: {}
     });
   }
-
   toggleForm = () => {
     this.setState({
-      expandForm: !this.state.expandForm,
+      expandForm: !this.state.expandForm
     });
   }
-
   handleMenuClick = (e) => {
     const {dispatch} = this.props;
     const {selectedRows} = this.state;
 
-    if (!selectedRows) { return; }
+    if (!selectedRows) {
+      return;
+    }
 
     switch (e.key) {
       case 'remove':
         dispatch({
           type: 'rule/remove',
           payload: {
-            no: selectedRows.map(row => row.no).join(','),
+            no: selectedRows.map(row => row.no).join(',')
           },
           callback: () => {
             this.setState({
-              selectedRows: [],
+              selectedRows: []
             });
-          },
+          }
         });
         break;
       default:
         break;
     }
   }
-
   handleSelectRows = (rows) => {
     this.setState({
-      selectedRows: rows,
+      selectedRows: rows
     });
   }
-
   handleSearch = (e) => {
     e.preventDefault();
 
     const {dispatch, form} = this.props;
 
     form.validateFields((err, fieldsValue) => {
-      if (err) { return; }
+      if (err) {
+        return;
+      }
 
       const values = {
         ...fieldsValue,
-        updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
+        updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf()
       };
 
       this.setState({
-        formValues: values,
+        formValues: values
       });
 
       dispatch({
         type: 'rule/fetch',
-        payload: values,
+        payload: values
       });
     });
   }
-
   handleModalVisible = (flag?) => {
     this.setState({
-      modalVisible: !!flag,
+      modalVisible: !!flag
     });
   }
-
   handleAddInput = (e) => {
     this.setState({
-      addInputValue: e.target.value,
+      addInputValue: e.target.value
     });
   }
-
   handleAdd = () => {
     this.props.dispatch({
       type: 'rule/add',
       payload: {
-        description: this.state.addInputValue,
-      },
+        description: this.state.addInputValue
+      }
     });
 
     message.success('添加成功');
     this.setState({
-      modalVisible: false,
+      modalVisible: false
+    });
+  }
+
+  componentDidMount() {
+    const {dispatch} = this.props;
+    dispatch({
+      type: 'rule/fetch'
     });
   }
 

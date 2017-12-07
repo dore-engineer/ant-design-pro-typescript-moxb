@@ -1,8 +1,16 @@
 import * as React from 'react';
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd';
+import { Card, Col, DatePicker, Dropdown, Icon, Menu, Radio, Row, Table, Tabs, Tooltip } from 'antd';
 import numeral from 'numeral';
 import {
-  ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart,
+  Bar,
+  ChartCard,
+  Field,
+  MiniArea,
+  MiniBar,
+  MiniProgress,
+  Pie,
+  TimelineChart,
+  yuan
 } from 'ant-design-pro/lib/Charts';
 import Trend from 'ant-design-pro/lib/Trend';
 import NumberInfo from 'ant-design-pro/lib/NumberInfo';
@@ -20,42 +28,39 @@ const rankingListData = [];
 for (let i = 0; i < 7; i += 1) {
   rankingListData.push({
     title: `工专路 ${i} 号店`,
-    total: 323234,
+    total: 323234
   });
 }
 
-@inject(Keys.chartStore)
+@inject(Keys.chart)
 @observer
-export default class Analysis extends React.Component<{ chartStore: ChartStore }> {
+export default class Analysis extends React.Component<{ chart: ChartStore }> {
+
+  handleChangeSalesType = (e) => {
+    this.props.chart.salesType = e.target.value;
+  }
+  handleTabChange = (key) => {
+    this.props.chart.currentTabKey = key;
+  }
+  handleRangePickerChange = (rangePickerValue) => {
+
+    this.props.chart.updateRangePicker(rangePickerValue);
+
+  }
+  selectDate = (type) => {
+    this.props.chart.updateRangePicker(getTimeDistance(type));
+  }
 
   componentDidMount() {
-    this.props.chartStore.fetch();
+    this.props.chart.fetch();
   }
 
   componentWillUnmount() {
-    this.props.chartStore.clear();
-  }
-
-  handleChangeSalesType = (e) => {
-    this.props.chartStore.salesType = e.target.value;
-  }
-
-  handleTabChange = (key) => {
-    this.props.chartStore.currentTabKey = key;
-  }
-
-  handleRangePickerChange = (rangePickerValue) => {
-
-    this.props.chartStore.updateRangePicker(rangePickerValue);
-
-  }
-
-  selectDate = (type) => {
-    this.props.chartStore.updateRangePicker(getTimeDistance(type));
+    this.props.chart.clear();
   }
 
   isActive(type): string {
-    const {rangePickerValue} = this.props.chartStore;
+    const {rangePickerValue} = this.props.chart;
     const value = getTimeDistance(type);
     if (!rangePickerValue[0] || !rangePickerValue[1]) {
       return '';
@@ -68,9 +73,9 @@ export default class Analysis extends React.Component<{ chartStore: ChartStore }
   }
 
   render() {
-    const {rangePickerValue, salesType, currentTabKey, loading} = this.props.chartStore;
-    const {chart} = this.props.chartStore;
-    console.log('chartStore', this.props.chartStore);
+    const {rangePickerValue, salesType, currentTabKey, loading} = this.props.chart;
+    const {chart} = this.props.chart;
+    console.log('chart', this.props.chart);
 
     const {
       visitData,
@@ -81,7 +86,7 @@ export default class Analysis extends React.Component<{ chartStore: ChartStore }
       offlineChartData,
       salesTypeData,
       salesTypeDataOnline,
-      salesTypeDataOffline,
+      salesTypeDataOffline
     } = chart;
 
     const salesPieData = salesType === 'all' ?
@@ -132,20 +137,20 @@ export default class Analysis extends React.Component<{ chartStore: ChartStore }
       {
         title: '排名',
         dataIndex: 'index',
-        key: 'index',
+        key: 'index'
       },
       {
         title: '搜索关键词',
         dataIndex: 'keyword',
         key: 'keyword',
-        render: text => <a href="/">{text}</a>,
+        render: text => <a href="/">{text}</a>
       },
       {
         title: '用户数',
         dataIndex: 'count',
         key: 'count',
         sorter: (a, b) => a.count - b.count,
-        className: 'alignRight',
+        className: 'alignRight'
       },
       {
         title: '周涨幅',
@@ -157,8 +162,8 @@ export default class Analysis extends React.Component<{ chartStore: ChartStore }
             <span style={{marginRight: 4}}>{text}%</span>
           </Trend>
         ),
-        align: 'right',
-      },
+        align: 'right'
+      }
     ];
 
     const activeKey = currentTabKey || (offlineData[0] && offlineData[0].name);
@@ -194,7 +199,7 @@ export default class Analysis extends React.Component<{ chartStore: ChartStore }
       md: 12,
       lg: 12,
       xl: 6,
-      style: {marginBottom: 24},
+      style: {marginBottom: 24}
     };
 
     return (
@@ -392,7 +397,7 @@ export default class Analysis extends React.Component<{ chartStore: ChartStore }
                 dataSource={searchData}
                 pagination={{
                   style: {marginBottom: 0},
-                  pageSize: 5,
+                  pageSize: 5
                 }}
               />
             </Card>

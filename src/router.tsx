@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Route, Router, Switch } from 'react-router-dom';
 import { LocaleProvider } from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
 import cloneDeep from 'lodash/cloneDeep';
@@ -29,7 +29,7 @@ class App extends React.Component<any, any> {
       component: route.component,
       layout: route.layout,
       name: route.name,
-      path: route.path,
+      path: route.path
     };
   }
 
@@ -43,7 +43,7 @@ class App extends React.Component<any, any> {
       navData,
       getRouteData: (path) => {
         return this.getRouteData(navData, path);
-      },
+      }
     };
 
     return (

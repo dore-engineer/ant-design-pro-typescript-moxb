@@ -9,20 +9,20 @@ import './UserLayout.less';
 
 const links = [{
   title: 'Bạn bè',
-  href: '',
+  href: ''
 }, {
   title: 'Thông báo',
-  href: '',
+  href: ''
 }, {
   title: 'Tin nhắn',
-  href: '',
+  href: ''
 }];
 
 const copyright = <div>Copyright <Icon type="copyright"/> 2017 蚂蚁金服体验技术部出品</div>;
 
 class UserLayout extends React.PureComponent<any, any> {
   static childContextTypes = {
-    location: PropTypes.object,
+    location: PropTypes.object
   };
 
   getChildContext() {

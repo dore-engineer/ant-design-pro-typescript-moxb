@@ -2,7 +2,7 @@ import * as React from 'react';
 import Debounce from 'lodash-decorators/debounce';
 import Bind from 'lodash-decorators/bind';
 // import { connect } from 'dva';
-import { Button, Menu, Dropdown, Icon, Row, Col, Steps, Card, Popover, Badge, Table, Tooltip, Divider } from 'antd';
+import { Badge, Button, Card, Col, Divider, Dropdown, Icon, Menu, Popover, Row, Steps, Table, Tooltip } from 'antd';
 import classNames from 'classnames';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import DescriptionList from 'ant-design-pro/lib/DescriptionList';
@@ -62,10 +62,10 @@ const description = (
 
 const tabList = [{
   key: 'detail',
-  tab: '详情',
+  tab: '详情'
 }, {
   key: 'rule',
-  tab: '规则',
+  tab: '规则'
 }];
 
 const desc1 = (
@@ -111,38 +111,38 @@ const customDot = (dot, {status}) => (status === 'process' ? (
 
 const operationTabList = [{
   key: 'tab1',
-  tab: '操作日志一',
+  tab: '操作日志一'
 }, {
   key: 'tab2',
-  tab: '操作日志二',
+  tab: '操作日志二'
 }, {
   key: 'tab3',
-  tab: '操作日志三',
+  tab: '操作日志三'
 }];
 
 const columns = [{
   title: '操作类型',
   dataIndex: 'type',
-  key: 'type',
+  key: 'type'
 }, {
   title: '操作人',
   dataIndex: 'name',
-  key: 'name',
+  key: 'name'
 }, {
   title: '执行结果',
   dataIndex: 'status',
   key: 'status',
   render: text => (
     text === 'agree' ? <Badge status="success" text="成功"/> : <Badge status="error" text="驳回"/>
-  ),
+  )
 }, {
   title: '操作时间',
   dataIndex: 'updatedAt',
-  key: 'updatedAt',
+  key: 'updatedAt'
 }, {
   title: '备注',
   dataIndex: 'memo',
-  key: 'memo',
+  key: 'memo'
 }];
 
 // @connect(state => ({
@@ -151,13 +151,16 @@ const columns = [{
 export default class AdvancedProfile extends React.Component<any, any> {
   state = {
     operationkey: 'tab1',
-    stepDirection: 'horizontal',
+    stepDirection: 'horizontal'
   };
+  onOperationTabChange = (key) => {
+    this.setState({operationkey: key});
+  }
 
   componentDidMount() {
     const {dispatch} = this.props;
     dispatch({
-      type: 'profile/fetchAdvanced',
+      type: 'profile/fetchAdvanced'
     });
 
     this.setStepDirection();
@@ -170,10 +173,6 @@ export default class AdvancedProfile extends React.Component<any, any> {
     this.setStepDirection();
   }
 
-  onOperationTabChange = (key) => {
-    this.setState({operationkey: key});
-  }
-
   @Bind()
   @Debounce(200)
   setStepDirection() {
@@ -181,11 +180,11 @@ export default class AdvancedProfile extends React.Component<any, any> {
     const w = getWindowWidth();
     if (stepDirection !== 'vertical' && w <= 576) {
       this.setState({
-        stepDirection: 'vertical',
+        stepDirection: 'vertical'
       });
     } else if (stepDirection !== 'horizontal' && w > 576) {
       this.setState({
-        stepDirection: 'horizontal',
+        stepDirection: 'horizontal'
       });
     }
   }
@@ -215,7 +214,7 @@ export default class AdvancedProfile extends React.Component<any, any> {
           loading={advancedLoading}
           dataSource={advancedOperation3}
           columns={columns}
-        />),
+        />)
     };
 
     return (

@@ -1,10 +1,10 @@
-import * as React from "react";
-import { inject, observer } from "mobx-react";
-import { Redirect } from "react-router-dom";
-import { Keys } from "../stores/index";
-import { AuthStore } from "../stores/auth";
+import * as React from 'react';
+import { inject, observer } from 'mobx-react';
+import { Redirect } from 'react-router-dom';
+import { Keys } from '../stores/index';
+import { AuthStore } from '../stores/auth';
 
-export function Protected(Children) : any {
+export function Protected(Children): any {
   @inject(Keys.auth)
   @observer
   class AuthenticatedComponent extends React.Component<{ auth: AuthStore, location: string }> {
@@ -21,7 +21,7 @@ export function Protected(Children) : any {
             : !authenticated
               ? <Redirect
                 to={{
-                  pathname: "/login",
+                  pathname: '/login',
                   state: {from: this.props.location}
                 }}
               />

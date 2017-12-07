@@ -1,12 +1,13 @@
 import * as React from 'react';
 // import { connect } from 'dva';
-import { Card, Steps, Form } from 'antd';
+import { Card, Steps } from 'antd';
 import PageHeaderLayout from '../../../layouts/PageHeaderLayout';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
 
 import './style.less';
+
 const {Step} = Steps;
 
 class StepForm extends React.PureComponent<any, any> {
@@ -30,7 +31,7 @@ class StepForm extends React.PureComponent<any, any> {
     const componentMap = {
       0: Step1,
       1: Step2,
-      2: Step3,
+      2: Step3
     };
     return componentMap[this.getCurrentStep()];
   }
@@ -39,11 +40,11 @@ class StepForm extends React.PureComponent<any, any> {
     const {form, stepFormData, submitting, dispatch} = this.props;
     const formItemLayout = {
       labelCol: {
-        span: 5,
+        span: 5
       },
       wrapperCol: {
-        span: 19,
-      },
+        span: 19
+      }
     };
     const CurrentComponent = this.getCurrentComponent();
     return (

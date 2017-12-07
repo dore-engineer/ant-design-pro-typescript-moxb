@@ -1,19 +1,18 @@
 import * as React from 'react';
-import { connect } from 'dva';
-import { Row, Col, Card, Table, Icon, Divider } from 'antd';
+import { Card, Col, Divider, Icon, Row, Table } from 'antd';
 
 const columns = [{
   title: 'Name',
   dataIndex: 'name',
-  key: 'name',
+  key: 'name'
 }, {
   title: 'Age',
   dataIndex: 'age',
-  key: 'age',
+  key: 'age'
 }, {
   title: 'Address',
   dataIndex: 'address',
-  key: 'address',
+  key: 'address'
 }, {
   title: 'Action',
   key: 'action',
@@ -27,13 +26,13 @@ const columns = [{
         More actions <Icon type="down"/>
       </a>
     </span>
-  ),
+  )
 }];
 
 class Dashboard extends React.PureComponent<any, any> {
   componentDidMount() {
     this.props.dispatch({
-      type: 'user/fetch',
+      type: 'user/fetch'
     });
   }
 
@@ -96,6 +95,6 @@ class Dashboard extends React.PureComponent<any, any> {
   }
 }
 
-export default connect(state => ({
-  user: state.user,
-}))(Dashboard);
+// export default connect(state => ({
+//   user: state.user
+// }))(Dashboard);

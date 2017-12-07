@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Row, Col, Icon, Steps, Card } from 'antd';
+import { Button, Card, Col, Icon, Row, Steps } from 'antd';
 import Result from 'ant-design-pro/lib/Result';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 

@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Form, Input, Button, Select, Divider } from 'antd';
-// import { routerRedux } from 'dva/router';
-
+import { Button, Divider, Form, Input, Select } from 'antd';
 import './style.less';
+// import { routerRedux } from 'dva/router';
 
 const {Option} = Select;
 
@@ -13,7 +12,7 @@ export default ({formItemLayout, form, dispatch, data}) => {
       if (!err) {
         dispatch({
           type: 'form/saveStepFormData',
-          payload: values,
+          payload: values
         });
         // dispatch(routerRedux.push('/form/step-form/confirm'));
       }
@@ -28,7 +27,7 @@ export default ({formItemLayout, form, dispatch, data}) => {
         >
           {getFieldDecorator('payAccount', {
             initialValue: data.payAccount || 'ant-design@alipay.com',
-            rules: [{required: true, message: '请选择付款账户'}],
+            rules: [{required: true, message: '请选择付款账户'}]
           })(
             <Select placeholder="test@example.com">
               <Option value="ant-design@alipay.com">ant-design@alipay.com</Option>
@@ -48,8 +47,8 @@ export default ({formItemLayout, form, dispatch, data}) => {
               initialValue: data.receiverAccount || 'test@example.com',
               rules: [
                 {required: true, message: '请输入收款人账户'},
-                {type: 'email', message: '账户名应为邮箱格式'},
-              ],
+                {type: 'email', message: '账户名应为邮箱格式'}
+              ]
             })(
               <Input style={{width: 'calc(100% - 100px)'}} placeholder="test@example.com"/>
             )}
@@ -61,7 +60,7 @@ export default ({formItemLayout, form, dispatch, data}) => {
         >
           {getFieldDecorator('receiverName', {
             initialValue: data.receiverName || 'Alex',
-            rules: [{required: true, message: '请输入收款人姓名'}],
+            rules: [{required: true, message: '请输入收款人姓名'}]
           })(
             <Input placeholder="请输入收款人姓名"/>
           )}
@@ -74,8 +73,8 @@ export default ({formItemLayout, form, dispatch, data}) => {
             initialValue: data.amount || '500',
             rules: [
               {required: true, message: '请输入转账金额'},
-              {pattern: /^(\d+)((?:\.\d+)?)$/, message: '请输入合法金额数字'},
-            ],
+              {pattern: /^(\d+)((?:\.\d+)?)$/, message: '请输入合法金额数字'}
+            ]
           })(
             <Input prefix="￥" placeholder="请输入金额"/>
           )}
@@ -83,7 +82,7 @@ export default ({formItemLayout, form, dispatch, data}) => {
         <Form.Item
           wrapperCol={{
             xs: {span: 24, offset: 0},
-            sm: {span: formItemLayout.wrapperCol.span, offset: formItemLayout.labelCol.span},
+            sm: {span: formItemLayout.wrapperCol.span, offset: formItemLayout.labelCol.span}
           }}
           label=""
         >

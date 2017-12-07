@@ -1,8 +1,6 @@
 import * as React from 'react';
 // import { connect } from 'dva';
-import {
-  Form, Input, DatePicker, Select, Button, Card, InputNumber, Radio, Icon, Tooltip,
-} from 'antd';
+import { Button, Card, DatePicker, Form, Icon, Input, InputNumber, Radio, Select, Tooltip } from 'antd';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
 import './style.less';
@@ -23,7 +21,7 @@ export default class BasicForms extends React.PureComponent<any, any> {
       if (!err) {
         this.props.dispatch({
           type: 'form/submitRegularForm',
-          payload: values,
+          payload: values
         });
       }
     });
@@ -36,20 +34,20 @@ export default class BasicForms extends React.PureComponent<any, any> {
     const formItemLayout = {
       labelCol: {
         xs: {span: 24},
-        sm: {span: 7},
+        sm: {span: 7}
       },
       wrapperCol: {
         xs: {span: 24},
         sm: {span: 12},
-        md: {span: 10},
-      },
+        md: {span: 10}
+      }
     };
 
     const submitFormLayout = {
       wrapperCol: {
         xs: {span: 24, offset: 0},
-        sm: {span: 10, offset: 7},
-      },
+        sm: {span: 10, offset: 7}
+      }
     };
 
     return (
@@ -66,8 +64,8 @@ export default class BasicForms extends React.PureComponent<any, any> {
             >
               {getFieldDecorator('title', {
                 rules: [{
-                  required: true, message: '请输入标题',
-                }],
+                  required: true, message: '请输入标题'
+                }]
               })(
                 <Input placeholder="给目标起个名字"/>
               )}
@@ -78,8 +76,8 @@ export default class BasicForms extends React.PureComponent<any, any> {
             >
               {getFieldDecorator('date', {
                 rules: [{
-                  required: true, message: '请选择起止日期',
-                }],
+                  required: true, message: '请选择起止日期'
+                }]
               })(
                 <RangePicker style={{width: '100%'}} placeholder={['开始日期', '结束日期']}/>
               )}
@@ -90,8 +88,8 @@ export default class BasicForms extends React.PureComponent<any, any> {
             >
               {getFieldDecorator('goal', {
                 rules: [{
-                  required: true, message: '请输入目标描述',
-                }],
+                  required: true, message: '请输入目标描述'
+                }]
               })(
                 <TextArea style={{minHeight: 32}} placeholder="请输入你的阶段性工作目标" rows={4}/>
               )}
@@ -102,8 +100,8 @@ export default class BasicForms extends React.PureComponent<any, any> {
             >
               {getFieldDecorator('standard', {
                 rules: [{
-                  required: true, message: '请输入衡量标准',
-                }],
+                  required: true, message: '请输入衡量标准'
+                }]
               })(
                 <TextArea style={{minHeight: 32}} placeholder="请输入衡量标准" rows={4}/>
               )}
@@ -150,7 +148,7 @@ export default class BasicForms extends React.PureComponent<any, any> {
             >
               <div>
                 {getFieldDecorator('public', {
-                  initialValue: '1',
+                  initialValue: '1'
                 })(
                   <Radio.Group>
                     <Radio value="1">公开</Radio>
@@ -164,7 +162,7 @@ export default class BasicForms extends React.PureComponent<any, any> {
                     placeholder="公开给"
                     style={{
                       margin: '8px 0',
-                      display: getFieldValue('public') === '2' ? 'block' : 'none',
+                      display: getFieldValue('public') === '2' ? 'block' : 'none'
                     }}
                   >
                     <Option value="1">同事甲</Option>

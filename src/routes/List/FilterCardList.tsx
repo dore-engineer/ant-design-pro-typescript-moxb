@@ -2,7 +2,7 @@ import * as React from 'react';
 import numeral from 'numeral';
 // import { connect } from 'dva';
 // import { routerRedux } from 'dva/router';
-import { Row, Col, Form, Card, Select, Icon, Avatar, List, Tooltip, Input, Dropdown, Menu } from 'antd';
+import { Avatar, Card, Col, Dropdown, Form, Icon, Input, List, Menu, Row, Select, Tooltip } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import StandardFormRow from 'ant-design-pro/lib/StandardFormRow';
@@ -31,15 +31,6 @@ const formatWan = (val) => {
 //   list: state.list,
 // }))
 export default class FilterCardList extends React.PureComponent<any, any> {
-  componentDidMount() {
-    this.props.dispatch({
-      type: 'list/fetch',
-      payload: {
-        count: 8,
-      },
-    });
-  }
-
   handleFormSubmit = () => {
     const {form, dispatch} = this.props;
     // setTimeout 用于保证获取表单值是在所有表单字段更新完毕的时候
@@ -50,14 +41,13 @@ export default class FilterCardList extends React.PureComponent<any, any> {
           dispatch({
             type: 'list/fetch',
             payload: {
-              count: 8,
-            },
+              count: 8
+            }
           });
         }
       });
     }, 0);
   }
-
   handleTabChange = (key) => {
     const {dispatch} = this.props;
     switch (key) {
@@ -75,6 +65,15 @@ export default class FilterCardList extends React.PureComponent<any, any> {
     }
   }
 
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'list/fetch',
+      payload: {
+        count: 8
+      }
+    });
+  }
+
   render() {
     const {list: {list, loading}, form} = this.props;
     const {getFieldDecorator} = form;
@@ -82,17 +81,17 @@ export default class FilterCardList extends React.PureComponent<any, any> {
     const tabList = [
       {
         key: 'doc',
-        tab: '文章',
+        tab: '文章'
       },
       {
         key: 'app',
         tab: '应用',
-        default: true,
+        default: true
       },
       {
         key: 'project',
-        tab: '项目',
-      },
+        tab: '项目'
+      }
     ];
 
     const CardInfo = ({activeUser, newUser}) => (
@@ -123,8 +122,8 @@ export default class FilterCardList extends React.PureComponent<any, any> {
     const formItemLayout = {
       wrapperCol: {
         xs: {span: 24},
-        sm: {span: 16},
-      },
+        sm: {span: 16}
+      }
     };
 
     const itemMenu = (
@@ -230,7 +229,7 @@ export default class FilterCardList extends React.PureComponent<any, any> {
                     <Tooltip key="download" title="下载"><Icon type="download"/></Tooltip>,
                     <Tooltip key="edit" title="编辑"><Icon type="edit"/></Tooltip>,
                     <Tooltip key="share-alt" title="分享"><Icon type="share-alt"/></Tooltip>,
-                    <Dropdown key="ellipsis" overlay={itemMenu}><Icon type="ellipsis"/></Dropdown>,
+                    <Dropdown key="ellipsis" overlay={itemMenu}><Icon type="ellipsis"/></Dropdown>
                   ]}
                 >
                   <Card.Meta
