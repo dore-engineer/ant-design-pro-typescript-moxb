@@ -1,27 +1,48 @@
 import * as React from 'react';
-import { connect } from 'dva';
-import { routerRedux, Link } from 'dva/router';
+// import { connect } from 'dva';
+// import { routerRedux, Link } from 'dva/router';
 import { Form, Input, Tabs, Button, Icon, Checkbox, Row, Col, Alert } from 'antd';
 
 import './Login.less';
+import { RouteComponentProps, withRouter } from "react-router";
+import { inject, observer } from "mobx-react";
+import { Keys } from "../../stores/index";
+import { LoginStore } from "../../stores/login";
+import { FormComponentProps, FormCreateOption } from "antd/lib/form";
+import { Link } from "react-router-dom";
 
 const FormItem = Form.Item;
 const {TabPane} = Tabs;
 
-@connect(state => ({
-  login: state.login,
-}))
-// @Form.create()
-export default class Login extends React.Component<any, any> {
-  state = {
-    count: 0,
-    type: 'account',
-  };
+interface LoginProps extends FormComponentProps, RouteComponentProps<any> {
+  login: LoginStore;
+}
+
+@withRouter
+@inject(Keys.login)
+@Form.create<LoginProps>({
+  onValuesChange: (props, values) => {
+    console.log(props, values);
+    for (let key in values) {
+      if (values.hasOwnProperty(key)) {
+        props.login.form[key] = values[key];
+      }
+    }
+
+  }
+})
+@observer
+export default class Login extends React.Component<LoginProps, any> {
+  // state = {
+  //   count: 0,
+  //   type: 'account',
+  // };
   private interval: any;
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.login.status === 'ok') {
-      this.props.dispatch(routerRedux.push('/'));
+      // this.props.history.push('/');
+      // this.props.dispatch(routerRedux.push('/'));
     }
   }
 
@@ -30,17 +51,15 @@ export default class Login extends React.Component<any, any> {
   }
 
   onSwitch = (key) => {
-    this.setState({
-      type: key,
-    });
+    this.props.login.type = key;
   }
 
   onGetCaptcha = () => {
     let count = 59;
-    this.setState({count});
+    this.props.login.count = count;
     this.interval = setInterval(() => {
       count -= 1;
-      this.setState({count});
+      this.props.login.count = count;
       if (count === 0) {
         clearInterval(this.interval);
       }
@@ -49,14 +68,11 @@ export default class Login extends React.Component<any, any> {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const {type} = this.state;
+    const {type} = this.props.login;
     this.props.form.validateFields({force: true},
       (err, values) => {
         if (!err) {
-          this.props.dispatch({
-            type: `login/${type}Submit`,
-            payload: values,
-          });
+          this.props.login.accountSubmit(values);
         }
       }
     );
@@ -76,7 +92,8 @@ export default class Login extends React.Component<any, any> {
   render() {
     const {form, login} = this.props;
     const {getFieldDecorator} = form;
-    const {count, type} = this.state;
+    const {count, type} = this.props.login;
+    console.log("render login", this.props);
     return (
       <div className={'main'}>
         <Form onSubmit={this.handleSubmit}>
@@ -154,14 +171,14 @@ export default class Login extends React.Component<any, any> {
                     )}
                   </Col>
                   <Col span={8}>
-                    {/*<Button*/}
-                    {/*disabled={count}*/}
-                    {/*className={'getCaptcha'}*/}
-                    {/*size="large"*/}
-                    {/*onClick={this.onGetCaptcha}*/}
-                    {/*>*/}
-                    {/*{count ? `${count} s` : '获取验证码'}*/}
-                    {/*</Button>*/}
+                    <Button
+                      disabled={count > 0}
+                      className={'getCaptcha'}
+                      size="large"
+                      onClick={this.onGetCaptcha}
+                    >
+                      {count ? `${count} s` : '获取验证码'}
+                    </Button>
                   </Col>
                 </Row>
               </FormItem>

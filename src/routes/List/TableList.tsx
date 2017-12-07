@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect } from 'dva';
+// import { connect } from 'dva';
 import {
   Row,
   Col,
@@ -24,10 +24,10 @@ const FormItem = Form.Item;
 const {Option} = Select;
 const getValue = obj => Object.keys(obj).map(key => obj[key]).join(',');
 
-@connect(state => ({
-  rule: state.rule,
-}))
-// @Form.create()
+// @connect(state => ({
+//   rule: state.rule,
+// }))
+@Form.create()
 export default class TableList extends React.PureComponent<any, any> {
   state = {
     addInputValue: '',

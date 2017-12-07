@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as moment from 'moment';
-import { connect } from 'dva';
 import { Row, Col, Card, List, Avatar } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
@@ -70,11 +69,11 @@ const members = [
   },
 ];
 
-@connect(state => ({
-  project: state.project,
-  activities: state.activities,
-  chart: state.chart,
-}))
+// @connect(state => ({
+//   project: state.project,
+//   activities: state.activities,
+//   chart: state.chart,
+// }))
 export default class Workplace extends React.PureComponent<any, any> {
   componentDidMount() {
     const {dispatch} = this.props;

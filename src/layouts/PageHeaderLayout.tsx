@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'dva/router';
+import { Link } from 'react-router-dom';
 import PageHeader from 'ant-design-pro/lib/PageHeader';
 import './PageHeaderLayout.less';
 

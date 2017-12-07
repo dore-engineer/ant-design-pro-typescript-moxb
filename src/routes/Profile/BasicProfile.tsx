@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect } from 'dva';
+// import { connect } from 'dva';
 import { Card, Badge, Table, Divider } from 'antd';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import DescriptionList from 'ant-design-pro/lib/DescriptionList';
@@ -32,9 +32,9 @@ const progressColumns = [{
   key: 'cost',
 }];
 
-@connect(state => ({
-  profile: state.profile,
-}))
+// @connect(state => ({
+//   profile: state.profile,
+// }))
 export default class BasicProfile extends React.Component<any, any> {
   componentDidMount() {
     const {dispatch} = this.props;

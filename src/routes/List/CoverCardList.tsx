@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as moment from 'moment';
-import { connect } from 'dva';
-import { routerRedux } from 'dva/router';
+// import { connect } from 'dva';
+// import { routerRedux } from 'dva/router';
 import { Row, Col, Form, Card, Select, List, Input } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
@@ -16,10 +16,10 @@ const {Option} = Select;
 const FormItem = Form.Item;
 
 /* eslint react/no-array-index-key: 0 */
-// @Form.create()
-@connect(state => ({
-  list: state.list,
-}))
+@Form.create()
+// @connect(state => ({
+//   list: state.list,
+// }))
 export default class CoverCardList extends React.PureComponent<any, any> {
   componentDidMount() {
     this.props.dispatch({
@@ -51,15 +51,15 @@ export default class CoverCardList extends React.PureComponent<any, any> {
   handleTabChange = (key) => {
     const {dispatch} = this.props;
     switch (key) {
-      case 'doc':
-        dispatch(routerRedux.push('/list/search'));
-        break;
-      case 'app':
-        dispatch(routerRedux.push('/list/filter-card-list'));
-        break;
-      case 'project':
-        dispatch(routerRedux.push('/list/cover-card-list'));
-        break;
+      // case 'doc':
+      //   dispatch(routerRedux.push('/list/search'));
+      //   break;
+      // case 'app':
+      //   dispatch(routerRedux.push('/list/filter-card-list'));
+      //   break;
+      // case 'project':
+      //   dispatch(routerRedux.push('/list/cover-card-list'));
+      //   break;
       default:
         break;
     }

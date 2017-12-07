@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Form, Input, Button, Select, Divider } from 'antd';
-import { routerRedux } from 'dva/router';
+// import { routerRedux } from 'dva/router';
 
 import './style.less';
 
@@ -15,7 +15,7 @@ export default ({formItemLayout, form, dispatch, data}) => {
           type: 'form/saveStepFormData',
           payload: values,
         });
-        dispatch(routerRedux.push('/form/step-form/confirm'));
+        // dispatch(routerRedux.push('/form/step-form/confirm'));
       }
     });
   };

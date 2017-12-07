@@ -10,7 +10,7 @@ const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeM
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
-
+const tsImportPluginFactory = require('ts-import-plugin');
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
 const publicPath = '/';
@@ -151,6 +151,19 @@ module.exports = {
                         test: /\.(ts|tsx)$/,
                         include: paths.appSrc,
                         loader: require.resolve('ts-loader'),
+                        options: {
+                            transpileOnly: true,
+                            getCustomTransformers: () => ({
+                                before: [ tsImportPluginFactory({
+                                    libraryName: 'antd',
+                                    libraryDirectory: 'lib',
+                                    style: true
+                                }) ]
+                            }),
+                            compilerOptions: {
+                                module: 'es2015'
+                            }
+                        },
                     },
                     {
                         test: /\.less$/,

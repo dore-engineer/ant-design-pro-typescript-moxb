@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Debounce from 'lodash-decorators/debounce';
 import Bind from 'lodash-decorators/bind';
-import { connect } from 'dva';
+// import { connect } from 'dva';
 import { Button, Menu, Dropdown, Icon, Row, Col, Steps, Card, Popover, Badge, Table, Tooltip, Divider } from 'antd';
 import classNames from 'classnames';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
@@ -145,9 +145,9 @@ const columns = [{
   key: 'memo',
 }];
 
-@connect(state => ({
-  profile: state.profile,
-}))
+// @connect(state => ({
+//   profile: state.profile,
+// }))
 export default class AdvancedProfile extends React.Component<any, any> {
   state = {
     operationkey: 'tab1',

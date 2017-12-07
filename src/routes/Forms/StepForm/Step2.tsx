@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Form, Input, Button, Alert, Divider } from 'antd';
-import { routerRedux } from 'dva/router';
+// import { routerRedux } from 'dva/router';
 import { digitUppercase } from '../../../utils/utils';
 
 import './style.less';
@@ -8,7 +8,7 @@ import './style.less';
 export default ({formItemLayout, form, data, dispatch, submitting}) => {
   const {getFieldDecorator, validateFields} = form;
   const onPrev = () => {
-    dispatch(routerRedux.push('/form/step-form'));
+    // dispatch(routerRedux.push('/form/step-form'));
   };
   const onValidateForm = (e) => {
     e.preventDefault();

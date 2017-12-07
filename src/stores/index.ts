@@ -7,16 +7,25 @@ import userStore from './user';
 import commonStore from './common';
 import chartStore from './chart';
 import monitorStore from './monitor';
+import login from './login';
+import register from './register';
+import auth from './auth';
 
 export const rootStores = {
   userStore,
   commonStore,
   chartStore,
   monitorStore,
+  login,
+  register,
+  auth,
 };
 export const Keys = {
   userStore: 'userStore',
   commonStore: 'commonStore',
   chartStore: 'chartStore',
   monitorStore: 'monitorStore',
+  login: 'login',
+  register: 'register',
+  auth: 'auth',
 };

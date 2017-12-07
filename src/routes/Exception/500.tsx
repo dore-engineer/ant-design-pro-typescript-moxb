@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'dva/router';
+import { Link } from 'react-router-dom';
 import Exception from 'ant-design-pro/lib/Exception';
 
 export default () => (

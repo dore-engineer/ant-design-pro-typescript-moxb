@@ -1,6 +1,5 @@
 import superagentPromise from 'superagent-promise';
 import _superagent from 'superagent';
-import commonStore from '../stores/common';
 import authStore from '../stores/auth';
 
 const superagent = superagentPromise(_superagent, global.Promise);
@@ -19,8 +18,8 @@ const handleErrors = err => {
 const responseBody = res => res.body;
 
 const tokenPlugin = req => {
-  if (commonStore.token) {
-    req.set('authorization', `Token ${commonStore.token}`);
+  if (authStore.token) {
+    req.set('authorization', `Token ${authStore.token}`);
   }
 };
 
@@ -67,7 +66,7 @@ const Tags = {
 };
 
 const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
-const omitSlug = article => Object.assign({}, article, { slug: undefined })
+const omitSlug = article => Object.assign({}, article, { slug: undefined });
 
 const Articles = {
   all: (page, lim = 10) =>

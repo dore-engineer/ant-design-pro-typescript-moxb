@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { connect } from 'dva';
 import { Row, Col, Card, Tooltip } from 'antd';
 import numeral from 'numeral';
 

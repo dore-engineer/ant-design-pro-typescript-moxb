@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button } from 'antd';
-import { Link } from 'dva/router';
+import { Link } from 'react-router-dom';
 import Result from 'ant-design-pro/lib/Result';
 
 import './RegisterResult.less';

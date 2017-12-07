@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as moment from 'moment';
-import { connect } from 'dva';
-import { routerRedux } from 'dva/router';
+// import { connect } from 'dva';
+// import { routerRedux } from 'dva/router';
 import { Form, Card, Select, List, Tag, Icon, Avatar, Row, Col, Button, Input } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
@@ -15,10 +15,10 @@ const FormItem = Form.Item;
 
 const pageSize = 5;
 
-// @Form.create()
-@connect(state => ({
-  list: state.list,
-}))
+@Form.create()
+// @connect(state => ({
+//   list: state.list,
+// }))
 export default class SearchList extends React.Component<any, any> {
   private handleFormSubmit: any;
 
@@ -45,15 +45,15 @@ export default class SearchList extends React.Component<any, any> {
   handleTabChange = (key) => {
     const {dispatch} = this.props;
     switch (key) {
-      case 'docs':
-        dispatch(routerRedux.push('/list/search'));
-        break;
-      case 'app':
-        dispatch(routerRedux.push('/list/filter-card-list'));
-        break;
-      case 'project':
-        dispatch(routerRedux.push('/list/cover-card-list'));
-        break;
+      // case 'docs':
+      //   dispatch(routerRedux.push('/list/search'));
+      //   break;
+      // case 'app':
+      //   dispatch(routerRedux.push('/list/filter-card-list'));
+      //   break;
+      // case 'project':
+      //   dispatch(routerRedux.push('/list/cover-card-list'));
+      //   break;
       default:
         break;
     }

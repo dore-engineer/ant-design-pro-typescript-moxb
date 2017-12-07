@@ -1,42 +1,76 @@
-import { fakeRegister } from '../services/api';
+import { routerRedux } from 'dva/router';
+import { action, observable } from "mobx";
+import { sleep } from "../utils/utils";
 
-export default {
-  namespace: 'register',
+export class RegisterStore {
+  @observable public state: any = undefined;
+  @observable public submitting: boolean = false;
 
-  state: {
-    status: undefined,
-  },
+  @action
+  public changeSubmitting(submitting: boolean) {
+    this.submitting = submitting;
+  }
 
-  effects: {
-    * submit(_, {call, put}) {
-      yield put({
-        type: 'changeSubmitting',
-        payload: true,
-      });
-      const response = yield call(fakeRegister);
-      yield put({
-        type: 'registerHandle',
-        payload: response,
-      });
-      yield put({
-        type: 'changeSubmitting',
-        payload: false,
-      });
-    },
-  },
+  @action
+  public async submit(values) {
+    this.changeSubmitting(true);
+    console.log(values)
+    await sleep(200);
+    this.changeSubmitting(false);
+  }
+}
 
-  reducers: {
-    registerHandle(state, {payload}) {
-      return {
-        ...state,
-        status: payload.status,
-      };
-    },
-    changeSubmitting(state, {payload}) {
-      return {
-        ...state,
-        submitting: payload,
-      };
-    },
-  },
-};
+export default new RegisterStore();
+//
+// namespace: 'register',
+//
+//   state
+// :
+// {
+//   status: undefined,
+// }
+// ,
+//
+// effects: {
+// *
+//   submit(_, {call, put})
+//   {
+//     yield put({
+//       type: 'changeSubmitting',
+//       payload: true,
+//     });
+//     const response = yield call(fakeRegister);
+//     yield put({
+//       type: 'registerHandle',
+//       payload: response,
+//     });
+//     yield put({
+//       type: 'changeSubmitting',
+//       payload: false,
+//     });
+//   }
+// ,
+// }
+// ,
+//
+// reducers: {
+//   registerHandle(state, {payload})
+//   {
+//     return {
+//       ...state,
+//       status: payload.status,
+//     };
+//   }
+// ,
+//   changeSubmitting(state, {payload})
+//   {
+//     return {
+//       ...state,
+//       submitting: payload,
+//     };
+//   }
+// ,
+// }
+// ,
+// }
+// ;

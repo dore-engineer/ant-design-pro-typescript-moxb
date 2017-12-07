@@ -1,15 +1,11 @@
-import dynamic from 'dva/dynamic';
+import * as React from 'react';
+import asyncComponent from "./AsyncFunc";
 
-// wrapper of dynamic
-const dynamicWrapper = (models, component) => dynamic({
-  // models: () => models.map(m => import(`../models/${m}.tsx`)),
-  component,
-});
-
+// wrapper of dynami
 // nav data
 export const getNavData = () => [
   {
-    component: dynamicWrapper(['user', 'login'], () => import('../layouts/BasicLayout')),
+    component: asyncComponent(() => import('../layouts/BasicLayout')),
     layout: 'BasicLayout',
     name: '首页', // for breadcrumb
     path: '/',
@@ -22,17 +18,17 @@ export const getNavData = () => [
           {
             name: '分析页',
             path: 'analysis',
-            component: dynamicWrapper(['chart'], () => import('../routes/Dashboard/Analysis')),
+            component: asyncComponent(() => import('../routes/Dashboard/Analysis')),
           },
           {
             name: '监控页',
             path: 'monitor',
-            component: dynamicWrapper(['monitor'], () => import('../routes/Dashboard/Monitor')),
+            component: asyncComponent(() => import('../routes/Dashboard/Monitor')),
           },
           {
             name: '工作台',
             path: 'workplace',
-            component: dynamicWrapper(['project', 'activities', 'chart'], () => import('../routes/Dashboard/Workplace')),
+            component: asyncComponent(() => import('../routes/Dashboard/Workplace')),
           },
         ],
       },
@@ -44,27 +40,27 @@ export const getNavData = () => [
           {
             name: '基础表单',
             path: 'basic-form',
-            component: dynamicWrapper(['form'], () => import('../routes/Forms/BasicForm')),
+            component: asyncComponent(() => import('../routes/Forms/BasicForm')),
           },
           {
             name: '分步表单',
             path: 'step-form',
-            component: dynamicWrapper(['form'], () => import('../routes/Forms/StepForm')),
+            component: asyncComponent(() => import('../routes/Forms/StepForm')),
             children: [
               {
                 path: 'confirm',
-                component: dynamicWrapper(['form'], () => import('../routes/Forms/StepForm/Step2')),
+                component: asyncComponent(() => import('../routes/Forms/StepForm/Step2')),
               },
               {
                 path: 'result',
-                component: dynamicWrapper(['form'], () => import('../routes/Forms/StepForm/Step3')),
+                component: asyncComponent(() => import('../routes/Forms/StepForm/Step3')),
               },
             ],
           },
           {
             name: '高级表单',
             path: 'advanced-form',
-            component: dynamicWrapper(['form'], () => import('../routes/Forms/AdvancedForm')),
+            component: asyncComponent(() => import('../routes/Forms/AdvancedForm')),
           },
         ],
       },
@@ -76,32 +72,32 @@ export const getNavData = () => [
           {
             name: '查询表格',
             path: 'table-list',
-            component: dynamicWrapper(['rule'], () => import('../routes/List/TableList')),
+            component: asyncComponent(() => import('../routes/List/TableList')),
           },
           {
             name: '标准列表',
             path: 'basic-list',
-            component: dynamicWrapper(['list'], () => import('../routes/List/BasicList')),
+            component: asyncComponent(() => import('../routes/List/BasicList')),
           },
           {
             name: '卡片列表',
             path: 'card-list',
-            component: dynamicWrapper(['list'], () => import('../routes/List/CardList')),
+            component: asyncComponent(() => import('../routes/List/CardList')),
           },
           {
             name: '搜索列表（项目）',
             path: 'cover-card-list',
-            component: dynamicWrapper(['list'], () => import('../routes/List/CoverCardList')),
+            component: asyncComponent(() => import('../routes/List/CoverCardList')),
           },
           {
             name: '搜索列表（应用）',
             path: 'filter-card-list',
-            component: dynamicWrapper(['list'], () => import('../routes/List/FilterCardList')),
+            component: asyncComponent(() => import('../routes/List/FilterCardList')),
           },
           {
             name: '搜索列表（文章）',
             path: 'search',
-            component: dynamicWrapper(['list'], () => import('../routes/List/SearchList')),
+            component: asyncComponent(() => import('../routes/List/SearchList')),
           },
         ],
       },
@@ -113,12 +109,12 @@ export const getNavData = () => [
           {
             name: '基础详情页',
             path: 'basic',
-            component: dynamicWrapper(['profile'], () => import('../routes/Profile/BasicProfile')),
+            component: asyncComponent(() => import('../routes/Profile/BasicProfile')),
           },
           {
             name: '高级详情页',
             path: 'advanced',
-            component: dynamicWrapper(['profile'], () => import('../routes/Profile/AdvancedProfile')),
+            component: asyncComponent(() => import('../routes/Profile/AdvancedProfile')),
           },
         ],
       },
@@ -130,12 +126,12 @@ export const getNavData = () => [
           {
             name: '成功',
             path: 'success',
-            component: dynamicWrapper([], () => import('../routes/Result/Success')),
+            component: asyncComponent(() => import('../routes/Result/Success')),
           },
           {
             name: '失败',
             path: 'fail',
-            component: dynamicWrapper([], () => import('../routes/Result/Error')),
+            component: asyncComponent(() => import('../routes/Result/Error')),
           },
         ],
       },
@@ -147,24 +143,24 @@ export const getNavData = () => [
           {
             name: '403',
             path: '403',
-            component: dynamicWrapper([], () => import('../routes/Exception/403')),
+            component: asyncComponent(() => import('../routes/Exception/403')),
           },
           {
             name: '404',
             path: '404',
-            component: dynamicWrapper([], () => import('../routes/Exception/404')),
+            component: asyncComponent(() => import('../routes/Exception/404')),
           },
           {
             name: '500',
             path: '500',
-            component: dynamicWrapper([], () => import('../routes/Exception/500')),
+            component: asyncComponent(() => import('../routes/Exception/500')),
           },
         ],
       },
     ],
   },
   {
-    component: dynamicWrapper([], () => import('../layouts/UserLayout')),
+    component: asyncComponent(() => import('../layouts/UserLayout')),
     path: '/user',
     layout: 'UserLayout',
     children: [
@@ -176,24 +172,24 @@ export const getNavData = () => [
           {
             name: '登录',
             path: 'login',
-            component: dynamicWrapper(['login'], () => import('../routes/User/Login')),
+            component: asyncComponent(() => import('../routes/User/Login')),
           },
           {
             name: '注册',
             path: 'register',
-            component: dynamicWrapper(['register'], () => import('../routes/User/Register')),
+            component: asyncComponent(() => import('../routes/User/Register')),
           },
           {
             name: '注册结果',
             path: 'register-result',
-            component: dynamicWrapper([], () => import('../routes/User/RegisterResult')),
+            component: asyncComponent(() => import('../routes/User/RegisterResult')),
           },
         ],
       },
     ],
   },
   {
-    component: dynamicWrapper([], () => import('../layouts/BlankLayout')),
+    component: asyncComponent(() => import('../layouts/BlankLayout')),
     layout: 'BlankLayout',
     children: {
       name: '使用文档',

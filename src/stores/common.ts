@@ -4,7 +4,7 @@ import agent from '../services';
 export class CommonStore {
 
   @observable public appName = 'Conduit';
-  @observable public token = window.localStorage.getItem('jwt');
+
   @observable public appLoaded = false;
 
   @observable public tags = [];
@@ -18,19 +18,6 @@ export class CommonStore {
     this.collapsed = collapsed;
   }
 
-  constructor() {
-    reaction(
-      () => this.token,
-      token => {
-        if (token) {
-          window.localStorage.setItem('jwt', token);
-        } else {
-          window.localStorage.removeItem('jwt');
-        }
-      }
-    );
-  }
-
   @action
   loadTags() {
     this.isLoadingTags = true;
@@ -41,11 +28,6 @@ export class CommonStore {
       .finally(action(() => {
         this.isLoadingTags = false;
       }));
-  }
-
-  @action
-  setToken(token) {
-    this.token = token;
   }
 
   @action

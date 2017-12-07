@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
-import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import FooterToolbar from 'ant-design-pro/lib/FooterToolbar';
 import TableForm from './TableForm';
@@ -275,7 +274,7 @@ class AdvancedForm extends React.PureComponent<AdvancedFormProps, any> {
   }
 }
 
-export default connect(state => ({
-  collapsed: state.global.collapsed,
-  submitting: state.form.advancedFormSubmitting,
-}))(Form.create<AdvancedFormProps>()(AdvancedForm));
+// export default connect(state => ({
+//   collapsed: state.global.collapsed,
+//   submitting: state.form.advancedFormSubmitting,
+// }))(Form.create<AdvancedFormProps>()(AdvancedForm));

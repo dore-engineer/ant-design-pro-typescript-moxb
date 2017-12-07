@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { connect } from 'dva';
 import { Card, Button, Icon, List } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import Ellipsis from 'ant-design-pro/lib/Ellipsis';
 
 import './CardList.less';
-@connect(state => ({
-  list: state.list,
-}))
+// @connect(state => ({
+//   list: state.list,
+// }))
 export default class CardList extends React.PureComponent<any, any> {
   componentDidMount() {
     this.props.dispatch({

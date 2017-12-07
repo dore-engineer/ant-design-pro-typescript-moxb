@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as moment from 'moment';
-import { connect } from 'dva';
 import { List, Card, Row, Col, Radio, Input, Progress, Button, Icon, Dropdown, Menu, Avatar } from 'antd';
 
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
@@ -10,9 +9,9 @@ const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const {Search} = Input;
 
-@connect(state => ({
-  list: state.list,
-}))
+// @connect(state => ({
+//   list: state.list,
+// }))
 export default class BasicList extends React.PureComponent<any, any> {
   componentDidMount() {
     this.props.dispatch({

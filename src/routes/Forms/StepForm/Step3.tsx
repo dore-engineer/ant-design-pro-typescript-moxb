@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Button, Row, Col } from 'antd';
-import { routerRedux } from 'dva/router';
+// import { routerRedux } from 'dva/router';
 import Result from 'ant-design-pro/lib/Result';
 
 import './style.less';
 
 export default ({dispatch, data}) => {
   const onFinish = () => {
-    dispatch(routerRedux.push('/form/step-form'));
+    // dispatch(routerRedux.push('/form/step-form'));
   };
   const information = (
     <div className={'information'}>

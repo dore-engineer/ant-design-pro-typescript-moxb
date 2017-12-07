@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect } from 'dva';
+// import { connect } from 'dva';
 import {
   Form, Input, DatePicker, Select, Button, Card, InputNumber, Radio, Icon, Tooltip,
 } from 'antd';
@@ -12,10 +12,10 @@ const {Option} = Select;
 const {RangePicker} = DatePicker;
 const {TextArea} = Input;
 
-@connect(state => ({
-  submitting: state.form.regularFormSubmitting,
-}))
-// @Form.create()
+// @connect(state => ({
+//   submitting: state.form.regularFormSubmitting,
+// }))
+@Form.create()
 export default class BasicForms extends React.PureComponent<any, any> {
   handleSubmit = (e) => {
     e.preventDefault();

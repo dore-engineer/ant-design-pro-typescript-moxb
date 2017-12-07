@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect } from 'dva';
+// import { connect } from 'dva';
 import { Card, Steps, Form } from 'antd';
 import PageHeaderLayout from '../../../layouts/PageHeaderLayout';
 import Step1 from './Step1';
@@ -69,7 +69,7 @@ class StepForm extends React.PureComponent<any, any> {
   }
 }
 
-export default connect(state => ({
-  stepFormData: state.form.step,
-  submitting: state.form.stepFormSubmitting,
-}))(StepForm);
+// export default connect(state => ({
+//   stepFormData: state.form.step,
+//   submitting: state.form.stepFormSubmitting,
+// }))(StepForm);
