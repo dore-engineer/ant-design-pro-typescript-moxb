@@ -10,6 +10,7 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
+const tsImportPluginFactory = require('ts-import-plugin');
 const getClientEnvironment = require('./env');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -19,7 +20,7 @@ const publicPath = paths.servedPath;
 // For these, "homepage" can be set to "." to enable relative asset paths.
 const shouldUseRelativeAssetPaths = publicPath === './';
 // Source maps are resource heavy and can cause out of memory issue for large source files.
-const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
+const shouldUseSourceMap = false;
 // `publicUrl` is just like `publicPath`, but we will provide it to our app
 // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
 // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
@@ -42,7 +43,7 @@ const cssFilename = 'static/css/[name].[contenthash:8].css';
 // To have this structure working with relative paths, we have to use custom options.
 const extractTextPluginOptions = shouldUseRelativeAssetPaths
   ? // Making sure that the publicPath goes back to to build folder.
-    { publicPath: Array(cssFilename.split('/').length).join('../') }
+  {publicPath: Array(cssFilename.split('/').length).join('../')}
   : {};
 
 // This is the production configuration.
@@ -99,7 +100,7 @@ module.exports = {
       '.jsx',
     ],
     alias: {
-      
+
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -149,11 +150,34 @@ module.exports = {
               name: 'static/media/[name].[hash:8].[ext]',
             },
           },
-          //Compile .tsx?
+          // Compile .tsx?
           {
             test: /\.(ts|tsx)$/,
             include: paths.appSrc,
-            loader: require.resolve('ts-loader')
+            loader: require.resolve('ts-loader'),
+            options: {
+              transpileOnly: true,
+              getCustomTransformers: () => ({
+                before: [tsImportPluginFactory({
+                  libraryName: 'antd',
+                  libraryDirectory: 'lib',
+                  style: true
+                })]
+              }),
+              compilerOptions: {
+                module: 'es2015'
+              }
+            },
+          },
+          {
+            test: /\.less$/,
+            use: [{
+              loader: "style-loader"
+            }, {
+              loader: "css-loader"
+            }, {
+              loader: "less-loader"
+            }]
           },
           // The notation here is somewhat confusing.
           // "postcss" loader applies autoprefixer to our CSS.

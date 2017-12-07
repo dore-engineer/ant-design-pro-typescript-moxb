@@ -1,4 +1,3 @@
-import fetch from 'dva/fetch';
 import { notification } from 'antd';
 
 function checkStatus(response) {
@@ -11,7 +10,7 @@ function checkStatus(response) {
   });
   // const error = new Error(response.statusText);
   // error.response = response;
-  return response
+  return response;
   // throw error;
 }
 
@@ -30,8 +29,8 @@ export default function request(url, options) {
   if (newOptions.method === 'POST' || newOptions.method === 'PUT') {
     newOptions.headers = {
       Accept: 'application/json',
-      'Content-Type': 'application/json; charset=utf-8'
-      ...newOptions.headers,
+      'Content-Type': 'application/json; charset=utf-8',
+      ...newOptions.headers
     };
     newOptions.body = JSON.stringify(newOptions.body);
   }

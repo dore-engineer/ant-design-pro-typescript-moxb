@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { Route, Router, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { LocaleProvider } from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
 import cloneDeep from 'lodash/cloneDeep';
 import { getNavData } from './common/nav';
 import { getPlainNode } from './utils/utils';
-
-import browserHistory from 'history/createBrowserHistory';
 
 class App extends React.Component<any, any> {
 
@@ -37,8 +35,6 @@ class App extends React.Component<any, any> {
     const navData = getNavData();
     const UserLayout = this.getLayout(navData, 'UserLayout').component;
     const BasicLayout = this.getLayout(navData, 'BasicLayout').component;
-    const history = browserHistory();
-
     const passProps = {
       navData,
       getRouteData: (path) => {
@@ -48,12 +44,11 @@ class App extends React.Component<any, any> {
 
     return (
       <LocaleProvider locale={enUS}>
-        <Router history={history}>
-          <Switch>
-            <Route path="/user" render={props => <UserLayout {...props} {...passProps} />}/>
-            <Route path="/" render={props => <BasicLayout {...props} {...passProps} />}/>
-          </Switch>
-        </Router>
+
+        <Switch>
+          <Route path="/user" render={props => <UserLayout {...props} {...passProps} />}/>
+          <Route path="/" render={props => <BasicLayout {...props} {...passProps} />}/>
+        </Switch>
       </LocaleProvider>
     );
   }
